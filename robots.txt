@@ -55,4 +55,4 @@ Allow: /
 User-agent: meta-externalagent
 Allow: /
 
-Sitemap: https://premiumwovenlabel.github.io/premiumwovenlabel/sitemap.xml
+Sitemap: https://premiumwovenlabel.com/sitemap.xml

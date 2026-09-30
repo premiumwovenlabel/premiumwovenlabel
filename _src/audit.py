@@ -209,7 +209,8 @@ def main():
         if canon not in sm:
             err(rel, "not in sitemap.xml")
     for m in re.finditer(r"<loc>(.*?)</loc>", sm):
-        path = m.group(1).split("/premiumwovenlabel/")[-1]
+        from core import BASE as _BASE
+        path = m.group(1)[len(_BASE):].lstrip("/") if m.group(1).startswith(_BASE) else m.group(1)
         f = os.path.join(ROOT, path, "index.html") if path else os.path.join(ROOT, "index.html")
         if not os.path.exists(f):
             err("sitemap.xml", "points at missing page: %s" % m.group(1))

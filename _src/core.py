@@ -10,7 +10,7 @@ import json
 
 # ---------------------------------------------------------------- business data
 NAME = "Premium Woven Labels"
-BASE = "https://premiumwovenlabel.github.io/premiumwovenlabel"   # change to the .com when it goes live
+BASE = "https://premiumwovenlabel.com"   # live domain
 WA_RAW = "923048095202"
 WA_DISPLAY = "+92 304 8095202"
 EMAIL = "premiumwovenlabel@gmail.com"
