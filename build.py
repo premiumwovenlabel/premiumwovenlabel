@@ -46,6 +46,14 @@ def build_pages():
     out.append(write("contact/index.html", pages.contact()))
     out.append(write("pricing/index.html", pages.pricing()))
     out.append(write("lp/woven-labels-pakistan/index.html", pages.landing()))
+    out.append(write("label-placement-guide/index.html", pages.label_placement_guide()))
+    out.append(write("international/index.html", pages.international()))
+    out.append(write("brand-labels/index.html", pages.label_type_page("brand-labels", "brand-labels", ['Centre Fold', 'Straight Cut (Flat)'], ['Neck / brand label'], ['What is the difference between woven and printed labels?', 'What file formats do you accept for artwork?'])))
+    out.append(write("logo-labels/index.html", pages.label_type_page("logo-labels", "logo-labels", ['Straight Cut (Flat)', 'Mitre Fold'], ['Neck / brand label'], ['What file formats do you accept for artwork?', 'Can I order custom-shaped labels?'])))
+    out.append(write("size-labels/index.html", pages.label_type_page("size-labels", "size-labels", ['End Fold', 'Straight Cut (Flat)'], ['Size label'], ['What is the minimum order quantity?', 'Do you offer sew-on and iron-on backing?'])))
+    out.append(write("care-labels/index.html", pages.label_type_page("care-labels", "care-labels", ['End Fold', 'Straight Cut (Flat)'], ['Care label'], ['Will the colours and design survive washing?', 'Do you make labels for exporters and garment manufacturers?'])))
+    out.append(write("hang-tags/index.html", pages.label_type_page("hang-tags", "hang-tags", ['Mitre Fold', 'Straight Cut (Flat)'], ['Hang tag'], ['Can I see a sample before placing the full order?', 'What file formats do you accept for artwork?'])))
+    out.append(write("school-monograms/index.html", pages.label_type_page("monograms", "school-monograms", ['Straight Cut (Flat)', 'Centre Fold'], ['Monogram / crest'], ['Is a woven monogram better than an embroidered or printed school badge?', 'What is a typical size for a school uniform monogram?'])))
     out.append(write("404.html", pages.not_found()))
     out.append(write("resources/index.html", articles.resources_index()))
     for slug, fn in zip([a[0] for a in articles.ARTICLES], articles.ALL_ARTICLES):
@@ -65,6 +73,14 @@ SITEMAP_URLS = [
     ("services/", "0.9", "monthly"),
     ("contact/", "0.9", "monthly"),
     ("pricing/", "0.9", "monthly"),
+    ("label-placement-guide/", "0.8", "monthly"),
+    ("international/", "0.8", "monthly"),
+    ("brand-labels/", "0.8", "monthly"),
+    ("logo-labels/", "0.8", "monthly"),
+    ("size-labels/", "0.8", "monthly"),
+    ("care-labels/", "0.8", "monthly"),
+    ("hang-tags/", "0.8", "monthly"),
+    ("school-monograms/", "0.8", "monthly"),
     ("how-it-works/", "0.8", "monthly"),
     ("gallery/", "0.8", "monthly"),
     ("faq/", "0.8", "monthly"),

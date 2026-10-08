@@ -170,5 +170,16 @@ tags with descriptive alt text.
 - **Fixed:** Woven Labels page (label grid and fold table were not rendering), quote form (all fields now reach WhatsApp / email), gallery intro, "Skip to content" link (now hidden until Tab is pressed), empty photo slot, hero wording, opening hours on Contact and footer, audit now fails on stray `%(...)s` tokens. Gallery photos were recompressed (about half the weight).
 - **New:** trust strip on the homepage, `/pricing/` page, FAQ on cost, click/submit event tracking.
 - **Fill in, then `python3 build.py`:** `PRICE_BANDS` and `TESTIMONIALS` (bottom of `_src/blocks.py`), `GA_ID` (`_src/core.py`), `FORM_ENDPOINT` (`assets/js/main.js`), `BASE` when you get your own domain.
+- **Woven Labels page expanded:** added a placement/size guide table, an artwork & application section, "Who orders custom woven labels" audience grid, and a page-specific FAQ block. FAQ list in `_src/blocks.py` grew from 17 to 24 questions.
+- **Label Placement Guide** (`/label-placement-guide/`): 24 Q&As across 8 product types (caps, gloves, shawls, scarves, crochet/knit, beanies, tote bags, blankets) covering size, placement and fold style. Linked from Woven Labels, the footer, and the sitemap.
+- **International / UAE orders page** (`/international/`): shipping via Skynet Worldwide Express (typically 2-4 days to UAE), Payoneer (AED local transfer) and bank wire for payment, and the same MOQ as domestic orders. Linked from Services, Woven Labels and the footer.
+- **2 new FAQs**: woven vs embroidered school monogram, typical monogram size.
+- **6 dedicated label-type pages**: /brand-labels/, /logo-labels/, /size-labels/, /care-labels/, /hang-tags/, /school-monograms/. Each has its own title, placement table, relevant fold options and FAQs, linked from the Woven Labels page ("Learn more") and the sitemap.
+- **sameAs schema**: Instagram and Pinterest now linked in Organization schema.
+- **Author byline:** guides now show "By Faizan, Premium Woven Labels" plus Person schema.
+- **2 new FAQs:** no direct embroidery/karhai, payment terms (50% advance, balance before dispatch, COD where offered).
+- **Client spotlight** on homepage: real quote from Akber Ali Shah (Mr VIP), no invented numbers.
+- **GA4 enabled** with Measurement ID G-NKS0Z56VJE — tracking is now live on every page.
+- **Starter quantities FAQ:** 100 / 300 / 500 pieces available alongside the standard 1,000+ run, no fixed rate stated yet — WhatsApp for a quote at that quantity.
 - **Ad landing page:** `/lp/woven-labels-pakistan/` (no menu, `noindex`, not in the sitemap). Use it as the destination for ads, e.g. `.../lp/woven-labels-pakistan/?utm_source=google&utm_campaign=labels`. Copy the folder to make more (school labels, care labels).
 - **Form spam:** hidden `botcheck` / `_gotcha` honeypot fields; bot submissions are dropped in the browser and flagged by Web3Forms / Formspree.

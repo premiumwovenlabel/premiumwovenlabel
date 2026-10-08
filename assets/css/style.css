@@ -777,3 +777,24 @@ details.faq-item[open] summary.faq-q::after { content: "−"; }
 .lp-foot { padding: 22px 0 96px; font-size: .88rem; color: var(--slate); }
 .hp { position: absolute; left: -9999px; width: 1px; height: 1px; overflow: hidden; }
 @media (max-width: 860px) { .lp-grid { grid-template-columns: 1fr; } .lp-photo img { aspect-ratio: 16/10; } .lp-shots { grid-template-columns: 1fr 1fr 1fr; gap: 8px; } }
+
+
+/* ---------- Brand marquee: auto-scrolling strip of real client labels ---------- */
+.brand-strip { padding: 38px 0 42px; overflow: hidden; position: relative; background: var(--paper); }
+.brand-strip::before, .brand-strip::after {
+  content: ""; position: absolute; top: 0; bottom: 0; width: 70px; z-index: 2; pointer-events: none;
+}
+.brand-strip::before { left: 0; background: linear-gradient(90deg, var(--paper), transparent); }
+.brand-strip::after { right: 0; background: linear-gradient(270deg, var(--paper), transparent); }
+.brand-strip h2 { text-align: center; font-size: .92rem; letter-spacing: .06em; text-transform: uppercase;
+  color: var(--slate); font-weight: 700; margin: 0 0 24px; }
+.brand-track-wrap { overflow: hidden; }
+.brand-track { display: flex; gap: 18px; width: max-content; animation: brandScroll 46s linear infinite; }
+.brand-track:hover { animation-play-state: paused; }
+.brand-card { flex: 0 0 auto; width: 132px; text-align: center; }
+.brand-card img { width: 132px; height: 132px; object-fit: cover; border-radius: 12px; border: 1px solid var(--line);
+  display: block; }
+.brand-card span { display: block; margin-top: 8px; font-size: .78rem; font-weight: 700; color: var(--ink-soft);
+  white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+@keyframes brandScroll { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+@media (max-width: 640px) { .brand-card, .brand-card img { width: 104px; } .brand-card img { height: 104px; } }

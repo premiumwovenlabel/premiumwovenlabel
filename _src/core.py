@@ -10,6 +10,7 @@ import json
 
 # ---------------------------------------------------------------- business data
 NAME = "Premium Woven Labels"
+AUTHOR_NAME = "Faizan"
 BASE = "https://premiumwovenlabel.com"   # live domain
 WA_RAW = "923048095202"
 WA_DISPLAY = "+92 304 8095202"
@@ -17,8 +18,9 @@ EMAIL = "premiumwovenlabel@gmail.com"
 CITY = "Karachi"
 COUNTRY = "Pakistan"
 INSTAGRAM = "https://www.instagram.com/premium_woven_labels/"
+PINTEREST = "https://www.pinterest.com/premiumwovenlabel/"
 YEAR = 2026
-GA_ID = ""   # paste your GA4 Measurement ID (G-XXXXXXXXXX) and rebuild to switch analytics on
+GA_ID = "G-NKS0Z56VJE"
 ANALYTICS = ('<script async src="https://www.googletagmanager.com/gtag/js?id=' + GA_ID + '"></script>\n'
              '<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}'
              'gtag("js",new Date());gtag("config","' + GA_ID + '");</script>\n') if GA_ID else ""
@@ -64,6 +66,8 @@ FOOT_SERVICES = [
 
 FOOT_RESOURCES = [
     ("pricing/", "Pricing guide"),
+    ("label-placement-guide/", "Label size & placement guide"),
+    ("international/", "UAE & international orders"),
     ("resources/", "All resources"),
     ("resources/woven-labels-complete-guide/", "Woven labels: the complete guide"),
     ("resources/woven-vs-printed-labels/", "Woven vs printed labels"),
@@ -259,7 +263,7 @@ def org_schema():
                 {"@type": "Offer", "itemOffered": {"@type": "Product", "name": "School monograms and woven badges"}},
             ],
         },
-        "sameAs": [INSTAGRAM],
+        "sameAs": [INSTAGRAM, PINTEREST],
         "contactPoint": [{
             "@type": "ContactPoint",
             "contactType": "sales",

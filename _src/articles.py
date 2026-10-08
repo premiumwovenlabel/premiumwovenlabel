@@ -2,7 +2,7 @@
 """Resource centre: index + long-form articles."""
 
 from core import (page, url, wa, canonical, label_svg, cta_band, breadcrumbs, crumb_html, faq_schema,
-                  ICON_WA, BASE, NAME, WA_DISPLAY, EMAIL, MOQ_APPAREL, MOQ_SCHOOL, TURNAROUND)
+                  ICON_WA, BASE, NAME, WA_DISPLAY, EMAIL, MOQ_APPAREL, MOQ_SCHOOL, TURNAROUND, AUTHOR_NAME)
 
 PUB_DATE = "2026-09-19"
 
@@ -70,11 +70,10 @@ def _article_shell(slug, title, desc, read, lead, toc, body_html, extra_schema=N
     d = 2
     crumbs = [("", "Home"), ("resources/", "Resources"), ("resources/%s/" % slug, title)]
     head = (
-        '<section class="page-head"><div class="wrap">%s'
-        '<p style="font-size:.84rem;color:#8d97c2;margin-bottom:12px">%s</p>'
-        '<h1 style="max-width:26ch">%s</h1><p>%s</p></div></section>'
-        % (crumb_html([("", "Home"), ("resources/", "Resources"), ("resources/%s/" % slug, "Article")], d),
-           read, title, desc)
+        ('<section class="page-head"><div class="wrap">%s'
+         '<p style="font-size:.84rem;color:#8d97c2;margin-bottom:12px">%s &middot; By ' + AUTHOR_NAME + ', Premium Woven Labels</p>')
+        % (crumb_html([("", "Home"), ("resources/", "Resources"), ("resources/%s/" % slug, "Article")], d), read)
+        + ('<h1 style="max-width:26ch">%s</h1><p>%s</p></div></section>' % (title, desc))
     )
     toc_html = ""
     if toc:
@@ -100,7 +99,7 @@ def _article_shell(slug, title, desc, read, lead, toc, body_html, extra_schema=N
               {"@type": "Article", "@id": canonical("resources/%s/" % slug) + "#article",
                "headline": title, "description": desc,
                "mainEntityOfPage": {"@id": canonical("resources/%s/" % slug)},
-               "author": {"@id": BASE + "/#organization"},
+               "author": {"@type": "Person", "name": AUTHOR_NAME},
                "publisher": {"@id": BASE + "/#organization"},
                "datePublished": pub_date or PUB_DATE, "dateModified": pub_date or PUB_DATE,
                "image": BASE + "/assets/img/og-cover.png", "inLanguage": "en"}]
