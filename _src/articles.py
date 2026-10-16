@@ -313,7 +313,7 @@ def art_guide():
 
         '<h2 id="order">Placing the order</h2>'
         '<p>Message us on WhatsApp at %s or email %s with your artwork, label type and rough quantity. We go through '
-        'the options with you, you approve a sample, and only then does the full order go into production.</p>'
+        'the options with you, you approve a digital sample, and only then does the full order go into production.</p>'
         % (WA_DISPLAY, EMAIL)
     )
     return _article_shell(s, t, desc, read, lead, toc, body)
@@ -368,7 +368,7 @@ def art_size():
 
         '<h2 id="check">Check it before you order</h2>'
         '<ol>'
-        '<li><strong>Print it at 100%%.</strong> Print your label artwork at actual size on paper. On-screen size is misleading.</li>'
+        '<li><strong>Print it at 100%.</strong> Print your label artwork at actual size on paper. On-screen size is misleading.</li>'
         '<li><strong>Cut it out and pin it.</strong> Put the paper version where the real label will go on the actual garment.</li>'
         '<li><strong>Step back.</strong> Look at it from normal viewing distance. Can you read the brand name?</li>'
         '<li><strong>Check the seam.</strong> Does it fit the seam allowance without bending or crowding?</li>'

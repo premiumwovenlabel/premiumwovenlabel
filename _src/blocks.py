@@ -93,11 +93,11 @@ GALLERY = [
 
 # ---------------------------------------------------------------- process
 STEPS = [
-    ("01", "Send your design", "Share your logo, artwork or even a rough idea over WhatsApp or email. Vector files work best, but we can work from what you have."),
-    ("02", "Choose your label", "We go through label type, size, fold style and thread colours with you, and tell you how your artwork will translate into thread."),
-    ("03", "Confirm details", "You approve the design, size and quantity before anything is produced. Nothing goes to the loom until you're happy."),
-    ("04", "Production", "Your labels are woven to the confirmed specification."),
-    ("05", "Receive your labels", "We deliver across Pakistan, and can arrange international delivery. We'll confirm the arrangement with you before dispatch."),
+    ("01", "Send your design", "Share your logo, artwork or even a rough idea over WhatsApp or email, and we agree the label type and size with you. Vector files work best, but we can work from what you have."),
+    ("02", "Approve a digital sample", "Pay the sample fee in full and we prepare a digital file of your design, so you can see how the finished label will look. Changes at this stage are free."),
+    ("03", "Confirm your order", "Once you approve the digital sample, you confirm the final design and size and pay a 50% advance. Production starts right away."),
+    ("04", "Production", "Your labels are woven in 3 days. The remaining 50% is paid before dispatch."),
+    ("05", "Receive your labels", "Typically 4 days in total within Pakistan and 6\u20137 days to GCC countries, with shipping included in your quote."),
 ]
 
 # ---------------------------------------------------------------- why us
@@ -134,8 +134,10 @@ FAQS = [
      "minimum is %s." % (MOQ_APPAREL, MOQ_SCHOOL)),
 
     ("How long does an order take?",
-     "Production takes %s once the design, size and quantity are confirmed, for delivery across Pakistan. "
-     "International orders are arranged separately and confirmed with you before dispatch." % TURNAROUND),
+     "Production takes " + TURNAROUND + " once your final design and size are confirmed and the 50% advance is received. "
+     "From the start of production, delivery typically takes 4 days in total within Pakistan and 6\u20137 days to GCC "
+     "countries (the UAE, Saudi Arabia, Kuwait, Qatar, Bahrain and Oman). For other countries, we confirm the timeline "
+     "with you when we quote."),
 
     ("Can I add my own logo?",
      "Yes. Send us your logo over WhatsApp or email and we will tell you how it translates into thread, including any "
@@ -175,8 +177,9 @@ FAQS = [
      "on this site. Quotes are free and there is no obligation."),
 
     ("How do I place an order?",
-     "Once you have a quote, we confirm the design, size, fold and quantity with you, and you approve a sample before the "
-     "full order is produced."),
+     "Send us your design and we agree the label type and size with you. You pay the sample fee and approve a digital "
+     "sample, then confirm the final design and size and pay a 50% advance. Production takes " + TURNAROUND + ", the "
+     "remaining 50% is paid before dispatch, and we deliver."),
 
     ("Can I contact Premium Woven Labels through WhatsApp?",
      "Yes \u2014 WhatsApp is our main channel and the fastest way to reach us. Message +92 304 8095202 and you will be talking "
@@ -192,16 +195,18 @@ FAQS = [
      "usually enough to start the conversation, and we will tell you if the file needs to be redrawn as a vector before weaving."),
 
     ("Do you offer sew-on and iron-on backing?",
-     "Yes, both " + " and ".join(x.lower() for x in MONOGRAM_BACKING) + " backings are available. Sew-on is the more "
-     "durable option for everyday wear; iron-on suits a faster application without stitching."),
+     "Yes, for school monograms and badges. Iron-on monograms have an adhesive backing and stick when pressed on; "
+     "sew-on monograms have no adhesive and are stitched on. Sew-on is the more durable option for everyday wear; "
+     "iron-on suits a faster application without stitching."),
 
     ("Will the colours and design survive washing?",
      "Yes. Because the design is woven from thread rather than printed on the surface, there is no ink layer to crack, "
      "peel or fade. Woven labels are made to outlast the garment they are sewn into."),
 
     ("Can I see a sample before placing the full order?",
-     "Yes. You approve a sample before the full order goes into production, so nothing is woven at scale until you have "
-     "signed off on the design, size and colours."),
+     "Yes. Before production we prepare a digital sample: a digital file of your design that shows how the finished "
+     "label will look. A sample fee applies, paid in full first. Changes while you review the digital sample are "
+     "free, and nothing is woven until you have signed off on the design, size and colours."),
 
     ("Do you make labels for exporters and garment manufacturers?",
      "Yes. We supply brand, size and care labels to garment makers and exporters who need a consistent set across a "
@@ -209,8 +214,9 @@ FAQS = [
 
     ("Can I order a small test batch before a full production run?",
      "Our minimum is %s for apparel labels and %s for school monograms \u2014 this is what keeps our per-piece rate low "
-     "for the full run. Within that minimum, we're happy to split a first order across two or three designs so you can "
-     "compare before committing to one for a repeat order." % (MOQ_APPAREL, MOQ_SCHOOL)),
+     "for the full run. Within that minimum, we're happy to split a first order across two or three designs, at an "
+     "extra cost, so you can compare before committing to one for a repeat order. To start smaller, we also offer "
+     "starter quantities of 100, 300 or 500 pieces for apparel labels; message us on WhatsApp for the rate." % (MOQ_APPAREL, MOQ_SCHOOL)),
 
     ("Is a woven monogram better than an embroidered or printed school badge?",
      "A woven monogram is flatter and more consistent than embroidery, so it doesn't add bulk to a blazer or shirt, "
@@ -228,8 +234,10 @@ FAQS = [
      "We don't offer direct embroidery (karhai) onto clothing."),
 
     ("What are your payment terms?",
-     "We work on 50% advance to confirm and start production, with the remaining 50% due before dispatch. "
-     "Cash on delivery can be arranged for orders where it's offered."),
+     "We work on a 50% advance to confirm and start production. Within Pakistan, the remaining 50% is due before "
+     "dispatch, and cash on delivery can be arranged for orders where it's offered. For orders outside Pakistan, we "
+     "show you the finished labels when they are ready, you pay the remaining 50%, and then we dispatch. The sample "
+     "fee is paid in full first."),
 
     ("Can I order fewer than 1,000 pieces?",
      "Yes \u2014 alongside our standard 1,000+ runs, we offer starter quantities of 100, 300 or 500 pieces for "
@@ -237,9 +245,71 @@ FAQS = [
      "efficient at low volumes. Message us your quantity on WhatsApp for an exact rate."),
 ]
 
+FAQS.extend([
+    ("Where can I order custom woven labels in Pakistan?",
+     "Premium Woven Labels is a custom woven label manufacturer based in Karachi, Pakistan. We make brand, logo, size "
+     "and care labels, hang tags and school monograms for clothing brands, boutiques, schools and garment exporters, "
+     "and we deliver across Pakistan. Message us on WhatsApp at +92 304 8095202 with your design for a free quote."),
+
+    ("Do you deliver woven labels to Saudi Arabia, Kuwait, Qatar, Bahrain and Oman?",
+     "Yes. We deliver to all GCC countries: the UAE, Saudi Arabia, Kuwait, Qatar, Bahrain and Oman. From the start of "
+     "production, delivery typically takes 6\u20137 days in total (3 days of production, then 3\u20134 days for "
+     "dispatch and courier delivery), and shipping is included in your quote."),
+
+    ("What is included in the price of custom woven labels?",
+     "Artwork cleanup and packaging are included in every quote. Shipping is included for orders within Pakistan and "
+     "to GCC countries; for other countries, the shipping cost is confirmed when we quote. The sample fee is "
+     "separate. Any import duties or taxes charged by the destination country are set by that country and are "
+     "normally paid by the person receiving the order."),
+
+    ("Do you charge for samples?",
+     "Yes. A sample fee applies, paid in full first, both in Pakistan and worldwide. Our sample is a digital file of "
+     "your design that shows how the finished label will look. Changes while you review it are free; once the labels "
+     "have been woven, any change has to be paid for. Message us on WhatsApp to ask about the sample fee."),
+
+    ("How can I pay for an order from outside Pakistan?",
+     "You can pay through Payoneer (UAE clients can pay by local AED transfer), through a money exchange, or by bank "
+     "transfer into our Pakistan bank account. If another method is more convenient for you, let us know. We work on "
+     "a 50% advance; when your labels are ready we show them to you, you pay the remaining 50%, and then we "
+     "dispatch."),
+
+    ("Can I cancel my order?",
+     "Yes, before production starts. In that case only the payment for the design work is deducted and the rest of "
+     "your payment is returned immediately. Once production has started the order cannot be cancelled: the labels "
+     "carry your brand name and details and cannot be used for anyone else, so they must be paid for. Please place "
+     "your order only when you are completely sure."),
+
+    ("What if my labels arrive wrong, damaged or short?",
+     "Tell us within 7 days of delivery, with photographs of the issue and your order details, on WhatsApp or by "
+     "email. If the labels do not match the specification you approved, we will either reproduce the affected labels "
+     "or agree a resolution with you directly. Orders normally include a few extra labels; if you are still short for "
+     "any reason, we add the missing labels to your next order. Small variation between screen colours and woven "
+     "thread colours is normal and is not treated as a defect."),
+
+    ("Can I get my labels faster than usual?",
+     "Rush orders are possible. Message us directly on WhatsApp with the date you need the labels by and your "
+     "quantity, and if we can do it, we will. Our standard production time is " + TURNAROUND + " once your final "
+     "design and size are confirmed and the 50% advance is received."),
+
+    ("What is the difference between damask, satin and taffeta woven labels?",
+     "We weave labels in all three. Damask is a dense, detailed option, often chosen for logos with fine lettering or "
+     "narrow lines. Satin has a smooth, softly shiny finish. Taffeta is often chosen for simple designs and "
+     "cost-sensitive orders. Tell us how the label will be used and we will suggest which suits it best."),
+
+    ("Do you help prepare my artwork for weaving?",
+     "Yes. Artwork cleanup is included in every order. Send the clearest version of your logo you have; vector files "
+     "(AI, EPS, SVG or PDF) work best. We tell you how it reads at label size and what needs simplifying, and we show "
+     "you a digital sample before anything is woven."),
+
+    ("Can I split my minimum order across different designs?",
+     "Yes. Within the minimum quantity, a first order can be split across two or three designs, at an extra cost. "
+     "Message us your designs and quantities on WhatsApp and we will confirm."),
+])
+
 FAQS.append(("How much do custom woven labels cost?",
              "The price depends on label size, number of thread colours, fold style, material and quantity. "
-             "Send your logo, label type, rough size and quantity on WhatsApp and we will quote in one reply."))
+             "Artwork cleanup and packaging are included in every quote, and shipping is included for Pakistan and "
+             "GCC countries. Send your logo, label type, rough size and quantity on WhatsApp and we will quote in one reply."))
 FAQ_SHORT = FAQS[:6]
 
 
@@ -454,6 +524,8 @@ WOVEN_FAQ = [f for f in FAQS if f[0] in (
     "Can I see a sample before placing the full order?",
     "What is the minimum order quantity?",
     "Can I order custom-shaped labels?",
+    "What is the difference between damask, satin and taffeta woven labels?",
+    "Do you charge for samples?",
 )]
 
 
@@ -567,25 +639,35 @@ PLACEMENT_FAQ_FLAT = [qa for _, items in PLACEMENT_FAQ_GROUPS for qa in items]
 # ============================================================ ADDED: UAE / international orders page data
 INTL_FAQ = [
     ("Do you ship custom woven labels to the UAE and internationally?",
-     "Yes. We are a Pakistan-based manufacturer and ship to the UAE and internationally via Skynet Worldwide "
-     "Express, typically 2\u20134 days to the UAE once your order is finished and packed."),
+     "Yes. We are a Pakistan-based manufacturer and deliver to the UAE and the other GCC countries (Saudi Arabia, "
+     "Kuwait, Qatar, Bahrain and Oman), with shipping included in your quote. UAE parcels go via Skynet Worldwide "
+     "Express. For other countries, we quote the shipping and confirm the timeline with you."),
+
+    ("How long does a UAE order take from approval to delivery?",
+     "Typically 6\u20137 days in total for the UAE and the other GCC countries: 3 days of production, then 3\u20134 days "
+     "for dispatch and courier delivery. The clock starts once your final design and size "
+     "are confirmed and the 50% advance is received."),
 
     ("How do I pay for an international order?",
+     "You can pay through Payoneer, through a money exchange, or by bank transfer into our Pakistan bank account. "
      "Payoneer is the easiest option for UAE clients \u2014 you can pay into our Payoneer account by local AED "
-     "transfer, the same way you'd pay a UAE business, with no international wire forms. Bank wire transfer is "
-     "also available, mainly for larger orders."),
+     "transfer, the same way you'd pay a UAE business, with no international wire forms. If another method is more "
+     "convenient for you, let us know. We work on a 50% advance; when your labels are ready we show them to you, you "
+     "pay the remaining 50%, and then we dispatch. The sample fee is paid in full first."),
 
     ("What is the minimum order quantity for export orders?",
      "The same as our Pakistan minimum: 1,000 pieces for apparel labels and 200 pieces for school monograms. "
      "This is what keeps the per-piece rate low for a full production run, wherever the order ships to."),
 
     ("Can I get a sample before placing a bulk international order?",
-     "Yes. You approve a sample before the full order goes into production, so nothing is woven at scale until "
-     "you've confirmed the design, size and colours \u2014 the same process as a local order."),
+     "Yes. Before production we prepare a digital sample: a digital file of your design that shows how the finished "
+     "label will look. A sample fee applies, paid in full first. Changes while you review it are free, and nothing is "
+     "woven until you've confirmed the design, size and colours \u2014 the same process as a local order."),
 
     ("Why don't you show a fixed price for international orders?",
      "Pricing is set per market rather than one global number, since shipping, currency and local competition "
-     "differ by country. Send us your country, label type and quantity on WhatsApp and we'll quote it directly."),
+     "differ by country. Artwork cleanup and packaging are included in every quote, and shipping is included for GCC "
+     "countries. Send us your country, label type and quantity on WhatsApp and we'll quote it directly."),
 
     ("Do you work with garment exporters and buyers who need labels matched to buyer specifications?",
      "Yes. We supply brand, size and care labels matched to buyer specifications for garment exporters and "

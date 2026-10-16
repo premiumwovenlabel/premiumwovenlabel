@@ -136,9 +136,11 @@ def build_llms():
 > schools and organisations. WhatsApp is the primary enquiry and quotation channel.
 >
 > Minimum orders: 1,000 pieces for apparel labels, 200 pieces for school monograms and badges.
-> Standard production turnaround: 7-10 days within Pakistan.
+> Production takes 3 days once the final design and size are confirmed and the 50% advance is received.
+> Typical total delivery time from the start of production: 4 days within Pakistan, 6-7 days to GCC countries.
 > Business hours: Monday to Saturday, 9:00 am to 6:00 pm Pakistan Standard Time.
-> Delivery is available across Pakistan; international delivery including the UAE is arranged on request.
+> Delivery is available across Pakistan and to GCC countries (UAE, Saudi Arabia, Kuwait, Qatar, Bahrain, Oman),
+> with shipping included in the quote; other countries are quoted case by case.
 
 ## What the business provides
 
@@ -158,14 +160,31 @@ def build_llms():
 
 ## How ordering works
 
-1. The customer sends their design or logo by WhatsApp or email.
-2. Label type, size, fold style and thread colours are agreed.
-3. The customer approves the specification and a sample before production.
-4. The labels are woven to the approved specification.
-5. Delivery is made across Pakistan, with international delivery available on request.
+1. The customer sends their design or logo by WhatsApp or email; label type, size, fold style and thread colours are agreed.
+2. The customer pays the sample fee in full and the business prepares a digital sample (a digital file of the design
+   showing how the finished label will look). Changes at this stage are free.
+3. The customer approves the digital sample, confirms the final design and size and pays a 50% advance.
+4. Production starts immediately and takes 3 days. Once labels are woven, any change is charged.
+5. When the labels are ready, customers outside Pakistan are shown the finished labels, pay the remaining 50% and the
+   order is dispatched. Within Pakistan the remaining 50% is paid before dispatch, or by cash on delivery where offered.
+6. Delivery takes typically 4 days in total within Pakistan and 6-7 days in total to GCC countries.
 
-Quotes are free and carry no obligation. Minimum order quantities apply and depend on the label
-type. Production and delivery timelines are confirmed with the customer before they commit.
+Quotes are free and carry no obligation. Minimum order quantities apply and depend on the label type. Artwork cleanup
+and packaging are included in every quote; shipping is included for Pakistan and GCC countries. The sample fee is
+separate. Rush orders are possible: message on WhatsApp with the time needed and the quantity.
+
+## Payment, cancellation and delivery terms
+
+- Payment: 50% advance, remaining 50% before dispatch. Within Pakistan: bank transfer, EasyPaisa or JazzCash (cash on
+  delivery where offered). From outside Pakistan: Payoneer (UAE clients can pay by local AED transfer), a money exchange,
+  or bank transfer into the Pakistan bank account; other methods can be discussed.
+- Cancellation: before production starts, only the payment for the design work is deducted and the rest is returned
+  immediately. Once production has started the order cannot be cancelled, because the labels carry the customer's brand
+  name and details.
+- Quantity and problems: orders normally include a few extra labels; if still short, the missing labels are added to the
+  next order. Problems must be reported within 7 days of delivery with photographs.
+- Materials: damask, satin and taffeta.
+- Splitting the minimum order across two or three designs is possible at an extra cost.
 
 ## Target customers
 

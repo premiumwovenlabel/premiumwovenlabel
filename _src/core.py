@@ -28,7 +28,7 @@ ANALYTICS = ('<script async src="https://www.googletagmanager.com/gtag/js?id=' +
 # Minimum order quantities and turnaround, as published by the business.
 MOQ_APPAREL = "1,000 pieces"
 MOQ_SCHOOL = "200 pieces"
-TURNAROUND = "7\u201310 days"
+TURNAROUND = "3 days"
 
 WA_DEFAULT_MSG = "Hi Premium Woven Labels, I would like to get a quote for custom woven labels."
 
@@ -98,6 +98,12 @@ def canonical(path):
 # ---------------------------------------------------------------- icons
 ICON_WA = ('<svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M12.04 2c-5.46 0-9.9 4.44-9.9 9.9 0 1.75.46 3.45 1.32 4.95L2 22l5.3-1.39a9.86 9.86 0 0 0 4.74 1.21h.01c5.46 0 9.9-4.44 9.9-9.9 0-2.64-1.03-5.13-2.9-7A9.82 9.82 0 0 0 12.04 2zm0 18.02h-.01a8.2 8.2 0 0 1-4.18-1.15l-.3-.18-3.11.82.83-3.04-.2-.31a8.21 8.21 0 0 1-1.26-4.38c0-4.54 3.7-8.23 8.24-8.23 2.2 0 4.27.86 5.82 2.42a8.18 8.18 0 0 1 2.41 5.82c0 4.54-3.7 8.23-8.24 8.23zm4.52-6.16c-.25-.12-1.47-.72-1.69-.81-.23-.08-.39-.12-.56.13-.16.24-.64.8-.79.97-.14.16-.29.18-.54.06-.25-.13-1.05-.39-1.99-1.23-.74-.66-1.23-1.47-1.38-1.72-.14-.25-.01-.38.11-.5.11-.11.25-.29.37-.43.13-.15.17-.25.25-.41.08-.17.04-.31-.02-.43-.06-.12-.56-1.34-.76-1.84-.2-.48-.41-.42-.56-.43h-.48c-.17 0-.43.06-.66.31-.22.25-.87.85-.87 2.07s.89 2.4 1.02 2.56c.12.17 1.75 2.67 4.23 3.74.59.26 1.05.41 1.41.52.59.19 1.13.16 1.56.1.47-.07 1.47-.6 1.67-1.18.21-.58.21-1.07.15-1.18-.06-.1-.23-.16-.48-.28z"/></svg>')
 
+ICON_PIN = ('<svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M12 2C6.49 2 2 6.49 2 12c0 4.23 2.63 7.84 6.34 9.3-'
+            '.09-.79-.17-2 .04-2.86.19-.78 1.23-4.97 1.23-4.97s-.31-.63-.31-1.55c0-1.46.84-2.54 1.9-2.54.9 0 1.33.67 1.33 1.48 0 .9-.57 '
+            '2.25-.87 3.5-.25 1.05.52 1.9 1.55 1.9 1.87 0 3.3-1.97 3.3-4.81 0-2.51-1.81-4.27-4.39-4.27-2.99 0-4.75 2.24-4.75 4.56 0 .9.35 '
+            '1.87.78 2.4.09.1.1.2.07.3l-.29 1.17c-.04.19-.15.23-.35.14-1.3-.6-2.11-2.49-2.11-4.01 0-3.27 2.37-6.27 6.84-6.27 3.59 0 6.38 '
+            '2.56 6.38 5.98 0 3.57-2.25 6.44-5.37 6.44-1.05 0-2.03-.55-2.37-1.19l-.65 2.46c-.23.9-.86 2.02-1.28 2.71A10 10 0 1 0 12 2z"/>'
+            '</svg>')
 ICON_IG = ('<svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M12 2.16c3.2 0 3.58.01 4.85.07 1.17.05 1.8.25 2.23.41.56.22.96.48 1.38.9.42.42.68.82.9 1.38.16.42.36 1.06.41 2.23.06 1.27.07 1.65.07 4.85s-.01 3.58-.07 4.85c-.05 1.17-.25 1.8-.41 2.23-.22.56-.48.96-.9 1.38-.42.42-.82.68-1.38.9-.42.16-1.06.36-2.23.41-1.27.06-1.65.07-4.85.07s-3.58-.01-4.85-.07c-1.17-.05-1.8-.25-2.23-.41-.56-.22-.96-.48-1.38-.9a3.7 3.7 0 0 1-.9-1.38c-.16-.42-.36-1.06-.41-2.23C2.17 15.58 2.16 15.2 2.16 12s.01-3.58.07-4.85c.05-1.17.25-1.8.41-2.23.22-.56.48-.96.9-1.38.42-.42.82-.68 1.38-.9.42-.16 1.06-.36 2.23-.41C8.42 2.17 8.8 2.16 12 2.16zm0 2.16c-3.14 0-3.51.01-4.75.07-1.15.05-1.77.24-2.18.4-.55.22-.94.47-1.35.88-.41.41-.66.8-.88 1.35-.16.41-.35 1.03-.4 2.18-.06 1.24-.07 1.61-.07 4.75s.01 3.51.07 4.75c.05 1.15.24 1.77.4 2.18.22.55.47.94.88 1.35.41.41.8.66 1.35.88.41.16 1.03.35 2.18.4 1.24.06 1.61.07 4.75.07s3.51-.01 4.75-.07c1.15-.05 1.77-.24 2.18-.4.55-.22.94-.47 1.35-.88.41-.41.66-.8.88-1.35.16-.41.35-1.03.4-2.18.06-1.24.07-1.61.07-4.75s-.01-3.51-.07-4.75c-.05-1.15-.24-1.77-.4-2.18a3.6 3.6 0 0 0-.88-1.35 3.6 3.6 0 0 0-1.35-.88c-.41-.16-1.03-.35-2.18-.4-1.24-.06-1.61-.07-4.75-.07zm0 3.67a5.01 5.01 0 1 1 0 10.02 5.01 5.01 0 0 1 0-10.02zm0 8.26a3.25 3.25 0 1 0 0-6.5 3.25 3.25 0 0 0 0 6.5zm6.38-8.46a1.17 1.17 0 1 1-2.34 0 1.17 1.17 0 0 1 2.34 0z"/></svg>')
 
 ICON_MAIL = ('<svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M3 5h18a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V6a1 1 0 0 1 1-1zm9 7.1L4.2 7H4v.6l8 5.2 8-5.2V7h-.2L12 12.1z"/></svg>')
@@ -250,17 +256,22 @@ def org_schema():
         "areaServed": [
             {"@type": "Country", "name": "Pakistan"},
             {"@type": "Country", "name": "United Arab Emirates"},
+            {"@type": "Country", "name": "Saudi Arabia"},
+            {"@type": "Country", "name": "Kuwait"},
+            {"@type": "Country", "name": "Qatar"},
+            {"@type": "Country", "name": "Bahrain"},
+            {"@type": "Country", "name": "Oman"},
         ],
         "hasOfferCatalog": {
             "@type": "OfferCatalog",
             "name": "Custom woven label products",
             "itemListElement": [
-                {"@type": "Offer", "itemOffered": {"@type": "Product", "name": "Custom woven brand labels"}},
-                {"@type": "Offer", "itemOffered": {"@type": "Product", "name": "Logo woven labels"}},
-                {"@type": "Offer", "itemOffered": {"@type": "Product", "name": "Size labels"}},
-                {"@type": "Offer", "itemOffered": {"@type": "Product", "name": "Care labels"}},
-                {"@type": "Offer", "itemOffered": {"@type": "Product", "name": "Woven hang tags"}},
-                {"@type": "Offer", "itemOffered": {"@type": "Product", "name": "School monograms and woven badges"}},
+                {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Custom woven brand labels"}},
+                {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Logo woven labels"}},
+                {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Size labels"}},
+                {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Care labels"}},
+                {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Woven hang tags"}},
+                {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "School monograms and woven badges"}},
             ],
         },
         "sameAs": [INSTAGRAM, PINTEREST],
@@ -366,6 +377,7 @@ def footer(depth):
         '<div class="foot-social">'
         '<a href="%(wa)s" target="_blank" rel="noopener" aria-label="WhatsApp">%(iwa)s</a>'
         '<a href="%(ig)s" target="_blank" rel="noopener" aria-label="Instagram">%(iig)s</a>'
+        '<a href="%(pin)s" target="_blank" rel="noopener" aria-label="Pinterest">%(ipin)s</a>'
         '<a href="mailto:%(email)s" aria-label="Email">%(imail)s</a>'
         '</div></div>'
         '<div class="foot-col"><h2>Site</h2><ul>%(nav)s</ul></div>'
@@ -387,7 +399,7 @@ def footer(depth):
         % {
             "home": url("", depth), "name": NAME, "mark": brand_logo(depth, "dark", "brand-mark--foot"),
             "city": CITY, "country": COUNTRY,
-            "wa": wa(), "ig": INSTAGRAM, "iwa": ICON_WA, "iig": ICON_IG, "imail": ICON_MAIL,
+            "wa": wa(), "ig": INSTAGRAM, "pin": PINTEREST, "iwa": ICON_WA, "iig": ICON_IG, "ipin": ICON_PIN, "imail": ICON_MAIL,
             "email": EMAIL, "wad": WA_DISPLAY, "year": YEAR,
             "nav": links(NAV[1:]),
             "svc": links(FOOT_SERVICES),

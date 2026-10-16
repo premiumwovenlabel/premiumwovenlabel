@@ -387,7 +387,7 @@ def woven_labels():
                  "name": "Custom woven label manufacturing",
                  "serviceType": "Custom woven labels for clothing and apparel",
                  "provider": {"@id": BASE + "/#organization"},
-                 "areaServed": ["Pakistan", "United Arab Emirates"],
+                 "areaServed": ["Pakistan", "United Arab Emirates", "Saudi Arabia", "Kuwait", "Qatar", "Bahrain", "Oman"],
                  "description": "Custom woven brand labels, logo labels, size labels, care labels, hang tags and "
                                 "school monograms, made to order in Straight Cut, Centre Fold, End Fold, Mitre Fold and Manhattan Fold.",
                  "hasOfferCatalog": {
@@ -428,12 +428,12 @@ def services():
         '<div class="prod-card reveal d3" style="padding:32px"><h3>Artwork guidance</h3>'
         '<p style="color:var(--slate)">Send what you have. We\u2019ll tell you how it reads at label size, what detail '
         'needs simplifying, and which fold suits where it\u2019s being sewn.</p></div>'
-        '<div class="prod-card reveal" style="padding:32px"><h3>Sampling and approval</h3>'
-        '<p style="color:var(--slate)">You approve a sample before the full order is produced. Nothing goes into '
+        '<div class="prod-card reveal" style="padding:32px"><h3>Digital sample and approval</h3>'
+        '<p style="color:var(--slate)">You approve a digital sample before the full order is produced. Nothing goes into '
         'production until you\u2019ve signed off on it.</p></div>'
         '<div class="prod-card reveal d1" style="padding:32px"><h3>Delivery</h3>'
-        '<p style="color:var(--slate)">We deliver across Pakistan and can arrange international delivery. '
-        'We confirm the arrangement with you before dispatch. '
+        '<p style="color:var(--slate)">We deliver across Pakistan and to GCC countries, with shipping included in your quote. '
+        'Other countries are quoted case by case. '
         '<a class="textlink" href="' + url("international/", d) + '">Shipping to the UAE or abroad? See international orders</a></p></div>'
         '</div></div></section>'
 
@@ -481,18 +481,22 @@ def how_it_works():
         ("Send your design",
          "Message us on WhatsApp or email with your logo, artwork or even a photo of a sketch. Vector files (AI, EPS, "
          "SVG, PDF) are ideal because they stay sharp at small sizes, but a high-resolution image is enough to start. "
-         "Tell us what the label is for and roughly how many you need."),
-        ("Choose your label",
-         "We go through the options with you: label type, size, shape, fold style and thread colours. If your logo has "
-         "fine detail or very small text, we'll tell you how it will read at label size and what to simplify."),
-        ("Confirm details",
-         "You approve the design, size, fold and quantity, and we confirm the price before anything goes to production. "
-         "You approve a sample before the full order is woven."),
+         "We go through label type, size, shape, fold style and thread colours with you, and tell you how your artwork "
+         "will read at label size. Artwork cleanup is included in every order."),
+        ("Approve a digital sample",
+         "You pay the sample fee in full, and we prepare a digital sample: a digital file of your design that shows how "
+         "the finished label will look. You can ask for changes at this stage and they are free."),
+        ("Confirm your order",
+         "Once you are happy with the digital sample, you confirm the final design and size and pay a 50% advance. "
+         "Production starts straight away, so please confirm only when you are completely sure."),
         ("Production",
-         "Your labels are woven to the confirmed specification and checked against it."),
+         "Your labels are woven in 3 days to the confirmed specification and checked against it. For orders outside "
+         "Pakistan, we then show you the finished labels and you pay the remaining 50% before dispatch. Within "
+         "Pakistan, the remaining 50% is paid before dispatch, or by cash on delivery where offered."),
         ("Receive your labels",
-         "We deliver across Pakistan and can arrange international delivery. The delivery arrangement and timeline are "
-         "confirmed with you before dispatch."),
+         "From the start of production, delivery typically takes 4 days in total within Pakistan and 6\u20137 days to GCC "
+         "countries (the UAE, Saudi Arabia, Kuwait, Qatar, Bahrain and Oman), with shipping included in your quote. "
+         "For other countries, we confirm the shipping cost and timeline with you when we quote."),
     ]
     rows = "".join(
         '<div class="split reveal" style="margin-bottom:clamp(40px,5vw,70px)%s">'
@@ -533,7 +537,7 @@ def how_it_works():
     )
     return page(
         "how-it-works/", "How to Order Custom Woven Labels | Premium Woven Labels",
-        "How to order custom woven labels: send your design, choose your label type and fold, confirm details, "
+        "How to order custom woven labels: send your design, approve a digital sample, pay the advance, "
         "production, delivery. Free quote on WhatsApp \u2014 +92 304 8095202.",
         body, depth=d,
         schema=[breadcrumbs([("", "Home"), ("how-it-works/", "How It Works")], d),
@@ -588,23 +592,7 @@ def faq():
         "and getting a quote.",
         body, depth=d,
         schema=[breadcrumbs([("", "Home"), ("faq/", "FAQ")], d),
-                faq_schema(FAQS, "faq/"),
-                {
-                    "@type": "FAQPage",
-                    "@id": canonical("faq/") + "#faqpage",
-                    "name": "Custom woven label FAQ",
-                    "description": "Frequently asked questions about custom woven labels, "
-                                   "school monograms, fold types, minimum orders and how to get a quote.",
-                    "mainEntity": [
-                        {
-                            "@type": "Question",
-                            "name": q,
-                            "acceptedAnswer": {"@type": "Answer", "text": a % (MOQ_APPAREL, MOQ_SCHOOL)
-                                               if "%s" in a else a},
-                        }
-                        for q, a in FAQS
-                    ],
-                }]
+                faq_schema(FAQS, "faq/")]
     )
 
 
@@ -686,9 +674,9 @@ from blocks import PRICE_BANDS, TESTIMONIALS
 def trust_strip():
     items = [
         (MOQ_APPAREL, "Minimum for apparel labels (%s for school monograms)" % MOQ_SCHOOL),
-        (TURNAROUND, "Production once design, size and quantity are confirmed"),
-        ("Sample first", "You approve a sample before the full order is woven"),
-        ("Advance payment", "Bank transfer, EasyPaisa or JazzCash"),
+        (TURNAROUND, "Production once your design and size are confirmed and the advance is paid"),
+        ("Digital sample first", "You approve a digital sample before the full order is woven"),
+        ("50% advance", "Bank transfer, EasyPaisa, JazzCash, Payoneer or money exchange"),
     ]
     cells = "".join('<div class="trust-item"><b>%s</b><span>%s</span></div>' % i for i in items)
     return ('<section class="trust" aria-label="Order essentials"><div class="wrap"><div class="trust-grid">' + cells +
@@ -751,6 +739,9 @@ def pricing():
         '<div class="sec-head"><div class="thread-rule"></div><h2>What affects the price</h2>'
         '<p>Minimum order is %s for apparel labels and %s for school monograms.</p></div>' % (MOQ_APPAREL, MOQ_SCHOOL) +
         '<div class="grid g-3">' + cards + '</div></div></section>'
+        + '<section class="section section--tight"><div class="wrap"><div class="sec-head"><div class="thread-rule"></div><h2>What every quote includes</h2>'
+          '<p>Artwork cleanup and packaging are included in every quote. Shipping is included for orders within Pakistan and to GCC countries; for other countries it is confirmed when we quote. The sample fee is separate, and any import duties or taxes charged by the destination country are not part of the quote.</p>'
+          '</div></div></section>'
         + cta_band(d, "Get an exact price",
                    "Send your logo, label type, rough size and quantity on WhatsApp and we will quote in one reply.")
     )
@@ -780,7 +771,7 @@ def landing():
         '<p class="lp-kicker">Custom woven labels &middot; Karachi, Pakistan</p>'
         '<h1>Custom woven labels for your brand. Get a quote in one message.</h1>'
         '<p class="lp-sub">Brand, care, size and logo labels for clothing brands and schools. Orders from '
-        + MOQ_APPAREL + ', ready in ' + TURNAROUND + ' once your design is confirmed, and you approve a sample first.</p>'
+        + MOQ_APPAREL + ', ready in ' + TURNAROUND + ' once your design is confirmed and the advance is paid, after you approve a digital sample first.</p>'
         '<div class="lp-cta">' + btn + '<a class="textlink" href="#quote">or fill the form</a></div></div>'
         '<div class="lp-photo"><img src="' + up + 'gallery-aimen.jpg" alt="Custom woven labels by Premium Woven Labels" '
         'width="1200" height="1600"></div></div></section>'
@@ -853,8 +844,8 @@ def international():
     wa_link = wa("Hi Premium Woven Labels, I'd like a quote for an international order. Country: / Label type: / Quantity:")
     facts = [
         ("Ships via", "Skynet Worldwide Express"),
-        ("Typical transit to UAE", "2\u20134 days"),
-        ("Payment", "Payoneer (AED local transfer) or bank wire"),
+        ("Total time to GCC", "6\u20137 days"),
+        ("Payment", "Payoneer, money exchange or bank transfer"),
         ("Minimum order", MOQ_APPAREL + " apparel / " + MOQ_SCHOOL + " school monogram"),
     ]
     fact_cards = "".join(
@@ -864,17 +855,17 @@ def international():
         '<p style="color:var(--slate);font-size:.9rem;margin:0">%s</p></div>' % (i % 4 + 1, i + 1, t, dsc)
         for i, (t, dsc) in enumerate([
             ("Send your details", "Logo, label type, size and quantity on WhatsApp \u2014 tell us your country."),
-            ("Get a quote", "We quote per country and quantity, since export rates differ from local Pakistan rates."),
-            ("Approve a sample", "Nothing goes into full production until you've signed off on the design."),
-            ("Pay via Payoneer or wire", "AED local transfer through Payoneer is the simplest option for UAE clients."),
-            ("Production", "7\u201310 days once the design, size and quantity are confirmed."),
-            ("Shipped via Skynet", "Typically 2\u20134 days in transit to the UAE."),
+            ("Get a quote", "We quote per country and quantity, since export rates differ from local Pakistan rates. Artwork cleanup and packaging are included."),
+            ("Approve a digital sample", "Pay the sample fee in full and we send a digital file showing how the finished label will look. Changes at this stage are free."),
+            ("Pay a 50% advance", "Via Payoneer (AED local transfer for UAE clients), money exchange or bank transfer. Production starts straight away."),
+            ("Production", "3 days. When your labels are ready we show them to you, and you pay the remaining 50% before dispatch."),
+            ("Shipped via Skynet", "Typically 6\u20137 days in total to GCC countries, with shipping included in your quote."),
         ]))
 
     body = (
         page_head("Custom woven labels for UAE & international orders",
                   "Pakistan-manufactured woven labels, shipped to the UAE and internationally. Same quality, "
-                  "sample-first process and minimums as our local orders.",
+                  "digital-sample-first process and minimums as our local orders.",
                   crumbs=[("", "Home"), ("international/", "International Orders")], depth=d)
 
         + ('<section class="trust" aria-label="International order essentials"><div class="wrap">'
@@ -892,12 +883,12 @@ def international():
            '<div class="grid g-3">'
            '<div class="prod-card reveal" style="padding:24px"><h3 style="font-size:1rem">Direct from the manufacturer</h3>'
            '<p style="color:var(--slate);font-size:.9rem;margin:0">You order from the workshop that weaves the '
-           'labels, not a reseller \u2014 the same team your sample and your bulk order come from.</p></div>'
+           'labels, not a reseller \u2014 the same team your digital sample and your bulk order come from.</p></div>'
            '<div class="prod-card reveal d1" style="padding:24px"><h3 style="font-size:1rem">Low minimum, by volume</h3>'
            '<p style="color:var(--slate);font-size:.9rem;margin:0">A 1,000-piece minimum keeps the per-piece rate '
            'low for a full production run, rather than pricing each order like a one-off sample.</p></div>'
-           '<div class="prod-card reveal d2" style="padding:24px"><h3 style="font-size:1rem">Sample before bulk</h3>'
-           '<p style="color:var(--slate);font-size:.9rem;margin:0">You see and approve a sample before the full '
+           '<div class="prod-card reveal d2" style="padding:24px"><h3 style="font-size:1rem">Digital sample before bulk</h3>'
+           '<p style="color:var(--slate);font-size:.9rem;margin:0">You see and approve a digital sample before the full '
            'quantity is woven, wherever in the world it\u2019s shipping to.</p></div>'
            '</div></div></section>')
 
@@ -911,8 +902,8 @@ def international():
     )
     return page(
         "international/", "Custom Woven Labels for UAE & Export Orders",
-        "Pakistan-made woven labels shipped to the UAE and internationally via Skynet, typically 2-4 days to the "
-        "UAE. Payoneer (AED) and bank wire accepted.",
+        "Pakistan-made woven labels shipped to the UAE and GCC countries, typically 6-7 days in total. "
+        "Payoneer, money exchange and bank transfer accepted.",
         body, depth=d,
         schema=[breadcrumbs([("", "Home"), ("international/", "International Orders")], d),
                 faq_schema(INTL_FAQ, "international/")]
@@ -957,7 +948,8 @@ def label_type_page(anchor, slug, fold_names, placement_labels, faq_questions):
     extra_note = ""
     if anchor == "monograms":
         extra_note = ('<p style="color:var(--slate)">Shapes available: ' + ", ".join(MONOGRAM_SHAPES) +
-                       '. Backing: ' + " or ".join(x.lower() for x in MONOGRAM_BACKING) + '.</p>')
+                       '. Backing: ' + " or ".join(x.lower() for x in MONOGRAM_BACKING) + '. Iron-on monograms have an adhesive backing and stick '
+                       'when pressed on; sew-on monograms have no adhesive and are stitched on.</p>')
     wa_link = wa("Hi Premium Woven Labels, I'd like a quote for " + name.lower() + ". Quantity: / Size:")
 
     body = (
@@ -967,7 +959,7 @@ def label_type_page(anchor, slug, fold_names, placement_labels, faq_questions):
            '<div class="trust-grid" style="margin-bottom:0">'
            '<div class="trust-item"><b>' + moq + '</b><span>Minimum order</span></div>'
            '<div class="trust-item"><b>' + TURNAROUND + '</b><span>Production time</span></div>'
-           '<div class="trust-item"><b>Sample first</b><span>Approved before full production</span></div>'
+           '<div class="trust-item"><b>Digital sample first</b><span>Approved before full production</span></div>'
            '<div class="trust-item"><b>' + audience + '</b><span>Typically ordered by</span></div>'
            '</div>' + extra_note + '</div></section>')
 

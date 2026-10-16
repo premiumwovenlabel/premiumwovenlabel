@@ -4,7 +4,7 @@
 from core import (page, url, canonical, breadcrumbs, crumb_html, BASE, NAME,
                   WA_DISPLAY, EMAIL, CITY, COUNTRY, YEAR)
 
-UPDATED = "19 September 2026"
+UPDATED = "15 October 2026"
 
 
 def ph(text):
@@ -94,17 +94,22 @@ def terms():
         '<h2>Artwork and approval</h2>'
         '<p>You are responsible for the artwork you send us, including making sure you have the right to use any logo, '
         'trademark or design it contains. We produce labels to the artwork and specification you approve.</p>'
-        '<p>You approve a sample before the full order goes into production. Once you have approved it, production runs '
+        '<p>You approve a digital sample before the full order goes into production. Once you have approved it, production runs '
         'to that approved specification \u2014 so please check spelling, capitalisation, sizing and colours carefully at '
         'that stage.</p>'
 
         '<h2>Orders and payment</h2>'
-        '<p>An order is confirmed once you approve the specification and the agreed payment terms are met. ' +
-        'Payment is accepted by bank transfer, EasyPaisa or JazzCash. Advance payment is required before production begins; the exact amount depends on the order and is confirmed with you at the time of placing it.</p>'
+        '<p>An order is confirmed once you approve the digital sample, confirm the final design and size, and pay a '
+        '50% advance. The remaining 50% is paid before dispatch. The sample fee is paid in full before the digital '
+        'sample is prepared.</p>'
+        '<p>Payment within Pakistan is accepted by bank transfer, EasyPaisa or JazzCash. For orders from outside '
+        'Pakistan, payment is accepted through Payoneer, a money exchange or a bank transfer into our Pakistan bank '
+        'account; if another method is more convenient for you, let us know.</p>'
 
         '<h2>Production and delivery</h2>'
-        '<p>Production time depends on the design, quantity and current workload, and is confirmed with you before you '
-        'commit. Delivery terms are covered on our shipping and delivery page.</p>'
+        '<p>Standard production time is 3 days from the point your final design and size are confirmed and the 50% '
+        'advance is received. We confirm the timeline with you before you commit to an order. Delivery terms are '
+        'covered on our shipping and delivery page.</p>' +
 
         '<h2>Colour and finish</h2>'
         '<p>Thread colours are matched as closely as the weaving process allows. Small variation between a screen '
@@ -133,38 +138,51 @@ def terms():
 
 
 def refund():
+    raise_request = (
+        '<h2>How to raise a request</h2>'
+        '<p>Message us on WhatsApp at %s or email <a href="mailto:%s">%s</a> with your order details and photographs '
+        'where relevant.</p>' % (WA_DISPLAY, EMAIL, EMAIL)
+    )
     body = (
         '<h2>Custom-made products</h2>'
         '<p>Woven labels are made to order, to artwork and a specification you approve. Because they carry your brand '
         'and cannot be resold or reused, custom labels are not returnable in the way a stock product would be.</p>'
-        '<p>That is exactly why we ask you to approve a sample before the full order is produced \u2014 it is the point '
-        'at which anything can still be changed at no cost.</p>'
+        '<p>That is exactly why we ask you to approve a digital sample before the full order is produced. Changes '
+        'while you review the digital sample are free; once the labels have been woven, any change has to be paid '
+        'for.</p>' +
 
         '<h2>Cancelling an order</h2>'
         '<ul>'
-        '<li><strong>Before production starts:</strong> We work through every detail of your order — design, size, colours, fold and quantity — before production begins, and you confirm everything at that stage. Once an order is confirmed and payment is made, it enters production and cannot be cancelled or refunded.</li>'
-        '<li><strong>Once production has started:</strong> an order in production cannot usually be cancelled, because '
-        'the material has already been woven to your specification.</li>'
-        '</ul>'
+        '<li><strong>Before production starts:</strong> you can cancel. Only the payment for the design work is '
+        'deducted, and the rest of your payment is returned immediately.</li>'
+        '<li><strong>Once production has started:</strong> the order cannot be cancelled. The labels carry your brand '
+        'name and details and cannot be used for anyone else, so they must be paid for. Please place your order only '
+        'when you are completely sure.</li>'
+        '</ul>' +
 
         '<h2>If something is wrong with your order</h2>'
         '<p>If your labels do not match the specification you approved, tell us. Send photographs of what you received '
         'along with your order details on WhatsApp and we will look into it and put it right.</p>'
-        '<p>Any problem with your order must be reported to us within <strong>7 days</strong> of delivery, with photographs of the issue and your order details sent on WhatsApp or by email.</p>'
+        '<p>Any problem with your order must be reported to us within <strong>7 days</strong> of delivery, with '
+        'photographs of the issue and your order details sent on WhatsApp or by email.</p>'
+        '<p>Orders normally include a few extra labels. If you are still short for any reason, we add the missing '
+        'labels to your next order.</p>' +
 
         '<h2>What is not covered</h2>'
         '<ul>'
         '<li>Errors in artwork, spelling or sizing that were present in the version you approved.</li>'
         '<li>Normal, small variation between screen colours and woven thread colours.</li>'
         '<li>Damage caused after delivery.</li>'
-        '</ul>'
+        '</ul>' +
 
         '<h2>Refund method and timing</h2>'
-        '<p>Because woven labels are custom-made to your specific artwork and cannot be reused or resold, we do not offer refunds except where the labels we delivered do not match the specification you approved. In that case, we will either reproduce the affected labels or agree a resolution with you directly.</p>'
+        '<p>Because woven labels are custom-made to your specific artwork and cannot be reused or resold, refunds are '
+        'limited to two cases. If you cancel before production starts, the rest of your payment is returned '
+        'immediately after the payment for the design work is deducted. If the labels we delivered do not match the '
+        'specification you approved, we will either reproduce the affected labels or agree a resolution with you '
+        'directly.</p>' +
 
-        '<h2>How to raise a request</h2>'
-        '<p>Message us on WhatsApp at %s or email <a href="mailto:%s">%s</a> with your order details and photographs '
-        'where relevant.</p>' % (WA_DISPLAY, EMAIL, EMAIL)
+        raise_request
     )
     return _legal("refund-policy", "Refund &amp; cancellation policy",
                   "How cancellations, production errors and refunds work on custom woven label orders from "
@@ -175,34 +193,51 @@ def refund():
 
 
 def shipping():
+    delivery_problems = (
+        '<h2>Delivery problems</h2>'
+        '<p>If your order is delayed, damaged in transit or does not arrive, message us on WhatsApp at %s with your '
+        'order details and we will follow it up with the courier.</p>' % WA_DISPLAY
+    )
     body = (
         '<h2>Where we deliver</h2>'
-        '<p>We deliver across Pakistan, and we can arrange international delivery. Tell us where your order needs to '
-        'go and we will confirm the arrangement before dispatch.</p>'
+        '<p>We deliver across Pakistan and to GCC countries: the UAE, Saudi Arabia, Kuwait, Qatar, Bahrain and Oman. '
+        'For other countries, tell us where your order needs to go and we will confirm the arrangement before '
+        'dispatch.</p>' +
 
         '<h2>Production time</h2>'
-        '<p>Production time depends on your design, the quantity and current workload. We confirm a timeline with you '
-        'before you commit to an order, so you always know what to expect before you pay.</p>'
-        '<p>Standard production turnaround is 7\u201310 days from order confirmation, for delivery within Pakistan. '
-        'International dispatch is arranged separately and confirmed with you before production begins.</p>'
+        '<p>Standard production time is 3 days from the point your final design and size are confirmed and the 50% '
+        'advance is received. We confirm the timeline with you before you commit to an order, so you always know what '
+        'to expect before you pay.</p>' +
 
         '<h2>Delivery time</h2>'
-        '<p>Delivery times after production is complete:</p><ul><li><strong>Karachi:</strong> approximately 5 days</li><li><strong>Rest of Pakistan:</strong> approximately 7 days</li><li><strong>International (worldwide):</strong> approximately 10 days</li></ul><p>These are estimates and may vary. If your order has a firm deadline, let us know when you place it and we will tell you whether it can be met.</p>'
+        '<p>Counted from the start of production, delivery typically takes:</p>'
+        '<ul>'
+        '<li><strong>Within Pakistan:</strong> 4 days in total</li>'
+        '<li><strong>GCC countries (UAE, Saudi Arabia, Kuwait, Qatar, Bahrain, Oman):</strong> 6\u20137 days in total</li>'
+        '<li><strong>Other countries:</strong> confirmed with you when we quote</li>'
+        '</ul>'
+        '<p>These are estimates and may vary. Need it sooner? Message us on WhatsApp with the date you need it by and '
+        'your quantity, and if we can do it, we will.</p>' +
 
         '<h2>Delivery charges</h2>'
-        '<p>Delivery charges depend on the order size and destination and are confirmed with you before dispatch. Ask us when you place your order and we will include it in the quote.</p>'
+        '<p>Shipping is included in your quote for orders within Pakistan and to GCC countries. For other countries, '
+        'the shipping cost is confirmed with you when we quote.</p>' +
+
+        '<h2>Final payment and dispatch</h2>'
+        '<p>For orders from outside Pakistan, when your labels are ready we show you the finished labels, you pay the '
+        'remaining 50%, and then we dispatch. Within Pakistan, the remaining 50% is paid before dispatch, or by cash '
+        'on delivery where it is offered.</p>' +
 
         '<h2>Tracking</h2>'
-        '<p>We use courier services including TCS for Pakistan deliveries. Tracking details are shared with you once your order has been dispatched.</p>'
+        '<p>We use courier services including TCS for Pakistan deliveries. Tracking details are shared with you once '
+        'your order has been dispatched.</p>' +
 
         '<h2>Customs and duties on international orders</h2>'
         '<p>International shipments may be subject to import duties, taxes or customs charges in the destination '
         'country. These are set by the destination country, not by us, and are normally the responsibility of the '
-        'person receiving the order.</p>'
+        'person receiving the order.</p>' +
 
-        '<h2>Delivery problems</h2>'
-        '<p>If your order is delayed, damaged in transit or does not arrive, message us on WhatsApp at %s with your '
-        'order details and we will follow it up with the courier.</p>' % WA_DISPLAY
+        delivery_problems
     )
     return _legal("shipping-policy", "Shipping &amp; delivery policy",
                   "How custom woven label orders from Premium Woven Labels are produced and delivered across Pakistan "
