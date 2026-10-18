@@ -26,7 +26,7 @@ ANALYTICS = ('<script async src="https://www.googletagmanager.com/gtag/js?id=' +
              'gtag("js",new Date());gtag("config","' + GA_ID + '");</script>\n') if GA_ID else ""
 
 # Minimum order quantities and turnaround, as published by the business.
-MOQ_APPAREL = "1,000 pieces"
+MOQ_APPAREL = "100 pieces"
 MOQ_SCHOOL = "200 pieces"
 TURNAROUND = "3 days"
 
@@ -235,11 +235,11 @@ def org_schema():
         "image": BASE + "/assets/img/og-cover.png",
         "description": (
             "%s is a custom woven label manufacturer based in %s, Pakistan. "
-            "It makes custom woven brand labels, logo labels, size labels, care labels, "
-            "woven hang tags and school monograms for clothing, fashion and growing brands. "
+            "It makes custom woven labels, also called custom woven fabric tags: brand labels, logo labels, "
+            "size labels, care labels and school monograms, plus hard hang tags, for clothing brands, fashion and growing brands. "
             "Fold options: Straight Cut, Centre Fold, End Fold, Mitre Fold, Manhattan Fold. "
             "School badges available with sew-on or iron-on backing in circle, shield, "
-            "square and custom-cut shapes. Minimum order 1,000 pieces for apparel, "
+            "square and custom-cut shapes. Minimum order 100 pieces for apparel (new brands can start with 100, 300 or 500 pieces), "
             "200 pieces for schools. WhatsApp quotes: +%s." % (NAME, CITY, WA_RAW)
         ),
         "address": {
@@ -270,7 +270,7 @@ def org_schema():
                 {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Logo woven labels"}},
                 {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Size labels"}},
                 {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Care labels"}},
-                {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Woven hang tags"}},
+                {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Hard hang tags"}},
                 {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "School monograms and woven badges"}},
             ],
         },

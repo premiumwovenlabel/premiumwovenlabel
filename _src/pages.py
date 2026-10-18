@@ -28,7 +28,7 @@ def compare_block():
     woven = ["The design is created by weaving coloured threads together on a loom.",
              "Holds fine detail in thread, so logos and small text stay legible.",
              "A raised, fabric texture you can feel \u2014 the finish associated with retail clothing.",
-             "Commonly used for neck labels, brand tabs and hang tags on clothing and fashion."]
+             "Commonly used for neck labels and brand tabs on clothing and fashion."]
     printed = ["Ink is printed onto a base material such as satin or cotton tape.",
                "Can reproduce photographic detail and gradients that thread cannot.",
                "A flat, smooth surface \u2014 the design sits on top of the material.",
@@ -74,9 +74,9 @@ def home():
         '<section class="hero"><div class="wrap"><div class="hero-grid">'
         '<div class="hero-copy">'
         '<span class="hero-kicker"><b></b>Replies on WhatsApp, usually same day</span>'
-        '<h1>Premium woven labels made for your <span class="hl-script">brand</span></h1>'
-        '<p class="hero-lead">Custom woven labels designed to give clothing, fashion and growing brands a '
-        'professional identity \u2014 from your first order to your next full collection.</p>'
+        '<h1>Custom woven labels for clothing <span class="hl-script">brands</span></h1>'
+        '<p class="hero-lead">Custom woven labels and fabric tags designed to give clothing, fashion and growing brands a '
+        'professional identity \u2014 from your first small order to your next full collection.</p>'
         '<div class="btn-row">'
         '<a class="btn btn-primary btn-lg" href="%(contact)s">Get a free quote</a>'
         '<a class="btn btn-wa btn-lg" href="%(wa)s" target="_blank" rel="noopener">%(iwa)s Chat on WhatsApp</a>'
@@ -123,7 +123,7 @@ def home():
         '<section class="section section--bone"><div class="wrap">'
         '<div class="sec-head"><div class="thread-rule"></div>'
         '<h2>What we weave</h2>'
-        '<p>From the label carrying your brand name to the tag hanging on the outside \u2014 every piece is woven to order.</p></div>'
+        '<p>From the label carrying your brand name to the school crest on a uniform \u2014 every label is woven to order. We also supply hard hang tags.</p></div>'
         '%(prods)s'
         '<div style="margin-top:30px"><a class="textlink" href="%(labels)s">See every label type and fold style</a></div>'
         '</div></section>'
@@ -189,8 +189,8 @@ def home():
     )
     return page(
         "", "Custom Woven Labels for Clothing Brands | Premium Woven Labels",
-        "Custom woven labels, brand labels, size and care labels, hang tags and school monograms for clothing "
-        "brands. Made in Karachi \u2014 free quote on WhatsApp.",
+        "Custom woven labels and fabric tags for clothing brands, from 100 pieces. Brand, size and care labels, "
+        "monograms. Made in Karachi \u2014 free WhatsApp quote.",
         body, depth=0,
         schema=[faq_schema(FAQ_SHORT, ""),
                 {"@type": "WebPage", "@id": canonical("") + "#webpage", "url": canonical(""),
@@ -210,8 +210,8 @@ def about():
         + '<section class="section"><div class="wrap"><div class="split">'
         '<div class="reveal"><div class="thread-rule"></div>'
         '<h2>What we do</h2>'
-        '<p>We weave custom labels \u2014 brand labels, logo labels, size labels, care labels, hang tags and school '
-        'monograms \u2014 for businesses that put their name on what they make. We\u2019re based in %(city)s, %(country)s, '
+        '<p>We weave custom labels \u2014 brand labels, logo labels, size labels, care labels and school '
+        'monograms \u2014 and we supply hard hang tags \u2014 for businesses that put their name on what they make. We\u2019re based in %(city)s, %(country)s, '
         'and we work with brands here and abroad.</p>'
         '<p>Most of our customers are clothing and fashion brands, boutiques, garment makers, handmade businesses and '
         'schools. Some are ordering labels for the first time and aren\u2019t sure what they need. That\u2019s a normal '
@@ -285,9 +285,10 @@ def woven_labels():
     faq_page_url = url("faq/", d)
 
     body = (
-        page_head("Woven labels, in every form your garment needs",
-                  "Brand labels, logo labels, size labels, care labels, hang tags and monograms \u2014 plus the fold "
-                  "styles and shapes that decide how each one is sewn in.",
+        page_head("Custom woven labels and fabric tags, in every form your garment needs",
+                  "Custom woven fabric tags for clothing brands \u2014 brand, logo, size and care labels and school "
+                  "monograms, plus the fold styles and shapes that decide how each one is sewn in. We also supply "
+                  "hard hang tags.",
                   crumbs=[("", "Home"), ("woven-labels/", "Woven Labels")], depth=d)
 
         + '<section class="section"><div class="wrap">'
@@ -378,9 +379,9 @@ def woven_labels():
                    "Tell us what you're making and where the label goes. We'll tell you what works \u2014 and quote it free.")
     )
     return page(
-        "woven-labels/", "Custom Woven Labels: Types, Folds & Sizes | Premium Woven Labels",
-        "Custom woven clothing labels \u2014 brand, logo, size and care labels, hang tags and monograms, in flat, centre "
-        "fold, end fold and custom shapes.",
+        "woven-labels/", "Custom Woven Labels & Fabric Tags | Premium Woven Labels",
+        "Custom woven labels and fabric tags for clothing brands: brand, logo, size and care labels and monograms, "
+        "in flat, centre fold, end fold and custom shapes.",
         body, depth=d,
         schema=[breadcrumbs([("", "Home"), ("woven-labels/", "Woven Labels")], d),
                 {"@type": "Service", "@id": canonical("woven-labels/") + "#service",
@@ -411,8 +412,8 @@ def services():
         '<div class="prod-card reveal" style="padding:32px"><h3>Custom woven label production</h3>'
         '<p style="color:var(--slate)">Brand labels, logo labels, size labels and care labels, woven to the size, shape, '
         'fold and thread colours you confirm. Order one type or a matched set.</p></div>'
-        '<div class="prod-card reveal d1" style="padding:32px"><h3>Woven hang tags</h3>'
-        '<p style="color:var(--slate)">Tags for the outside of a product, where the branding is read before the garment '
+        '<div class="prod-card reveal d1" style="padding:32px"><h3>Hang tags</h3>'
+        '<p style="color:var(--slate)">Hard hang tags for the outside of a product, where the branding is read before the garment '
         'is even touched.</p></div>'
         '<div class="prod-card reveal d2" style="padding:32px">'
         '<h3>School monograms &amp; badges</h3>'
@@ -494,13 +495,13 @@ def how_it_works():
          "Pakistan, we then show you the finished labels and you pay the remaining 50% before dispatch. Within "
          "Pakistan, the remaining 50% is paid before dispatch, or by cash on delivery where offered."),
         ("Receive your labels",
-         "From the start of production, delivery typically takes 4 days in total within Pakistan and 6\u20137 days to GCC "
+         "From order confirmation, delivery typically takes 5\u20136 days in total within Pakistan and 6\u20137 days to GCC "
          "countries (the UAE, Saudi Arabia, Kuwait, Qatar, Bahrain and Oman), with shipping included in your quote. "
          "For other countries, we confirm the shipping cost and timeline with you when we quote."),
     ]
     rows = "".join(
         '<div class="split reveal" style="margin-bottom:clamp(40px,5vw,70px)%s">'
-        '<div class="%s"><span class="step-n" style="font-size:3.4rem;display:block;margin-bottom:8px">%s</span>'
+        '<div class="%s"><span class="step-n" style="width:64px;height:64px;border-radius:18px;font-size:1.9rem;margin-bottom:12px">%s</span>'
         '<h2 style="font-size:clamp(1.5rem,3vw,2.1rem)">%s</h2><p style="color:var(--slate)">%s</p></div>'
         '<div class="split-media"><div class="stage">%s</div></div></div>'
         % ("", "", n, t, txt,
@@ -674,7 +675,7 @@ from blocks import PRICE_BANDS, TESTIMONIALS
 def trust_strip():
     items = [
         (MOQ_APPAREL, "Minimum for apparel labels (%s for school monograms)" % MOQ_SCHOOL),
-        (TURNAROUND, "Production once your design and size are confirmed and the advance is paid"),
+        ("5\u20136 days", "From order confirmation to delivery in Pakistan (GCC: 6\u20137 days)"),
         ("Digital sample first", "You approve a digital sample before the full order is woven"),
         ("50% advance", "Bank transfer, EasyPaisa, JazzCash, Payoneer or money exchange"),
     ]
@@ -689,16 +690,14 @@ def client_spotlight(depth=0):
     if not c:
         return ""
     return (
-        '<section class="section"><div class="wrap">'
-        '<div class="sec-head"><div class="thread-rule"></div><h2>A recent order</h2></div>'
-        '<div class="prod-card reveal" style="padding:32px;max-width:62ch">'
-        '<p style="font-size:1.05rem;color:var(--ink-soft);margin:0 0 14px">\u201c' + c["quote"] + '\u201d</p>'
-        '<p style="font-weight:700;margin:0 0 4px">' + c["client"] + ', ' + c["brand"] + '</p>'
-        '<p style="color:var(--slate);font-size:.88rem;margin:0 0 18px">' + c["note"] + '</p>'
-        '<p style="color:var(--slate);font-size:.9rem;margin:0">Like every order, this one followed our standard '
-        'process: a digital proof approved before weaving, production in ' + TURNAROUND + ', and a minimum of '
-        + MOQ_APPAREL + ' for apparel labels.</p>'
-        '</div></div></section>'
+        '<section class="section section--tight"><div class="wrap">'
+        '<div class="sec-head" style="margin-bottom:24px"><div class="thread-rule"></div><h2>A recent order</h2></div>'
+        '<figure class="spot-card reveal">'
+        '<blockquote>\u201c' + c["quote"] + '\u201d</blockquote>'
+        '<figcaption><b>' + c["client"] + ', ' + c["brand"] + '</b><span>' + c["note"] + '</span></figcaption>'
+        '<p class="spot-process">Like every order, this one followed our standard process: a digital proof approved '
+        'before weaving, then production in ' + TURNAROUND + '.</p>'
+        '</figure></div></section>'
     )
 
 
@@ -737,7 +736,7 @@ def pricing():
                   crumbs=[("", "Home"), ("pricing/", "Pricing")], depth=d)
         + '<section class="section"><div class="wrap">' + table +
         '<div class="sec-head"><div class="thread-rule"></div><h2>What affects the price</h2>'
-        '<p>Minimum order is %s for apparel labels and %s for school monograms.</p></div>' % (MOQ_APPAREL, MOQ_SCHOOL) +
+        '<p>Minimum order is %s for apparel labels and %s for school monograms. New brands can start with 100, 300 or 500 pieces.</p></div>' % (MOQ_APPAREL, MOQ_SCHOOL) +
         '<div class="grid g-3">' + cards + '</div></div></section>'
         + '<section class="section section--tight"><div class="wrap"><div class="sec-head"><div class="thread-rule"></div><h2>What every quote includes</h2>'
           '<p>Artwork cleanup and packaging are included in every quote. Shipping is included for orders within Pakistan and to GCC countries; for other countries it is confirmed when we quote. The sample fee is separate, and any import duties or taxes charged by the destination country are not part of the quote.</p>'
@@ -771,7 +770,7 @@ def landing():
         '<p class="lp-kicker">Custom woven labels &middot; Karachi, Pakistan</p>'
         '<h1>Custom woven labels for your brand. Get a quote in one message.</h1>'
         '<p class="lp-sub">Brand, care, size and logo labels for clothing brands and schools. Orders from '
-        + MOQ_APPAREL + ', ready in ' + TURNAROUND + ' once your design is confirmed and the advance is paid, after you approve a digital sample first.</p>'
+        + MOQ_APPAREL + ', delivered in 5\u20136 days from order confirmation (Pakistan), after you approve a digital sample first.</p>'
         '<div class="lp-cta">' + btn + '<a class="textlink" href="#quote">or fill the form</a></div></div>'
         '<div class="lp-photo"><img src="' + up + 'gallery-aimen.jpg" alt="Custom woven labels by Premium Woven Labels" '
         'width="1200" height="1600"></div></div></section>'
@@ -884,9 +883,9 @@ def international():
            '<div class="prod-card reveal" style="padding:24px"><h3 style="font-size:1rem">Direct from the manufacturer</h3>'
            '<p style="color:var(--slate);font-size:.9rem;margin:0">You order from the workshop that weaves the '
            'labels, not a reseller \u2014 the same team your digital sample and your bulk order come from.</p></div>'
-           '<div class="prod-card reveal d1" style="padding:24px"><h3 style="font-size:1rem">Low minimum, by volume</h3>'
-           '<p style="color:var(--slate);font-size:.9rem;margin:0">A 1,000-piece minimum keeps the per-piece rate '
-           'low for a full production run, rather than pricing each order like a one-off sample.</p></div>'
+           '<div class="prod-card reveal d1" style="padding:24px"><h3 style="font-size:1rem">Start small</h3>'
+           '<p style="color:var(--slate);font-size:.9rem;margin:0">You can start from 100 pieces, and the per-piece rate '
+           'comes down as quantity goes up, rather than every order being priced like a one-off sample.</p></div>'
            '<div class="prod-card reveal d2" style="padding:24px"><h3 style="font-size:1rem">Digital sample before bulk</h3>'
            '<p style="color:var(--slate);font-size:.9rem;margin:0">You see and approve a digital sample before the full '
            'quantity is woven, wherever in the world it\u2019s shipping to.</p></div>'
@@ -918,10 +917,10 @@ LABEL_TYPE_PAGES = [
     ("logo-labels", "logo-labels", ["Straight Cut (Flat)", "Mitre Fold"], ["Neck / brand label"],
      ["What file formats do you accept for artwork?", "Can I order custom-shaped labels?"]),
     ("size-labels", "size-labels", ["End Fold", "Straight Cut (Flat)"], ["Size label"],
-     ["What is the minimum order quantity?", "Do you offer sew-on and iron-on backing?"]),
+     ["What is the minimum order quantity?", "How long does an order take?"]),
     ("care-labels", "care-labels", ["End Fold", "Straight Cut (Flat)"], ["Care label"],
      ["Will the colours and design survive washing?", "Do you make labels for exporters and garment manufacturers?"]),
-    ("hang-tags", "hang-tags", ["Mitre Fold", "Straight Cut (Flat)"], ["Hang tag"],
+    ("hang-tags", "hang-tags", [], ["Hang tag"],
      ["Can I see a sample before placing the full order?", "What file formats do you accept for artwork?"]),
     ("monograms", "school-monograms", ["Straight Cut (Flat)", "Centre Fold"], ["Monogram / crest"],
      ["Is a woven monogram better than an embroidered or printed school badge?", "What is a typical size for a school uniform monogram?"]),
@@ -950,17 +949,28 @@ def label_type_page(anchor, slug, fold_names, placement_labels, faq_questions):
         extra_note = ('<p style="color:var(--slate)">Shapes available: ' + ", ".join(MONOGRAM_SHAPES) +
                        '. Backing: ' + " or ".join(x.lower() for x in MONOGRAM_BACKING) + '. Iron-on monograms have an adhesive backing and stick '
                        'when pressed on; sew-on monograms have no adhesive and are stitched on.</p>')
+    if anchor == "hang-tags":
+        facts = [("Hard hang tags", "Not woven"), ("Digital sample first", "Approved before full production"),
+                 (audience, "Typically ordered by"), ("Quote on WhatsApp", "Send your size and quantity")]
+    else:
+        facts = [(moq, "Minimum order"), ("5\u20136 days", "Order confirmed to delivery in Pakistan"),
+                 ("Digital sample first", "Approved before full production"), (audience, "Typically ordered by")]
+    facts_html = "".join('<div class="trust-item"><b>%s</b><span>%s</span></div>' % f for f in facts)
     wa_link = wa("Hi Premium Woven Labels, I'd like a quote for " + name.lower() + ". Quantity: / Size:")
+    seo = {"brand-labels": ("Custom woven brand labels", "Custom Woven Brand Labels for Clothing"),
+           "logo-labels": ("Custom woven logo labels", "Custom Woven Logo Labels"),
+           "size-labels": ("Custom woven size labels", "Custom Woven Size Labels"),
+           "care-labels": ("Custom woven care labels", "Custom Woven Care Labels"),
+           "monograms": ("Custom woven school monograms & badges", "Custom Woven School Monograms & Badges"),
+           "hang-tags": ("Custom hang tags", "Custom Hang Tags")}
+    h1_name, title_name = seo.get(anchor, (name, name))
 
     body = (
-        page_head(name, blurb, crumbs=[("", "Home"), ("woven-labels/", "Woven Labels"), (slug + "/", name)], depth=d)
+        page_head(h1_name, blurb, crumbs=[("", "Home"), ("woven-labels/", "Woven Labels"), (slug + "/", name)], depth=d)
 
         + ('<section class="section"><div class="wrap">'
            '<div class="trust-grid" style="margin-bottom:0">'
-           '<div class="trust-item"><b>' + moq + '</b><span>Minimum order</span></div>'
-           '<div class="trust-item"><b>' + TURNAROUND + '</b><span>Production time</span></div>'
-           '<div class="trust-item"><b>Digital sample first</b><span>Approved before full production</span></div>'
-           '<div class="trust-item"><b>' + audience + '</b><span>Typically ordered by</span></div>'
+           + facts_html +
            '</div>' + extra_note + '</div></section>')
 
         + (('<section class="section section--bone"><div class="wrap">'
@@ -970,11 +980,11 @@ def label_type_page(anchor, slug, fold_names, placement_labels, faq_questions):
             '<th>Label</th><th>Typical placement</th><th>Starting point for size</th></tr></thead><tbody>'
             + placement_html + '</tbody></table></div></div></section>') if placement_html else "")
 
-        + ('<section class="section"><div class="wrap">'
+        + (('<section class="section"><div class="wrap">'
            '<div class="sec-head"><div class="thread-rule"></div><h2>Fold options for ' + name.lower() + '</h2></div>'
            '<div class="grid g-3">' + fold_html + '</div>'
            '<p style="margin-top:20px"><a class="textlink" href="' + url("woven-labels/", d) +
-           '">See all fold styles</a></p></div></section>')
+           '">See all fold styles</a></p></div></section>') if fold_html else "")
 
         + (('<section class="section section--bone"><div class="wrap">'
             '<div class="sec-head"><div class="thread-rule"></div><h2>Questions about ' + name.lower() + '</h2></div>'
@@ -984,8 +994,8 @@ def label_type_page(anchor, slug, fold_names, placement_labels, faq_questions):
                    "Send your logo, size and quantity on WhatsApp and we'll quote it free.")
     )
     return page(
-        slug + "/", name + " | Premium Woven Labels",
-        blurb[:150],
+        slug + "/", title_name + " | Premium Woven Labels",
+        (blurb if blurb.lower().startswith("custom woven") else h1_name + ". " + blurb)[:158],
         body, depth=d,
         schema=[breadcrumbs([("", "Home"), ("woven-labels/", "Woven Labels"), (slug + "/", name)], d)]
              + ([faq_schema(faqs, slug + "/")] if faqs else [])

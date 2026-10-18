@@ -50,9 +50,9 @@ def build_pages():
     out.append(write("international/index.html", pages.international()))
     out.append(write("brand-labels/index.html", pages.label_type_page("brand-labels", "brand-labels", ['Centre Fold', 'Straight Cut (Flat)'], ['Neck / brand label'], ['What is the difference between woven and printed labels?', 'What file formats do you accept for artwork?'])))
     out.append(write("logo-labels/index.html", pages.label_type_page("logo-labels", "logo-labels", ['Straight Cut (Flat)', 'Mitre Fold'], ['Neck / brand label'], ['What file formats do you accept for artwork?', 'Can I order custom-shaped labels?'])))
-    out.append(write("size-labels/index.html", pages.label_type_page("size-labels", "size-labels", ['End Fold', 'Straight Cut (Flat)'], ['Size label'], ['What is the minimum order quantity?', 'Do you offer sew-on and iron-on backing?'])))
+    out.append(write("size-labels/index.html", pages.label_type_page("size-labels", "size-labels", ['End Fold', 'Straight Cut (Flat)'], ['Size label'], ['What is the minimum order quantity?', 'How long does an order take?'])))
     out.append(write("care-labels/index.html", pages.label_type_page("care-labels", "care-labels", ['End Fold', 'Straight Cut (Flat)'], ['Care label'], ['Will the colours and design survive washing?', 'Do you make labels for exporters and garment manufacturers?'])))
-    out.append(write("hang-tags/index.html", pages.label_type_page("hang-tags", "hang-tags", ['Mitre Fold', 'Straight Cut (Flat)'], ['Hang tag'], ['Can I see a sample before placing the full order?', 'What file formats do you accept for artwork?'])))
+    out.append(write("hang-tags/index.html", pages.label_type_page("hang-tags", "hang-tags", [], ['Hang tag'], ['Can I see a sample before placing the full order?', 'What file formats do you accept for artwork?'])))
     out.append(write("school-monograms/index.html", pages.label_type_page("monograms", "school-monograms", ['Straight Cut (Flat)', 'Centre Fold'], ['Monogram / crest'], ['Is a woven monogram better than an embroidered or printed school badge?', 'What is a typical size for a school uniform monogram?'])))
     out.append(write("404.html", pages.not_found()))
     out.append(write("resources/index.html", articles.resources_index()))
@@ -131,13 +131,15 @@ def build_llms():
     lines = """# Premium Woven Labels
 
 > Premium Woven Labels is a custom woven label manufacturer based in Karachi, Pakistan. It makes
-> custom woven labels, brand labels, logo labels, size labels, care labels, hang tags and school
-> monograms for clothing, fashion, streetwear, boutique, handmade and growing brands, and for
-> schools and organisations. WhatsApp is the primary enquiry and quotation channel.
+> custom woven labels (also called custom woven fabric tags or woven tags) for clothing brands: brand labels,
+> logo labels, size labels, care labels and school monograms. It also supplies hard hang tags (not woven).
+> Customers include clothing, fashion, streetwear, boutique, handmade and growing brands, and schools and
+> organisations. WhatsApp is the primary enquiry and quotation channel.
 >
-> Minimum orders: 1,000 pieces for apparel labels, 200 pieces for school monograms and badges.
+> Minimum orders: 100 pieces for apparel labels (new brands can start with 100, 300 or 500 pieces), 200 pieces
+> for school monograms and badges.
 > Production takes 3 days once the final design and size are confirmed and the 50% advance is received.
-> Typical total delivery time from the start of production: 4 days within Pakistan, 6-7 days to GCC countries.
+> Typical total delivery time from order confirmation: 5-6 days within Pakistan, 6-7 days to GCC countries.
 > Business hours: Monday to Saturday, 9:00 am to 6:00 pm Pakistan Standard Time.
 > Delivery is available across Pakistan and to GCC countries (UAE, Saudi Arabia, Kuwait, Qatar, Bahrain, Oman),
 > with shipping included in the quote; other countries are quoted case by case.
@@ -148,7 +150,7 @@ def build_llms():
 - Logo woven labels: reproducing an existing logo mark or wordmark in thread.
 - Size labels: letter sizing (XS-XXL), numeric sizing or a brand's own size system.
 - Care labels: washing instructions, fabric composition, care symbols, country of origin.
-- Woven hang tags: for the outside of a garment or product for retail display.
+- Hang tags (hard tags, not woven): for the outside of a garment or product for retail display.
 - School monograms and woven badges/crests: for uniforms, blazers and sportswear.
   - Badge shapes: Circle, Shield, Square, Custom cut.
   - Backing options: Sew-on, Iron-on.
@@ -167,7 +169,8 @@ def build_llms():
 4. Production starts immediately and takes 3 days. Once labels are woven, any change is charged.
 5. When the labels are ready, customers outside Pakistan are shown the finished labels, pay the remaining 50% and the
    order is dispatched. Within Pakistan the remaining 50% is paid before dispatch, or by cash on delivery where offered.
-6. Delivery takes typically 4 days in total within Pakistan and 6-7 days in total to GCC countries.
+6. Delivery takes typically 5-6 days in total within Pakistan and 6-7 days in total to GCC countries, counted
+   from order confirmation.
 
 Quotes are free and carry no obligation. Minimum order quantities apply and depend on the label type. Artwork cleanup
 and packaging are included in every quote; shipping is included for Pakistan and GCC countries. The sample fee is

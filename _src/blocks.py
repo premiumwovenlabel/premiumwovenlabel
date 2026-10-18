@@ -27,7 +27,7 @@ PRODUCTS = [
      dict(brand="30\u00b0", sub="WASH  \u00b7  DO NOT BLEACH", palette="ink", shape="rect", fold="end")),
 
     ("hang-tags", "Hang tags",
-     "Woven tags that hang on the outside of the product \u2014 often the first thing a customer touches on the rail.",
+     "Hard hang tags that hang on the outside of the product \u2014 often the first thing a customer touches on the rail.",
      "Retail display, gifting, premium packaging",
      dict(brand="MAISON", sub="HANDMADE", palette="red", shape="diecut", fold="flat")),
 
@@ -43,13 +43,13 @@ MONOGRAM_SHAPES  = ["Circle", "Shield", "Square", "Custom cut"]
 
 FOLDS = [
     ("Straight Cut (Flat)", "No fold. The full label is visible and sewn flat — on all four sides or across the top and bottom.",
-     "Neck labels, patches, hang tags, side-seam tabs"),
+     "Neck labels, patches, side-seam tabs"),
     ("Centre Fold", "Folded in half across the middle. The label reads on the front and the back is hidden inside the seam.",
      "Neck labels and side-seam brand labels"),
     ("End Fold", "Both short ends are folded under, leaving clean finished sides with no raw edges.",
      "Neck labels, care labels, size labels"),
     ("Mitre Fold", "All four corners are mitred and folded under, giving a neat, tailored finish on every edge.",
-     "Premium brand labels and hang tags"),
+     "Premium brand labels"),
     ("Manhattan Fold", "One end is folded over and the other remains open, giving a folded top edge with a raw bottom edge sewn into the seam.",
      "Waistband labels and inside-hem labels"),
 ]
@@ -97,7 +97,7 @@ STEPS = [
     ("02", "Approve a digital sample", "Pay the sample fee in full and we prepare a digital file of your design, so you can see how the finished label will look. Changes at this stage are free."),
     ("03", "Confirm your order", "Once you approve the digital sample, you confirm the final design and size and pay a 50% advance. Production starts right away."),
     ("04", "Production", "Your labels are woven in 3 days. The remaining 50% is paid before dispatch."),
-    ("05", "Receive your labels", "Typically 4 days in total within Pakistan and 6\u20137 days to GCC countries, with shipping included in your quote."),
+    ("05", "Receive your labels", "From order confirmation, typically 5\u20136 days within Pakistan and 6\u20137 days to GCC countries, with shipping included in your quote."),
 ]
 
 # ---------------------------------------------------------------- why us
@@ -127,17 +127,17 @@ FAQS = [
 
     ("What are woven labels used for?",
      "They are used to brand clothing and products \u2014 neck labels carrying a brand name, side-seam tabs, size and "
-     "care labels, hang tags on the outside of a garment, and monograms or crests on school uniforms."),
+     "care labels, and monograms or crests on school uniforms."),
 
     ("What is the minimum order quantity?",
-     "For clothing and fashion brands, the minimum is %s. For schools ordering custom monograms or crests, the "
-     "minimum is %s." % (MOQ_APPAREL, MOQ_SCHOOL)),
+     "For clothing and fashion brands, the minimum is %s, so a new brand can start small with 100, 300 or 500 "
+     "pieces. For schools ordering custom monograms or crests, the minimum is %s." % (MOQ_APPAREL, MOQ_SCHOOL)),
 
     ("How long does an order take?",
-     "Production takes " + TURNAROUND + " once your final design and size are confirmed and the 50% advance is received. "
-     "From the start of production, delivery typically takes 4 days in total within Pakistan and 6\u20137 days to GCC "
-     "countries (the UAE, Saudi Arabia, Kuwait, Qatar, Bahrain and Oman). For other countries, we confirm the timeline "
-     "with you when we quote."),
+     "After your order is confirmed (final design and size approved and the 50% advance received), delivery typically "
+     "takes 5\u20136 days within Pakistan and 6\u20137 days to GCC countries (the UAE, Saudi Arabia, Kuwait, Qatar, "
+     "Bahrain and Oman). Production itself takes " + TURNAROUND + ". For other countries, we confirm the timeline with "
+     "you when we quote."),
 
     ("Can I add my own logo?",
      "Yes. Send us your logo over WhatsApp or email and we will tell you how it translates into thread, including any "
@@ -192,7 +192,7 @@ FAQS = [
 
     ("What file formats do you accept for artwork?",
      "Vector files \u2014 AI, EPS, SVG or PDF \u2014 are ideal because they stay sharp at any size. A high-resolution PNG or JPG is "
-     "usually enough to start the conversation, and we will tell you if the file needs to be redrawn as a vector before weaving."),
+     "usually enough to start the conversation, and we will tell you if the file needs to be redrawn as a vector before production."),
 
     ("Do you offer sew-on and iron-on backing?",
      "Yes, for school monograms and badges. Iron-on monograms have an adhesive backing and stick when pressed on; "
@@ -206,17 +206,17 @@ FAQS = [
     ("Can I see a sample before placing the full order?",
      "Yes. Before production we prepare a digital sample: a digital file of your design that shows how the finished "
      "label will look. A sample fee applies, paid in full first. Changes while you review the digital sample are "
-     "free, and nothing is woven until you have signed off on the design, size and colours."),
+     "free, and nothing goes into production until you have signed off on the design, size and colours."),
 
     ("Do you make labels for exporters and garment manufacturers?",
      "Yes. We supply brand, size and care labels to garment makers and exporters who need a consistent set across a "
      "production run, matched to buyer specifications."),
 
     ("Can I order a small test batch before a full production run?",
-     "Our minimum is %s for apparel labels and %s for school monograms \u2014 this is what keeps our per-piece rate low "
-     "for the full run. Within that minimum, we're happy to split a first order across two or three designs, at an "
-     "extra cost, so you can compare before committing to one for a repeat order. To start smaller, we also offer "
-     "starter quantities of 100, 300 or 500 pieces for apparel labels; message us on WhatsApp for the rate." % (MOQ_APPAREL, MOQ_SCHOOL)),
+     "Yes. Our minimum is %s for apparel labels and %s for school monograms, so a new brand can start with 100, 300 "
+     "or 500 pieces before committing to a bigger run. You can also split a first order across two or three designs, "
+     "at an extra cost, so you can compare before choosing one for a repeat order. The per-piece rate is higher at "
+     "smaller quantities; message us on WhatsApp for the rate for your quantity." % (MOQ_APPAREL, MOQ_SCHOOL)),
 
     ("Is a woven monogram better than an embroidered or printed school badge?",
      "A woven monogram is flatter and more consistent than embroidery, so it doesn't add bulk to a blazer or shirt, "
@@ -239,21 +239,32 @@ FAQS = [
      "show you the finished labels when they are ready, you pay the remaining 50%, and then we dispatch. The sample "
      "fee is paid in full first."),
 
-    ("Can I order fewer than 1,000 pieces?",
-     "Yes \u2014 alongside our standard 1,000+ runs, we offer starter quantities of 100, 300 or 500 pieces for "
-     "apparel labels. The per-piece rate is higher at these smaller quantities, since production is less "
-     "efficient at low volumes. Message us your quantity on WhatsApp for an exact rate."),
+    ("Can a new brand start with a small quantity?",
+     "Yes. The minimum for apparel labels is %s, and new brands can start with 100, 300 or 500 pieces. The "
+     "per-piece rate is higher at smaller quantities, since production is less efficient at low volumes. Message us "
+     "your quantity on WhatsApp for an exact rate." % MOQ_APPAREL),
 ]
 
 FAQS.extend([
+    ("What are custom woven fabric tags?",
+     "Custom woven fabric tags are woven labels: small pieces of fabric with your brand name, logo or care "
+     "information woven in thread, then sewn into or onto a garment. They are also called woven labels, woven tags or "
+     "fabric labels. We make them as brand labels, logo labels, size labels and care labels, in flat, centre fold and "
+     "end fold styles, and as school monograms."),
+
+    ("Do you make custom woven labels for clothing brands?",
+     "Yes. We make custom woven labels for clothing brands, boutiques, schools and garment exporters, from new brands "
+     "starting at 100 pieces to larger production runs. Message us on WhatsApp with your logo and quantity for a free "
+     "quote."),
+
     ("Where can I order custom woven labels in Pakistan?",
      "Premium Woven Labels is a custom woven label manufacturer based in Karachi, Pakistan. We make brand, logo, size "
      "and care labels, hang tags and school monograms for clothing brands, boutiques, schools and garment exporters, "
      "and we deliver across Pakistan. Message us on WhatsApp at +92 304 8095202 with your design for a free quote."),
 
     ("Do you deliver woven labels to Saudi Arabia, Kuwait, Qatar, Bahrain and Oman?",
-     "Yes. We deliver to all GCC countries: the UAE, Saudi Arabia, Kuwait, Qatar, Bahrain and Oman. From the start of "
-     "production, delivery typically takes 6\u20137 days in total (3 days of production, then 3\u20134 days for "
+     "Yes. We deliver to all GCC countries: the UAE, Saudi Arabia, Kuwait, Qatar, Bahrain and Oman. After your order is confirmed, "
+     "delivery typically takes 6\u20137 days in total (3 days of production, then 3\u20134 days for "
      "dispatch and courier delivery), and shipping is included in your quote."),
 
     ("What is included in the price of custom woven labels?",
@@ -321,7 +332,7 @@ PRODUCT_PHOTOS = {
     "size-labels":   "gallery-honio.jpg",
     "care-labels":   None,
     "hang-tags":     None,
-    "monograms":     "gallery-llgc-monogram.jpg",
+    "monograms":     "product-monograms.jpg",
 }
 
 
@@ -462,7 +473,7 @@ def quote_form(depth, dark_side=True):
         '<p class="form-note">Your details are used only to answer your enquiry. Nothing is stored on this website.</p>'
         '</form></div>'
         % {"wa": wa(), "iwa": ICON_WA, "types": opts(label_types), "folds": opts(folds),
-           "qhint": "Minimum order: %s for apparel, %s for schools." % (MOQ_APPAREL, MOQ_SCHOOL)}
+           "qhint": "Minimum order: %s for apparel, %s for schools. New brands can start with 100, 300 or 500 pieces." % (MOQ_APPAREL, MOQ_SCHOOL)}
     )
 
 
@@ -524,6 +535,7 @@ WOVEN_FAQ = [f for f in FAQS if f[0] in (
     "Can I see a sample before placing the full order?",
     "What is the minimum order quantity?",
     "Can I order custom-shaped labels?",
+    "What are custom woven fabric tags?",
     "What is the difference between damask, satin and taffeta woven labels?",
     "Do you charge for samples?",
 )]
@@ -656,13 +668,13 @@ INTL_FAQ = [
      "pay the remaining 50%, and then we dispatch. The sample fee is paid in full first."),
 
     ("What is the minimum order quantity for export orders?",
-     "The same as our Pakistan minimum: 1,000 pieces for apparel labels and 200 pieces for school monograms. "
-     "This is what keeps the per-piece rate low for a full production run, wherever the order ships to."),
+     "The same as our Pakistan minimum: %s for apparel labels and %s for school monograms. New brands can start with "
+     "100, 300 or 500 pieces, wherever the order ships to." % (MOQ_APPAREL, MOQ_SCHOOL)),
 
     ("Can I get a sample before placing a bulk international order?",
      "Yes. Before production we prepare a digital sample: a digital file of your design that shows how the finished "
-     "label will look. A sample fee applies, paid in full first. Changes while you review it are free, and nothing is "
-     "woven until you've confirmed the design, size and colours \u2014 the same process as a local order."),
+     "label will look. A sample fee applies, paid in full first. Changes while you review it are free, and nothing "
+     "goes into production until you've confirmed the design, size and colours \u2014 the same process as a local order."),
 
     ("Why don't you show a fixed price for international orders?",
      "Pricing is set per market rather than one global number, since shipping, currency and local competition "

@@ -798,3 +798,13 @@ details.faq-item[open] summary.faq-q::after { content: "−"; }
   white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
 @keyframes brandScroll { from { transform: translateX(0); } to { transform: translateX(-50%); } }
 @media (max-width: 640px) { .brand-card, .brand-card img { width: 104px; } .brand-card img { height: 104px; } }
+
+/* ---------- Round 2 fixes (16 Oct 2026) ---------- */
+.section--tight { padding-block: clamp(36px, 5vw, 64px); }
+.spot-card { margin: 0; padding: clamp(24px, 4vw, 40px); background: var(--red); color: #fff; border-radius: var(--r-lg); box-shadow: var(--shadow-md); }
+.spot-card blockquote { margin: 0 0 18px; font-family: var(--heading); font-size: clamp(1.3rem, 2.6vw, 1.85rem); line-height: 1.3; font-weight: 700; color: #fff; }
+.spot-card figcaption { display: grid; gap: 4px; margin-bottom: 18px; }
+.spot-card figcaption b { font-size: 1.05rem; color: #fff; }
+.spot-card figcaption span { font-size: .95rem; color: rgba(255, 255, 255, .9); }
+.spot-card .spot-process { margin: 0; padding-top: 16px; border-top: 1px solid rgba(255, 255, 255, .3); font-size: .95rem; color: rgba(255, 255, 255, .92); }
+.gal-item img[src*="llgc-monogram"] { object-position: center 80%; }

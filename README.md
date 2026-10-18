@@ -191,9 +191,13 @@ tags with descriptive alt text.
 These come straight from the owner. Do not contradict them when editing the site, and do not add anything the owner
 has not confirmed.
 
+- **Minimum order:** 100 pieces for apparel labels (new brands can start with 100, 300 or 500 pieces); school
+  monograms stay at 200 pieces. Starter rates are quoted on WhatsApp, no prices are published.
+- **Hang tags are hard tags, not woven** (no fold options). Never call them woven.
 - **Production:** 3 calendar days, starting once the final design and size are confirmed and the 50% advance is received.
-- **Delivery (counted from the start of production):** the owner said "Pakistan 4 days" and "GCC 6 to 7 days"; the site
-  shows these as totals. GCC = UAE, Saudi Arabia, Kuwait, Qatar, Bahrain, Oman. Other countries: confirmed when quoting.
+- **Delivery (counted from order confirmation):** Pakistan 5-6 days, GCC 6-7 days (the owner changed Pakistan from
+  4 to 5-6 days on 16 Oct 2026). Headlines show these totals, not the 3-day production time, because "3 days" read
+  like the delivery time. GCC = UAE, Saudi Arabia, Kuwait, Qatar, Bahrain, Oman. Other countries: confirmed when quoting.
 - **Quote includes** artwork cleanup and packaging. Shipping is included for Pakistan and GCC; other countries are
   quoted case by case. The sample fee is separate. Import duties and taxes are set by the destination country.
 - **Sample = a digital file of the design** (no physical sample). The sample fee is paid in full first (Pakistan and
@@ -213,3 +217,16 @@ has not confirmed.
 - **Materials:** damask, satin and taffeta.
 - **Not decided / not published:** the school-monogram 200-piece same-design rule, whether the sample fee is deducted from
   the bulk order, Pakistan retail prices.
+
+## Search phrases to use (owner's Google observation, 17 October 2026)
+
+The owner noticed that the top Google results for "woven label" use these phrases: **custom woven label**, **custom woven
+fabric tags**, **custom woven labels for clothing brands**. They now appear in the home title/H1, the woven-labels page
+title/H1/description, the label page titles/H1s and two FAQs. Use them naturally and do not stuff them. Hang tags are hard
+tags, so the "custom woven" wording is never used for them.
+
+## Deployment note
+
+`CNAME` must contain exactly `premiumwovenlabel.com` with **no trailing newline** (the version in the GitHub repo has none).
+With a trailing newline, GitHub Desktop shows CNAME as a changed file every time the zip is copied over the repo.
+Never change the domain in this file.

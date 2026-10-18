@@ -210,9 +210,9 @@ def shipping():
         'to expect before you pay.</p>' +
 
         '<h2>Delivery time</h2>'
-        '<p>Counted from the start of production, delivery typically takes:</p>'
+        '<p>Counted from order confirmation (final design and size confirmed and the 50% advance received), delivery typically takes:</p>'
         '<ul>'
-        '<li><strong>Within Pakistan:</strong> 4 days in total</li>'
+        '<li><strong>Within Pakistan:</strong> 5\u20136 days in total</li>'
         '<li><strong>GCC countries (UAE, Saudi Arabia, Kuwait, Qatar, Bahrain, Oman):</strong> 6\u20137 days in total</li>'
         '<li><strong>Other countries:</strong> confirmed with you when we quote</li>'
         '</ul>'

@@ -212,7 +212,7 @@ def art_woven_vs_printed():
         '<tr><th scope="row">Side-seam tab</th><td>Woven</td><td>Visible on the outside; the texture is part of the look.</td></tr>'
         '<tr><th scope="row">Size label</th><td>Woven</td><td>Short text, needs to stay legible for the life of the garment.</td></tr>'
         '<tr><th scope="row">Care label</th><td>Either</td><td>Woven lasts; printing fits more small text in less space.</td></tr>'
-        '<tr><th scope="row">Hang tag</th><td>Woven</td><td>Read at arm\u2019s length on the rail; texture carries.</td></tr>'
+        '<tr><th scope="row">Hang tag</th><td>Hard tag</td><td>Read at arm\u2019s length on the rail; ours are hard tags, not woven.</td></tr>'
         '<tr><th scope="row">Photographic artwork</th><td>Printed</td><td>Gradients and photo detail don\u2019t translate into thread.</td></tr>'
         '</tbody></table></div>'
 
@@ -283,10 +283,10 @@ def art_guide():
         '<caption class="sr-only">Woven label fold styles</caption>'
         '<thead><tr><th scope="col">Fold</th><th scope="col">What happens</th><th scope="col">Typically used for</th></tr></thead>'
         '<tbody>'
-        '<tr><th scope="row">Flat woven</th><td>No fold; sewn down on all sides or top and bottom.</td><td>Patches, hang tags, visible labels</td></tr>'
+        '<tr><th scope="row">Flat woven</th><td>No fold; sewn down on all sides or top and bottom.</td><td>Patches, visible labels</td></tr>'
         '<tr><th scope="row">Centre fold</th><td>Folded in half; the back is hidden inside the seam.</td><td>Neck labels, side-seam brand labels</td></tr>'
         '<tr><th scope="row">End fold</th><td>Short ends folded under; no raw edges on the sides.</td><td>Neck, care and size labels</td></tr>'
-        '<tr><th scope="row">Mitre Fold</th><td>All four corners mitred and folded under for a neat tailored finish on every edge.</td><td>Premium labels and hang tags</td></tr><tr><th scope="row">Manhattan Fold</th><td>One end folded over, the other sewn open into the seam.</td><td>Waistband and hem labels</td></tr>'
+        '<tr><th scope="row">Mitre Fold</th><td>All four corners mitred and folded under for a neat tailored finish on every edge.</td><td>Premium labels</td></tr><tr><th scope="row">Manhattan Fold</th><td>One end folded over, the other sewn open into the seam.</td><td>Waistband and hem labels</td></tr>'
         '</tbody></table></div>'
         '<p>Centre fold and end fold cover most orders. There\u2019s a direct comparison in '
         '<a href="../center-fold-vs-end-fold/">centre fold vs end fold</a>.</p>'
@@ -354,7 +354,7 @@ def art_size():
 
         '<h2 id="tags">Hang tags</h2>'
         '<p>Hang tags are read at arm\u2019s length on a rail, not at close range. They\u2019re typically the largest '
-        'woven item in an order, and they can carry a bolder version of your mark because there\u2019s room for it.</p>'
+        'item in an order, and they can carry a bolder version of your mark because there\u2019s room for it.</p>'
 
         '<h2 id="text">Let the text set the floor</h2>'
         '<p>Thread has a minimum practical thickness, which puts a floor on how small your text can go and still read. '
@@ -568,8 +568,8 @@ def art_clothing_brands():
 
         '<h2 id="tags">Hang tags</h2>'
         '<p>A hang tag is what does the selling on the rail. It\u2019s read from further away than a neck label, so it '
-        'can carry a larger version of your mark and a little more presence. Woven hang tags have a texture and weight '
-        'that card tags don\u2019t.</p>'
+        'can carry a larger version of your mark and a little more presence. Our hang tags are hard tags rather than woven '
+        'ones, so they sit apart from the woven labels in the garment.</p>'
 
         '<h2 id="together">Ordering them as a set</h2>'
         '<p>The thing worth planning for: these labels look best when they share a visual language. The same thread '
