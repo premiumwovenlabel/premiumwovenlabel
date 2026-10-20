@@ -361,8 +361,8 @@ def products_grid(depth, limit=None, heading_level="h3"):
             '<div class="prod-body">' +
             '<%s>%s</%s><p>%s</p>' % (heading_level, name, heading_level, blurb) +
             '<p class="prod-use"><b>Best for:</b> %s</p>' % use +
-            '<a class="textlink" href="%s" style="display:block;margin-bottom:10px">Learn more</a>'
-            % url(PRODUCT_PAGE_SLUG[anchor] + "/", depth) +
+            '<a class="textlink" href="%s" style="display:block;margin-bottom:10px">Learn more about %s</a>'
+            % (url(PRODUCT_PAGE_SLUG[anchor] + "/", depth), name.lower()) +
             '<a class="btn btn-primary btn-sm" href="%s">Get a quote</a>' % url("contact/", depth) +
             '</div></article>'
         )

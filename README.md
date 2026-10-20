@@ -188,6 +188,7 @@ tags with descriptive alt text.
 - **Ad landing page:** `/lp/woven-labels-pakistan/` (no menu, `noindex`, not in the sitemap). Use it as the destination for ads, e.g. `.../lp/woven-labels-pakistan/?utm_source=google&utm_campaign=labels`. Copy the folder to make more (school labels, care labels).
 - **Form spam:** hidden `botcheck` / `_gotcha` honeypot fields; bot submissions are dropped in the browser and flagged by Web3Forms / Formspree.
 - **Search Console "Product snippets" fix (20 Oct 2026):** removed every `Offer` / `OfferCatalog` from the JSON-LD (6 entries inside the Organization schema on every page, plus the label-types list on `/woven-labels/`). Search Console was reading each one as a price-less product and reporting "Either offers, review, or aggregateRating should be specified". No prices or ratings were added. The audit now fails if Product / Offer / OfferCatalog / AggregateOffer return.
+- **Semrush audit clean-up (21 Oct 2026):** shortened the complete-guide SEO title and meta description (they were 91 and 170 characters), and the product-card links now read "Learn more about <label type>" instead of a bare "Learn more". Left alone on purpose: Semrush's "broken external links" for wa.me are false alarms (WhatsApp answers its crawler with HTTP 429), and "unminified CSS/JS" would save only about 1 KB gzipped.
 
 ## Business policies confirmed by the owner (15 October 2026)
 

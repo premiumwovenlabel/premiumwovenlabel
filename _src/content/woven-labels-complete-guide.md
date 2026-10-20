@@ -1,7 +1,7 @@
 # Woven Labels: The Complete Guide
 
-**SEO title:** Woven Labels: Types, Materials, Design, Manufacturing & Buying Guide  
-**Meta description:** Learn how woven labels are made, compare damask, satin and taffeta, choose folds and materials, prepare artwork, check quality, and understand global garment-label rules.  
+**SEO title:** Woven Labels Guide: Types, Materials  
+**Meta description:** How woven labels are made: compare damask, satin and taffeta, choose folds and materials, prepare artwork and check garment-label rules worldwide.  
 **Suggested URL:** /guides/woven-labels/  
 **Primary keyword:** woven labels  
 **Related keywords:** custom woven labels, clothing labels, damask labels, satin labels, taffeta labels, garment labels, woven care labels, woven size labels, clothing label folds
