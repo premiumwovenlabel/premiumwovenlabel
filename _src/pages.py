@@ -123,7 +123,7 @@ def home():
         '<section class="section section--bone"><div class="wrap">'
         '<div class="sec-head"><div class="thread-rule"></div>'
         '<h2>What we weave</h2>'
-        '<p>From the label carrying your brand name to the school crest on a uniform \u2014 every label is woven to order. We also supply hard hang tags.</p></div>'
+        '<p>From the label carrying your brand name to the school crest on a uniform \u2014 every label is woven to order. We also supply hard hang tags. <a class="textlink" href="custom-woven-labels-for-clothing-brands/">Custom woven labels for your clothing brand</a></p></div>'
         '%(prods)s'
         '<div style="margin-top:30px"><a class="textlink" href="%(labels)s">See every label type and fold style</a></div>'
         '</div></section>'
@@ -389,12 +389,8 @@ def woven_labels():
                  "serviceType": "Custom woven labels for clothing and apparel",
                  "provider": {"@id": BASE + "/#organization"},
                  "areaServed": ["Pakistan", "United Arab Emirates", "Saudi Arabia", "Kuwait", "Qatar", "Bahrain", "Oman"],
-                 "description": "Custom woven brand labels, logo labels, size labels, care labels, hang tags and "
-                                "school monograms, made to order in Straight Cut, Centre Fold, End Fold, Mitre Fold and Manhattan Fold.",
-                 "hasOfferCatalog": {
-                     "@type": "OfferCatalog", "name": "Woven label types",
-                     "itemListElement": [{"@type": "Offer", "itemOffered": {"@type": "Service", "name": p[1],
-                                                                            "description": p[2]}} for p in PRODUCTS]}}]
+                 "description": "Custom woven brand labels, logo labels, size labels, care labels and "
+                                "school monograms, made to order in Straight Cut, Centre Fold, End Fold, Mitre Fold and Manhattan Fold."}]
     )
 
 
@@ -999,4 +995,113 @@ def label_type_page(anchor, slug, fold_names, placement_labels, faq_questions):
         body, depth=d,
         schema=[breadcrumbs([("", "Home"), ("woven-labels/", "Woven Labels"), (slug + "/", name)], d)]
              + ([faq_schema(faqs, slug + "/")] if faqs else [])
+    )
+
+
+# ============================================================ CLOTHING BRANDS (search landing page)
+CB_SLUG = "custom-woven-labels-for-clothing-brands"
+
+
+def clothing_brand_page():
+    d = 1
+    want = ["brand-labels", "logo-labels", "size-labels", "care-labels"]
+    cards = ""
+    for anchor, name, blurb, use, svg in PRODUCTS:
+        if anchor in want:
+            cards += ('<div class="cb-card reveal"><h3>' + name + '</h3><p>' + blurb + '</p>'
+                      '<a class="textlink" href="' + url(anchor + "/", d) + '">About ' + name.lower() + '</a></div>')
+    faq_questions = [
+        "Do you make custom woven labels for clothing brands?",
+        "Can a new brand start with a small quantity?",
+        "What is the minimum order quantity?",
+        "How long does an order take?",
+        "Can I see a sample before placing the full order?",
+        "What is included in the price of custom woven labels?",
+        "What are custom woven fabric tags?",
+    ]
+    faqs = [_ALL_FAQ_BY_Q[q] for q in faq_questions if q in _ALL_FAQ_BY_Q]
+    fold_names = ", ".join(f[0] for f in FOLDS)
+    start_small = (
+        '<p><strong>Minimum order: ' + MOQ_APPAREL + '</strong> for apparel labels, so a new brand can start with 100, '
+        '300 or 500 pieces.</p>'
+        '<p>The per-piece rate is higher at smaller quantities, since production is less efficient at low volumes. '
+        'Message us your quantity on WhatsApp and we will give you the rate.</p>'
+        '<p>You can also split a first order across two or three designs, at an extra cost.</p>'
+        '<p><a class="btn btn-wa" href="' + wa("Hi Premium Woven Labels, I run a clothing brand and would like a quote for "
+                                              "woven labels. Quantity: / Label type:") + '" target="_blank" rel="noopener">'
+        + ICON_WA + ' Get a quote on WhatsApp</a></p>'
+    )
+    choose = (
+        '<div class="cb-grid">'
+        '<div class="cb-card reveal"><h3>Fold styles</h3><p>We weave in ' + fold_names + '. The fold decides how the '
+        'label is sewn into the garment.</p><a class="textlink" href="' + url("woven-labels/", d) + '">See all fold styles</a></div>'
+        '<div class="cb-card reveal"><h3>Materials</h3><p>Damask, satin and taffeta. Damask suits detailed logos and fine '
+        'lettering, satin has a smooth, softly shiny finish, and taffeta is often chosen for simple designs and '
+        'cost-sensitive orders.</p><a class="textlink" href="' + url("resources/woven-labels-complete-guide/", d) +
+        '">Read the complete guide</a></div>'
+        '</div>'
+    )
+    included = (
+        '<ul class="cb-list">'
+        '<li><strong>Artwork cleanup</strong> is included in every order.</li>'
+        '<li><strong>Packaging</strong> is included.</li>'
+        '<li><strong>Shipping</strong> is included for Pakistan and GCC countries (the UAE, Saudi Arabia, Kuwait, Qatar, '
+        'Bahrain and Oman). For other countries, the shipping cost is confirmed when we quote.</li>'
+        '<li>A <strong>digital sample</strong> comes first. The sample fee is separate and paid in full up front, and '
+        'changes while you review the digital sample are free.</li>'
+        '<li>Import duties or taxes charged by the destination country are not part of the quote.</li>'
+        '</ul>'
+    )
+    body = (
+        page_head("Custom woven labels for your clothing brand",
+                  "Launching a clothing brand or restocking an established one? We weave the labels that carry your "
+                  "name \u2014 brand labels, logo labels, size labels and care labels \u2014 starting from " + MOQ_APPAREL + ".",
+                  crumbs=[("", "Home"), (CB_SLUG + "/", "Clothing brands")], depth=d)
+        + re.sub(r'<p class="trust-note">.*?</p>', '', trust_strip())
+
+        + '<section class="section"><div class="wrap">'
+          '<div class="sec-head"><div class="thread-rule"></div><h2>The labels a clothing brand needs</h2>'
+          '<p>Start with the neck label, since it carries the most brand weight. Size and care labels can follow once '
+          'you have seen how the first one turns out.</p></div>'
+          '<div class="cb-grid">' + cards + '</div>'
+          '<p style="margin-top:20px">Looking for hang tags? Ours are hard tags, not woven. '
+          '<a class="textlink" href="' + url("hang-tags/", d) + '">See hang tags</a></p></div></section>'
+
+        + '<section class="section section--bone"><div class="wrap">'
+          '<div class="sec-head"><div class="thread-rule"></div><h2>Start small, then grow</h2></div>'
+          + start_small + '</div></section>'
+
+        + '<section class="section"><div class="wrap">'
+          '<div class="sec-head"><div class="thread-rule"></div><h2>Choose your fold and material</h2></div>'
+          + choose + '</div></section>'
+
+        + '<section class="section section--bone"><div class="wrap">'
+          '<div class="sec-head"><div class="thread-rule"></div><h2>How ordering works</h2></div>'
+          + steps_block() + '</div></section>'
+
+        + '<section class="section"><div class="wrap">'
+          '<div class="sec-head"><div class="thread-rule"></div><h2>What every quote includes</h2></div>'
+          + included + '</div></section>'
+
+        + '<section class="section section--bone"><div class="wrap">'
+          '<div class="sec-head"><div class="thread-rule"></div><h2>Questions from clothing brands</h2></div>'
+          + faq_block(faqs) + '</div></section>'
+
+        + cta_band(d, "Ready to put your name on it?",
+                   "Send your logo, label type and quantity on WhatsApp and we'll quote it free.")
+    )
+    return page(
+        CB_SLUG + "/", "Custom Woven Labels for Your Clothing Brand, From 100 Pieces",
+        "Custom woven labels for your clothing brand: brand, logo, size and care labels from 100 pieces, a digital "
+        "sample first, delivered in 5\u20136 days in Pakistan.",
+        body, depth=d,
+        schema=[breadcrumbs([("", "Home"), (CB_SLUG + "/", "Clothing brands")], d),
+                {"@type": "Service", "@id": canonical(CB_SLUG + "/") + "#service",
+                 "name": "Custom woven labels for clothing brands",
+                 "serviceType": "Custom woven labels for clothing brands",
+                 "provider": {"@id": BASE + "/#organization"},
+                 "areaServed": ["Pakistan", "United Arab Emirates", "Saudi Arabia", "Kuwait", "Qatar", "Bahrain", "Oman"],
+                 "description": "Custom woven brand labels, logo labels, size labels and care labels for clothing brands, "
+                                "from 100 pieces, made to order in Karachi, Pakistan."},
+                faq_schema(faqs, CB_SLUG + "/")]
     )

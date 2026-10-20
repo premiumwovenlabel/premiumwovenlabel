@@ -13,6 +13,27 @@ def err(f, m): ERR.append("%s: %s" % (f, m))
 def warn(f, m): WARN.append("%s: %s" % (f, m))
 
 
+# Schema types that Google Search Console treats as products. The site publishes no prices or reviews,
+# so any of these shows up as "Product snippets: Either offers, review, or aggregateRating should be specified".
+NO_PRICE_SCHEMA = {"Product", "Offer", "AggregateOffer", "OfferCatalog"}
+
+
+def schema_types(node, found=None):
+    """Every @type used anywhere inside a parsed JSON-LD value."""
+    found = set() if found is None else found
+    if isinstance(node, dict):
+        t = node.get("@type")
+        for x in (t if isinstance(t, list) else [t]):
+            if isinstance(x, str):
+                found.add(x)
+        for v in node.values():
+            schema_types(v, found)
+    elif isinstance(node, list):
+        for v in node:
+            schema_types(v, found)
+    return found
+
+
 class P(HTMLParser):
     VOID = {"area", "base", "br", "col", "embed", "hr", "img", "input", "link",
             "meta", "param", "source", "track", "wbr", "path", "rect", "circle",
@@ -177,9 +198,15 @@ def main():
         # --- json-ld
         for j in p.jsonld:
             try:
-                json.loads(j)
+                data = json.loads(j)
             except Exception as e:
                 err(rel, "invalid JSON-LD: %s" % e)
+                continue
+            bad = sorted(schema_types(data) & NO_PRICE_SCHEMA)
+            if bad:
+                err(rel, "JSON-LD uses %s but no prices or reviews are published; Search Console would report "
+                         "'Product snippets' errors. Remove it, or add it only with real price/review data on the page"
+                         % ", ".join(bad))
 
         # --- assets referenced
         for m in re.finditer(r'(?:href|src)="((?:\.\./)*assets/[^"]+)"', src):

@@ -585,6 +585,8 @@ def art_clothing_brands():
         'and we\u2019ll tell you what\u2019s workable. Our <a href="../custom-woven-label-guide/">complete guide</a> '
         'walks through the full set of decisions, and the '
         '<a href="../../woven-labels/">woven labels page</a> covers every label type we make.</p>'
+        '<p>Building a new clothing brand? See <a href="../../custom-woven-labels-for-clothing-brands/">custom woven '
+        'labels for your clothing brand</a> for minimums, timing and what every quote includes.</p>'
     )
     return _article_shell(s, t, desc, read, lead, toc, body)
 

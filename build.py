@@ -45,6 +45,7 @@ def build_pages():
     out.append(write("faq/index.html", pages.faq()))
     out.append(write("contact/index.html", pages.contact()))
     out.append(write("pricing/index.html", pages.pricing()))
+    out.append(write("custom-woven-labels-for-clothing-brands/index.html", pages.clothing_brand_page()))
     out.append(write("lp/woven-labels-pakistan/index.html", pages.landing()))
     out.append(write("label-placement-guide/index.html", pages.label_placement_guide()))
     out.append(write("international/index.html", pages.international()))
@@ -70,6 +71,7 @@ def build_pages():
 SITEMAP_URLS = [
     ("", "1.0", "weekly"),
     ("woven-labels/", "0.9", "monthly"),
+    ("custom-woven-labels-for-clothing-brands/", "0.9", "monthly"),
     ("services/", "0.9", "monthly"),
     ("contact/", "0.9", "monthly"),
     ("pricing/", "0.9", "monthly"),
@@ -200,6 +202,7 @@ schools or organisations needing monograms or crests.
 - Home: {base}/
 - About: {base}/about/
 - Woven labels (types, folds, sizes): {base}/woven-labels/
+- Custom woven labels for clothing brands: {base}/custom-woven-labels-for-clothing-brands/
 - Services: {base}/services/
 - How it works: {base}/how-it-works/
 - Gallery of label styles: {base}/gallery/

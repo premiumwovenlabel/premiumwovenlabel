@@ -157,8 +157,10 @@ tags with descriptive alt text.
   convention, not a standard — it does not guarantee that any AI system will cite the site.
 - No API keys, secrets or tracking scripts are present. If you add Google Analytics or the Meta
   pixel, put the snippet in the `page()` function in `_src/core.py` so it lands on every page.
-- Structured data used: Organization, WebSite, WebPage, Service + OfferCatalog, HowTo, FAQPage,
+- Structured data used: Organization, WebSite, WebPage, Service, HowTo, FAQPage,
   Article, BreadcrumbList. Test with Google's Rich Results Test after deploying.
+  Do **not** add Product, Offer, OfferCatalog or AggregateOffer while no prices or reviews are published:
+  Search Console reports them as invalid "Product snippets" (`python3 _src/audit.py` now fails if they appear).
 
 © 2026 Premium Woven Labels.
 
@@ -185,6 +187,7 @@ tags with descriptive alt text.
 - **Combined UAE timeline FAQ:** updated 15 Oct 2026: 6-7 days in total to GCC countries (3 days production + parcel sending).
 - **Ad landing page:** `/lp/woven-labels-pakistan/` (no menu, `noindex`, not in the sitemap). Use it as the destination for ads, e.g. `.../lp/woven-labels-pakistan/?utm_source=google&utm_campaign=labels`. Copy the folder to make more (school labels, care labels).
 - **Form spam:** hidden `botcheck` / `_gotcha` honeypot fields; bot submissions are dropped in the browser and flagged by Web3Forms / Formspree.
+- **Search Console "Product snippets" fix (20 Oct 2026):** removed every `Offer` / `OfferCatalog` from the JSON-LD (6 entries inside the Organization schema on every page, plus the label-types list on `/woven-labels/`). Search Console was reading each one as a price-less product and reporting "Either offers, review, or aggregateRating should be specified". No prices or ratings were added. The audit now fails if Product / Offer / OfferCatalog / AggregateOffer return.
 
 ## Business policies confirmed by the owner (15 October 2026)
 
@@ -230,3 +233,9 @@ tags, so the "custom woven" wording is never used for them.
 `CNAME` must contain exactly `premiumwovenlabel.com` with **no trailing newline** (the version in the GitHub repo has none).
 With a trailing newline, GitHub Desktop shows CNAME as a changed file every time the zip is copied over the repo.
 Never change the domain in this file.
+
+## Page added 17 October 2026
+
+`/custom-woven-labels-for-clothing-brands/` is the dedicated landing page for the phrase "custom woven labels for clothing
+brand(s)" (built by `clothing_brand_page()` in `_src/pages.py`). The home page keeps the plural phrase in its title; this page
+uses "for Your Clothing Brand". It is linked from the footer, the home page and the clothing-brands guide.

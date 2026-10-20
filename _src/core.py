@@ -56,6 +56,7 @@ NAV = [
 ]
 
 FOOT_SERVICES = [
+    ("custom-woven-labels-for-clothing-brands/", "Labels for clothing brands"),
     ("woven-labels/#brand-labels", "Brand labels"),
     ("woven-labels/#logo-labels", "Logo woven labels"),
     ("woven-labels/#size-labels", "Size labels"),
@@ -262,18 +263,8 @@ def org_schema():
             {"@type": "Country", "name": "Bahrain"},
             {"@type": "Country", "name": "Oman"},
         ],
-        "hasOfferCatalog": {
-            "@type": "OfferCatalog",
-            "name": "Custom woven label products",
-            "itemListElement": [
-                {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Custom woven brand labels"}},
-                {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Logo woven labels"}},
-                {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Size labels"}},
-                {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Care labels"}},
-                {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Hard hang tags"}},
-                {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "School monograms and woven badges"}},
-            ],
-        },
+        # No Offer / OfferCatalog / Product here on purpose: with no public prices or reviews, Google Search
+        # Console reads each Offer as a price-less product and reports "Product snippets" errors.
         "sameAs": [INSTAGRAM, PINTEREST],
         "contactPoint": [{
             "@type": "ContactPoint",

@@ -808,3 +808,11 @@ details.faq-item[open] summary.faq-q::after { content: "−"; }
 .spot-card figcaption span { font-size: .95rem; color: rgba(255, 255, 255, .9); }
 .spot-card .spot-process { margin: 0; padding-top: 16px; border-top: 1px solid rgba(255, 255, 255, .3); font-size: .95rem; color: rgba(255, 255, 255, .92); }
 .gal-item img[src*="llgc-monogram"] { object-position: center 80%; }
+
+/* ---------- Clothing brands page ---------- */
+.cb-grid { display: grid; gap: 20px; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); }
+.cb-card { background: var(--paper); border: 1px solid var(--line); border-radius: var(--r-lg); padding: 24px; display: flex; flex-direction: column; gap: 10px; }
+.cb-card h3 { font-size: 1.05rem; margin: 0; }
+.cb-card p { margin: 0; color: var(--ink-soft); font-size: .95rem; }
+.cb-card a.textlink { margin-top: auto; font-weight: 600; }
+.cb-list { margin: 0; padding-left: 1.2rem; display: grid; gap: 10px; color: var(--ink-soft); max-width: 70ch; }
