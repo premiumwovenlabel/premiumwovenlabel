@@ -142,8 +142,7 @@ The homepage marquee lists brands taken from your existing site. If any of them 
 be named publicly, remove them from `CLIENTS` in `_src/blocks.py` and rebuild.
 
 ### Label visuals
-All label images are SVG illustrations of label styles, not photographs of customer orders — the
-gallery says so in plain text. If you have real photos of finished labels, they will look better.
+The gallery shows real photographs of finished labels and school badges (`GALLERY` in `_src/blocks.py`); the care-label and hang-tag cards still use SVG illustrations.
 Drop them into `assets/img/` and swap the `label_svg(...)` calls in `_src/blocks.py` for `<img>`
 tags with descriptive alt text.
 
@@ -189,6 +188,7 @@ tags with descriptive alt text.
 - **Form spam:** hidden `botcheck` / `_gotcha` honeypot fields; bot submissions are dropped in the browser and flagged by Web3Forms / Formspree.
 - **Search Console "Product snippets" fix (20 Oct 2026):** removed every `Offer` / `OfferCatalog` from the JSON-LD (6 entries inside the Organization schema on every page, plus the label-types list on `/woven-labels/`). Search Console was reading each one as a price-less product and reporting "Either offers, review, or aggregateRating should be specified". No prices or ratings were added. The audit now fails if Product / Offer / OfferCatalog / AggregateOffer return.
 - **Semrush audit clean-up (21 Oct 2026):** shortened the complete-guide SEO title and meta description (they were 91 and 170 characters), and the product-card links now read "Learn more about <label type>" instead of a bare "Learn more". Left alone on purpose: Semrush's "broken external links" for wa.me are false alarms (WhatsApp answers its crawler with HTTP 429), and "unminified CSS/JS" would save only about 1 KB gzipped.
+- **Image batch (22 Oct 2026):** 8 new real label photos on the gallery (saved as 1050x1400 JPEGs with no EXIF/GPS and descriptive file names); gallery captions are always visible; the 15 home-strip brand photos also appear, captioned and with ids, in a third gallery group and the strip links to them (its loop copy is hidden from assistive tech); `sitemap.xml` now lists the images on each page (image sitemap); gallery photos recompressed from the originals; the hero photo has an 800 px `srcset` variant; generic alt texts replaced; the gallery page no longer says its photos are illustrations. To add a gallery photo: save it in `assets/img/real/`, add a tuple to `GALLERY` in `_src/blocks.py`, rebuild.
 
 ## Business policies confirmed by the owner (15 October 2026)
 

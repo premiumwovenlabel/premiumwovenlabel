@@ -1,6 +1,9 @@
 # -*- coding: utf-8 -*-
 """Content data shared across pages. Only factual, non-invented claims."""
 
+import os
+import struct
+
 from core import label_svg, url, wa, ICON_WA, check, asset, MOQ_APPAREL, MOQ_SCHOOL, TURNAROUND
 
 # ---------------------------------------------------------------- products
@@ -74,6 +77,30 @@ GALLERY = [
     ("gallery-ribbon-set.jpg",
      "Pile of woven ribbon labels in bold yellow, black and white",
      "Woven ribbon labels in bold yellow and black colourway", "brand"),
+    ("gallery-angel-wing-labels.jpg",
+     "Navy woven labels reading ANGEL with a gold wing motif",
+     "Woven brand labels for Angel, navy with a gold wing motif", "brand"),
+    ("gallery-blooming-face-labels.jpg",
+     "Pile of black and sage woven labels reading Blooming Face in script with a butterfly",
+     "Woven brand labels for Blooming Face, script lettering with a butterfly", "brand"),
+    ("gallery-gold-calligraphy-labels.jpg",
+     "Two white woven labels with black borders and gold Arabic calligraphy on dark blue leather",
+     "Woven labels with gold Arabic calligraphy and a black border", "brand"),
+    ("gallery-by-fatima-labels.jpg",
+     "Pile of black and white woven labels reading By Fatima",
+     "Woven brand labels for By Fatima, black and white", "brand"),
+    ("gallery-maroon-arabic-labels.jpg",
+     "Cream woven labels with maroon Arabic script and star motifs on a sheet of maroon labels",
+     "Arabic-script woven labels, maroon thread on cream", "brand"),
+    ("gallery-bin-hameed-labels.jpg",
+     "Navy woven label reading Bin Hameed by Rana Arts in red and gold thread among red and gold labels",
+     "Woven brand labels for Bin Hameed by Rana Arts", "brand"),
+    ("gallery-woman-illustration-labels.jpg",
+     "Pile of white woven labels with a black line illustration of a woman with long hair and Arabic script",
+     "Illustrated woven labels, black line art on white with Arabic script", "brand"),
+    ("gallery-october-by-m-labels.jpg",
+     "Pile of purple and white woven labels reading OCTOBER by M",
+     "Woven brand labels for October by M, purple and white", "brand"),
     ("gallery-llgc-monogram.jpg",
      "Woven school badge for LLGC, navy shield on white",
      "School badge for Learning Line Girls College and Academy (LLGC)", "school"),
@@ -336,6 +363,15 @@ PRODUCT_PHOTOS = {
 }
 
 
+# Descriptive alt text for the real photos used on product cards (instead of a generic "Real woven ... example").
+PHOTO_ALT = {
+    "gallery-aimen.jpg": "Pile of black woven labels reading Aimen in white thread",
+    "gallery-ozan-boutiq.jpg": "Woven brand labels for \u00d6z\u00e4n Boutiq",
+    "gallery-honio.jpg": "Woven labels reading Honio Collection in small, medium and large",
+    "product-monograms.jpg": "Square white woven school label with a navy LLGC shield, open book and pen for Learning Line Girls College and Academy",
+}
+
+
 PRODUCT_PAGE_SLUG = {
     "brand-labels": "brand-labels", "logo-labels": "logo-labels", "size-labels": "size-labels",
     "care-labels": "care-labels", "hang-tags": "hang-tags", "monograms": "school-monograms",
@@ -349,7 +385,8 @@ def products_grid(depth, limit=None, heading_level="h3"):
         if photo:
             shot = ('<div class="prod-shot prod-shot--photo">'
                     '<img src="' + asset("assets/img/real/" + photo, depth) +
-                    '" alt="Real woven ' + name.lower() + ' example" loading="lazy" width="800" height="800">'
+                    '" alt="' + PHOTO_ALT.get(photo, "Real woven " + name.lower() + " example") +
+                    '" loading="lazy" width="800" height="800">'
                     '</div>')
         else:
             shot = ('<div class="prod-shot prod-shot--blank">'
@@ -383,19 +420,62 @@ def steps_block():
     )
 
 
+_REAL = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), "assets", "img", "real")
+
+
+def _jpeg_size(fname, default=(1200, 1600)):
+    """Pixel size of a JPEG in assets/img/real, read from its header, so width/height always match the file."""
+    try:
+        with open(os.path.join(_REAL, fname), "rb") as f:
+            f.read(2)
+            while True:
+                b = f.read(1)
+                while b and b != b"\xff":
+                    b = f.read(1)
+                while b == b"\xff":
+                    b = f.read(1)
+                if not b:
+                    break
+                m = b[0]
+                if m in (0xD8, 0xD9, 0x01) or 0xD0 <= m <= 0xD7:
+                    continue
+                if 0xC0 <= m <= 0xCF and m not in (0xC4, 0xC8, 0xCC):
+                    f.read(3)
+                    h, w = struct.unpack(">HH", f.read(4))
+                    return w, h
+                f.seek(struct.unpack(">H", f.read(2))[0] - 2, 1)
+    except Exception:
+        pass
+    return default
+
+
 def _gal_items(entries, depth, id_prefix):
     """Render a row of gallery button items."""
     out = []
     for i, (fname, alt, cap, _cat) in enumerate(entries):
+        w, h = _jpeg_size(fname)
         out.append(
             '<button class="gal-item" type="button" '
             'data-cap="%s" data-idx="%d" data-group="%s" '
             'aria-label="Enlarge: %s">'
-            '<img src="%s" alt="%s" loading="lazy" width="1200" height="1600">'
+            '<img src="%s" alt="%s" loading="lazy" width="%d" height="%d">'
             '<span class="gal-cap">%s</span></button>'
             % (cap, i, id_prefix, cap,
-               asset("assets/img/real/" + fname, depth), alt, cap)
+               asset("assets/img/real/" + fname, depth), alt, w, h, cap)
         )
+    return "".join(out)
+
+
+def _mini_items(depth):
+    """Small captioned photos of real client labels (the same files as the home-page strip).
+    The ids let the strip link straight to one photo."""
+    out = []
+    for f, n in BRAND_MARQUEE:
+        out.append(
+            '<figure class="gal-mini" id="%s">'
+            '<img src="%s" alt="Woven label for %s" loading="lazy" width="360" height="480">'
+            '<figcaption>Woven label for %s</figcaption></figure>'
+            % (f.rsplit(".", 1)[0], asset("assets/img/real/" + f, depth), n, n))
     return "".join(out)
 
 
@@ -413,6 +493,13 @@ def gallery_block(depth, limit=None):
         '<p class="lb-cap" id="lbCap"></p></div></div>'
     )
 
+    more = ""
+    if limit is None:   # full gallery page only
+        more = ('<div class="gal-section" style="margin-top:clamp(32px,5vw,52px)">'
+                '<h2 class="gal-heading">More labels we\u2019ve woven</h2>'
+                '<div class="gal-grid gal-grid--mini" id="galGrid-more">' + _mini_items(depth) + '</div>'
+                '</div>')
+
     html = (
         '<div class="gal-section">'
         '<h2 class="gal-heading">Woven labels &amp; brand labels</h2>'
@@ -423,8 +510,10 @@ def gallery_block(depth, limit=None):
         '<div class="gal-grid" id="galGrid-school">%s</div>'
         '</div>'
         '%s'
+        '%s'
     ) % (_gal_items(brand, depth, "brand"),
          _gal_items(school, depth, "school"),
+         more,
          lb)
 
     return html
@@ -708,13 +797,20 @@ BRAND_MARQUEE = [
 
 
 def brand_marquee(depth=0):
+    gal = url("gallery/", depth)
     cards = "".join(
-        '<div class="brand-card"><img src="%s" alt="Woven label for %s" '
-        'loading="lazy" width="132" height="132"><span>%s</span></div>'
-        % (asset("assets/img/real/" + f, depth), n, n)
+        '<a class="brand-card" href="%s#%s"><img src="%s" alt="Woven label for %s" '
+        'loading="lazy" width="132" height="132"><span>%s</span></a>'
+        % (gal, f.rsplit(".", 1)[0], asset("assets/img/real/" + f, depth), n, n)
         for f, n in BRAND_MARQUEE)
-    # duplicate the set once so the 50%% translateX loop is seamless
+    # the second copy only makes the 50%% translateX loop seamless, so it is hidden from screen readers
+    # and keyboard users (otherwise every label would be read twice and every link tabbed twice)
+    loop_copy = "".join(
+        '<div class="brand-card" aria-hidden="true"><img src="%s" alt="" '
+        'loading="lazy" width="132" height="132"><span>%s</span></div>'
+        % (asset("assets/img/real/" + f, depth), n)
+        for f, n in BRAND_MARQUEE)
     return ('<section class="brand-strip" aria-label="Brands we have woven labels for">'
             '<h2>Real labels we\u2019ve woven</h2>'
-            '<div class="brand-track-wrap"><div class="brand-track">' + cards + cards + '</div></div>'
+            '<div class="brand-track-wrap"><div class="brand-track">' + cards + loop_copy + '</div></div>'
             '</section>')

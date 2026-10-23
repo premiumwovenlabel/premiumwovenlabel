@@ -11,6 +11,7 @@ To move the site to a new domain, change BASE in _src/core.py and rebuild.
 """
 
 import os
+import re
 import datetime
 import sys
 import datetime
@@ -105,14 +106,35 @@ SITEMAP_URLS = [
 ]
 
 
+def _page_images(p):
+    """Real photos shown on a page (read from the HTML just written), for the image sitemap."""
+    path = os.path.join(ROOT, p, "index.html") if p else os.path.join(ROOT, "index.html")
+    try:
+        html = open(path, encoding="utf-8").read()
+    except OSError:
+        return []
+    found = []
+    for tag in re.findall(r"<img\b[^>]*>", html):
+        src = re.search(r'\bsrc="(?:\.\./)*assets/img/real/([^"/]+)"', tag)
+        alt = re.search(r'\balt="([^"]+)"', tag)
+        if src and alt and not src.group(1).startswith("logo") and src.group(1) not in found:
+            found.append(src.group(1))
+    return found
+
+
 def build_sitemap():
-    items = "".join(
-        "\n  <url>\n    <loc>%s</loc>\n    <lastmod>%s</lastmod>"
-        "\n    <changefreq>%s</changefreq>\n    <priority>%s</priority>\n  </url>"
-        % (core.canonical(p), TODAY, freq, pri) for p, pri, freq in SITEMAP_URLS)
+    def entry(p, pri, freq):
+        imgs = "".join(
+            "\n    <image:image>\n      <image:loc>%s/assets/img/real/%s</image:loc>\n    </image:image>"
+            % (core.BASE, fn) for fn in _page_images(p))
+        return ("\n  <url>\n    <loc>%s</loc>\n    <lastmod>%s</lastmod>"
+                "\n    <changefreq>%s</changefreq>\n    <priority>%s</priority>%s\n  </url>"
+                % (core.canonical(p), TODAY, freq, pri, imgs))
+    items = "".join(entry(p, pri, freq) for p, pri, freq in SITEMAP_URLS)
     return write("sitemap.xml",
                  '<?xml version="1.0" encoding="UTF-8"?>\n'
-                 '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">%s\n</urlset>\n' % items)
+                 '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" '
+                 'xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">%s\n</urlset>\n' % items)
 
 
 def build_robots():

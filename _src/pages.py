@@ -88,8 +88,9 @@ def home():
         '<div class="hero-stage">'
         '<div class="hero-blob" aria-hidden="true"></div>'
         '<div class="hero-photo">'
-        '<img src="%(gimg)s" alt="Real woven brand labels for \u00d6z\u00e4n Boutiq" '
-        'width="1200" height="1600" loading="eager">'
+        '<img src="%(gimg)s" srcset="%(gimg800)s 800w, %(gimg)s 1050w" sizes="(max-width: 900px) 92vw, 520px" '
+        'alt="Real woven brand labels for \u00d6z\u00e4n Boutiq" '
+        'width="1200" height="1600" loading="eager" fetchpriority="high">'
         '</div>'
         '<div class="float-card float-card--a"><i style="background:#a70c12"></i>Seal cut &middot; 1 &times; 1 inch</div>'
         '<div class="float-card float-card--b"><i style="background:#1c1c1c"></i>Your logo, in thread</div>'
@@ -177,6 +178,7 @@ def home():
             "contact": url("contact/", d), "wa": wa(), "iwa": ICON_WA, "chk": check("#a70c12"),
             "city": CITY, "benefits": benefits_strip(), "trust": brand_marquee(d) + trust_strip() + client_spotlight(d) + testimonials_block(),
             "gimg": asset("assets/img/real/gallery-ozan-boutiq.jpg", d),
+             "gimg800": asset("assets/img/real/gallery-ozan-boutiq-800.jpg", d),
             "lbl1": asset("assets/img/real/gallery-munamatar.jpg", d),
             "about": url("about/", d), "prods": products_grid(d), "labels": url("woven-labels/", d),
             "compare": compare_block(),
@@ -554,16 +556,16 @@ def gallery():
                   "Visual examples of the fold types, shapes and thread combinations we produce. Tap any one to see it larger.",
                   crumbs=[("", "Home"), ("gallery/", "Gallery")], depth=d)
         + '<section class="section"><div class="wrap">%s'
-          '<p class="custom-note" style="margin-top:26px">These are illustrations of the styles available, not '
-          'photographs of customer orders. Message us on WhatsApp to see real samples of work we\u2019ve produced.</p>'
+          '<p class="custom-note" style="margin-top:26px">These are real photographs of labels and badges we have '
+          'woven. Message us on WhatsApp to see more samples of our work.</p>'
           '</div></section>' % gallery_block(d)
         + cta_band(d, "See something close to what you want?",
                    "Send us your logo and tell us which style caught your eye \u2014 we'll quote it free.")
     )
     return page(
-        "gallery/", "Woven Label Gallery | Premium Woven Labels",
-        "A gallery of custom woven label styles \u2014 brand labels, logo labels, folded labels, size and care labels "
-        "and custom shapes.",
+        "gallery/", "Woven Label Gallery: Real Brand Labels | Premium Woven Labels",
+        "Real photos of custom woven labels we have made: brand labels, logo labels, size and care labels, "
+        "and school monograms and badges.",
         body, depth=d,
         schema=[breadcrumbs([("", "Home"), ("gallery/", "Gallery")], d)]
     )
