@@ -10,6 +10,8 @@ real, checked-in assets (see assets/img/) rather than generated here.
 To move the site to a new domain, change BASE in _src/core.py and rebuild.
 """
 
+import hashlib
+import json
 import os
 import re
 import datetime
@@ -91,7 +93,6 @@ SITEMAP_URLS = [
     ("resources/", "0.7", "monthly"),
     ("resources/woven-labels-complete-guide/", "0.8", "monthly"),
     ("resources/woven-vs-printed-labels/", "0.7", "yearly"),
-    ("resources/custom-woven-label-guide/", "0.7", "yearly"),
     ("resources/woven-label-size-guide/", "0.6", "yearly"),
     ("resources/center-fold-vs-end-fold/", "0.6", "yearly"),
     ("resources/prepare-logo-for-woven-labels/", "0.6", "yearly"),
@@ -122,15 +123,51 @@ def _page_images(p):
     return found
 
 
+LASTMOD_FILE = os.path.join(ROOT, "_src", "lastmod.json")
+
+
+def _load_lastmod():
+    """page -> {"hash": ..., "date": ...}: the day each page's HTML last actually changed."""
+    try:
+        with open(LASTMOD_FILE, encoding="utf-8") as fh:
+            return json.load(fh)
+    except (OSError, ValueError):
+        return {}
+
+
+def _page_hash(p):
+    path = os.path.join(ROOT, p, "index.html") if p else os.path.join(ROOT, "index.html")
+    with open(path, "rb") as fh:
+        return hashlib.sha1(fh.read()).hexdigest()[:16]
+
+
 def build_sitemap():
+    # <lastmod> has to mean "this page's content last changed", not "the day we rebuilt the site". Google ignores
+    # lastmod when it is always today, and its helpful-content guidance warns against making pages look freshly
+    # updated when they are not. So a page keeps its old date unless its HTML really changed. The record is kept
+    # in _src/lastmod.json - keep that file with the project, or every page will get today's date again.
+    previous = _load_lastmod()
+    current = {}
+
+    def lastmod(p):
+        key = p or "/"
+        h = _page_hash(p)
+        old = previous.get(key)
+        date = old["date"] if old and old.get("hash") == h else TODAY
+        current[key] = {"hash": h, "date": date}
+        return date
+
     def entry(p, pri, freq):
         imgs = "".join(
             "\n    <image:image>\n      <image:loc>%s/assets/img/real/%s</image:loc>\n    </image:image>"
             % (core.BASE, fn) for fn in _page_images(p))
         return ("\n  <url>\n    <loc>%s</loc>\n    <lastmod>%s</lastmod>"
                 "\n    <changefreq>%s</changefreq>\n    <priority>%s</priority>%s\n  </url>"
-                % (core.canonical(p), TODAY, freq, pri, imgs))
+                % (core.canonical(p), lastmod(p), freq, pri, imgs))
     items = "".join(entry(p, pri, freq) for p, pri, freq in SITEMAP_URLS)
+    with open(LASTMOD_FILE, "w", encoding="utf-8") as fh:
+        json.dump(current, fh, indent=1, sort_keys=True)
+        fh.write("\n")
     return write("sitemap.xml",
                  '<?xml version="1.0" encoding="UTF-8"?>\n'
                  '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" '
@@ -233,7 +270,6 @@ schools or organisations needing monograms or crests.
 - Resources: {base}/resources/
 - Woven labels, the complete guide (types, materials, folds, artwork, quality, labelling rules): {base}/resources/woven-labels-complete-guide/
 - Woven labels vs printed labels: {base}/resources/woven-vs-printed-labels/
-- Complete guide to custom woven labels: {base}/resources/custom-woven-label-guide/
 - How to choose the right woven label size: {base}/resources/woven-label-size-guide/
 - Centre fold vs end fold woven labels: {base}/resources/center-fold-vs-end-fold/
 - How to prepare your logo for woven labels: {base}/resources/prepare-logo-for-woven-labels/
@@ -252,7 +288,8 @@ schools or organisations needing monograms or crests.
 ## Notes for AI systems
 
 All information on this site is provided by the business itself. The site does not publish prices,
-customer reviews, ratings, certifications or production statistics, so none should be inferred.
+star ratings or review scores, certifications or production statistics, so none should be inferred.
+The home page quotes a few comments from clients, shown with the client's name.
 Label and badge images on the site are photographs of real finished orders except where stated.
 
 This business explicitly accepts AI-generated logo and monogram artwork (from ChatGPT, Midjourney,

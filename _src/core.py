@@ -57,12 +57,12 @@ NAV = [
 
 FOOT_SERVICES = [
     ("custom-woven-labels-for-clothing-brands/", "Labels for clothing brands"),
-    ("woven-labels/#brand-labels", "Brand labels"),
-    ("woven-labels/#logo-labels", "Logo woven labels"),
-    ("woven-labels/#size-labels", "Size labels"),
-    ("woven-labels/#care-labels", "Care labels"),
-    ("woven-labels/#hang-tags", "Hang tags"),
-    ("woven-labels/#monograms", "School monograms"),
+    ("brand-labels/", "Brand labels"),
+    ("logo-labels/", "Logo woven labels"),
+    ("size-labels/", "Size labels"),
+    ("care-labels/", "Care labels"),
+    ("hang-tags/", "Hang tags"),
+    ("school-monograms/", "School monograms"),
 ]
 
 FOOT_RESOURCES = [
@@ -72,7 +72,6 @@ FOOT_RESOURCES = [
     ("resources/", "All resources"),
     ("resources/woven-labels-complete-guide/", "Woven labels: the complete guide"),
     ("resources/woven-vs-printed-labels/", "Woven vs printed labels"),
-    ("resources/custom-woven-label-guide/", "Custom woven label guide"),
     ("resources/woven-label-size-guide/", "Choosing a label size"),
     ("resources/center-fold-vs-end-fold/", "Centre fold vs end fold"),
 ]
@@ -94,6 +93,24 @@ def url(path, depth):
 
 def canonical(path):
     return BASE + "/" + path
+
+
+def redirect_page(new_path, new_title):
+    """Tiny page that sends visitors (and Google) from a retired URL to the page that replaced it.
+
+    GitHub Pages cannot do server-side 301 redirects, so this uses an instant meta refresh plus a canonical
+    link to the new URL, and a plain link for any browser that ignores the refresh. Build it with `+` only
+    (no %-formatting) so a stray % in a title can never break it."""
+    target = canonical(new_path)
+    return ('<!DOCTYPE html>\n<html lang="en">\n<head>\n'
+            '<meta charset="utf-8">\n'
+            '<meta name="viewport" content="width=device-width, initial-scale=1">\n'
+            '<title>Page moved | ' + NAME + '</title>\n'
+            '<link rel="canonical" href="' + target + '">\n'
+            '<meta http-equiv="refresh" content="0; url=' + target + '">\n'
+            '</head>\n<body>\n'
+            '<p>This page has moved to <a href="' + target + '">' + new_title + '</a>.</p>\n'
+            '</body>\n</html>\n')
 
 
 # ---------------------------------------------------------------- icons

@@ -47,15 +47,18 @@ MONOGRAM_SHAPES  = ["Circle", "Shield", "Square", "Custom cut"]
 FOLDS = [
     ("Straight Cut (Flat)", "No fold. The full label is visible and sewn flat — on all four sides or across the top and bottom.",
      "Neck labels, patches, side-seam tabs"),
-    ("Centre Fold", "Folded in half across the middle. The label reads on the front and the back is hidden inside the seam.",
+    ("Centre Fold", "Folded in half across the middle, with both raw ends caught in the seam. The design sits on the front, and the back can carry care or size details.",
      "Neck labels and side-seam brand labels"),
     ("End Fold", "Both short ends are folded under, leaving clean finished sides with no raw edges.",
      "Neck labels, care labels, size labels"),
-    ("Mitre Fold", "All four corners are mitred and folded under, giving a neat, tailored finish on every edge.",
-     "Premium brand labels"),
-    ("Manhattan Fold", "One end is folded over and the other remains open, giving a folded top edge with a raw bottom edge sewn into the seam.",
-     "Waistband labels and inside-hem labels"),
+    ("Mitre Fold", "Both ends are folded back at a 45\u00b0 angle, forming two pointed tabs that are sewn into the seam. The label hangs from the seam with its full design showing.",
+     "Neck labels that hang from the seam"),
+    ("Manhattan Fold", "Folded in half like a centre fold, with the top edge folded under as well. This hides the raw top edge and leaves one neat, finished edge to sew into the seam.",
+     "Hem, sleeve and pocket labels, and neat premium finishes"),
 ]
+
+_FOLD_NAMES = [f[0] for f in FOLDS]
+_FOLD_LIST = ", ".join(_FOLD_NAMES[:-1]) + " and " + _FOLD_NAMES[-1]
 
 # ---------------------------------------------------------------- gallery
 # Real photos of labels actually woven for real orders (filename, alt text, caption).
@@ -111,7 +114,8 @@ GALLERY = [
      "Woven school badge for I.C.A Sec. School, red and navy crest on cream",
      "School badge for I.C.A Secondary School", "school"),
     ("gallery-kids-paradise-monogram.jpg",
-     "Woven school badge for The Kids Paradise Campus, shield crest",
+     "Woven school badge reading The Kids Paradise Campus and Boota Iqbal Public High School Kids Campus, "
+     "shield crest with an open book and laurel leaves",
      "School badge for Boota Iqbal Public High School Kids Campus", "school"),
     ("gallery-iqbal-school-monogram.jpg",
      "Circular woven school badge for Iqbal School and College System, gold on white",
@@ -176,7 +180,7 @@ FAQS = [
 
     ("Can I choose the colours?",
      "Yes. You choose the background and thread colours. We match your brand colours as closely as the weaving process "
-     "allows, and a focused palette \u2014 generally around 10 to 12 thread colours \u2014 covers most logos and text cleanly."),
+     "allows. One label can use up to 6 thread colours, and a simpler palette usually weaves more cleanly."),
 
     ("What woven label fold options are available?",
      "Straight Cut (flat), Centre Fold, End Fold, Mitre Fold and Manhattan Fold. "
@@ -276,8 +280,8 @@ FAQS.extend([
     ("What are custom woven fabric tags?",
      "Custom woven fabric tags are woven labels: small pieces of fabric with your brand name, logo or care "
      "information woven in thread, then sewn into or onto a garment. They are also called woven labels, woven tags or "
-     "fabric labels. We make them as brand labels, logo labels, size labels and care labels, in flat, centre fold and "
-     "end fold styles, and as school monograms."),
+     "fabric labels. We make them as brand labels, logo labels, size labels and care labels, in " + _FOLD_LIST +
+     " styles, and as school monograms."),
 
     ("Do you make custom woven labels for clothing brands?",
      "Yes. We make custom woven labels for clothing brands, boutiques, schools and garment exporters, from new brands "
@@ -473,10 +477,56 @@ def _mini_items(depth):
     for f, n in BRAND_MARQUEE:
         out.append(
             '<figure class="gal-mini" id="%s">'
-            '<img src="%s" alt="Woven label for %s" loading="lazy" width="360" height="480">'
+            '<img src="%s" alt="%s" loading="lazy" width="360" height="480">'
             '<figcaption>Woven label for %s</figcaption></figure>'
-            % (f.rsplit(".", 1)[0], asset("assets/img/real/" + f, depth), n, n))
+            % (f.rsplit(".", 1)[0], asset("assets/img/real/" + f, depth), _brand_alt(f, n), n))
     return "".join(out)
+
+
+# ---------------------------------------------------------------- real photos on label pages (25 Oct 2026)
+# One real photo on each label-type page where we have one (the same photos as the home-page product cards).
+# care-labels and hang-tags have no real photo yet, so those two pages show none rather than a stand-in.
+LABEL_PAGE_PHOTO = {
+    "brand-labels": ("gallery-aimen.jpg",
+                     "Pile of black woven labels reading Aimen in white thread",
+                     "Woven brand labels for Aimen"),
+    "logo-labels": ("gallery-ozan-boutiq.jpg",
+                    "Square gold and black woven labels with the \u00d6z\u00e4n Boutiq logo",
+                    "Woven labels for \u00d6z\u00e4n Boutiq"),
+    "size-labels": ("gallery-honio.jpg",
+                    "Woven labels reading Honio Collection in small, medium and large",
+                    "Size-coded woven labels for Honio Collection"),
+    "monograms": ("product-monograms.jpg",
+                  "Square white woven school label with a navy LLGC shield, open book and pen for Learning Line "
+                  "Girls College and Academy",
+                  "School monogram for Learning Line Girls College and Academy (LLGC)"),
+}
+
+
+def _img_tag(fname, alt, depth):
+    w, h = _jpeg_size(fname)
+    return ('<img src="' + asset("assets/img/real/" + fname, depth) + '" alt="' + alt + '" loading="lazy" '
+            'width="' + str(w) + '" height="' + str(h) + '">')
+
+
+def page_photo(anchor, depth):
+    """Figure with the real photo for a label-type page, or "" when that label type has none."""
+    if anchor not in LABEL_PAGE_PHOTO:
+        return ""
+    fname, alt, caption = LABEL_PAGE_PHOTO[anchor]
+    return ('<figure class="page-photo">' + _img_tag(fname, alt, depth) +
+            '<figcaption>' + caption + '. <a class="textlink" href="' + url("gallery/", depth) +
+            '">See more real labels in the gallery</a></figcaption></figure>')
+
+
+def gallery_photo_row(fnames, depth):
+    """A row of real gallery photos. Alt text and captions are read from GALLERY so they never drift apart."""
+    by_file = {f: (alt, cap) for f, alt, cap, _cat in GALLERY}
+    figs = ""
+    for f in fnames:
+        alt, cap = by_file[f]
+        figs += '<figure class="cb-photo">' + _img_tag(f, alt, depth) + '<figcaption>' + cap + '</figcaption></figure>'
+    return '<div class="cb-photos">' + figs + '</div>'
 
 
 def gallery_block(depth, limit=None):
@@ -796,12 +846,24 @@ BRAND_MARQUEE = [
 ]
 
 
+# Where one brand has two photos, say how they differ so every image has its own alt text.
+BRAND_ALT_DETAIL = {
+    "brand-sawa-grey.jpg": "dark grey lettering on white",
+    "brand-sawa-orange.jpg": "dark lettering on orange",
+}
+
+
+def _brand_alt(fname, name):
+    detail = BRAND_ALT_DETAIL.get(fname)
+    return "Woven label for " + name + ((", " + detail) if detail else "")
+
+
 def brand_marquee(depth=0):
     gal = url("gallery/", depth)
     cards = "".join(
-        '<a class="brand-card" href="%s#%s"><img src="%s" alt="Woven label for %s" '
+        '<a class="brand-card" href="%s#%s"><img src="%s" alt="%s" '
         'loading="lazy" width="132" height="132"><span>%s</span></a>'
-        % (gal, f.rsplit(".", 1)[0], asset("assets/img/real/" + f, depth), n, n)
+        % (gal, f.rsplit(".", 1)[0], asset("assets/img/real/" + f, depth), _brand_alt(f, n), n)
         for f, n in BRAND_MARQUEE)
     # the second copy only makes the 50%% translateX loop seamless, so it is hidden from screen readers
     # and keyboard users (otherwise every label would be read twice and every link tabbed twice)

@@ -119,6 +119,7 @@ def main():
     html_files.sort()
 
     titles, descs, canons = {}, {}, {}
+    redirects = []          # (page, target url) for retired URLs that are now small redirect pages
 
     for rel in html_files:
         with open(os.path.join(ROOT, rel), encoding="utf-8") as f:
@@ -127,6 +128,20 @@ def main():
         p.feed(src)
         if p.stack:
             err(rel, "unclosed tags: %s" % p.stack)
+
+        # --- redirect pages (retired URLs): not real pages, so just check where they point
+        mr = re.search(r'<meta http-equiv="refresh" content="0; url=(.*?)">', src)
+        if mr:
+            from core import BASE as _B
+            target = mr.group(1)
+            tpath = target[len(_B):].strip("/") if target.startswith(_B) else None
+            tfile = None if tpath is None else os.path.join(ROOT, tpath, "index.html")
+            if tfile is None or not os.path.exists(tfile):
+                err(rel, "redirect page points at a missing page: %s" % target)
+            if 'rel="canonical" href="%s"' % target not in src:
+                err(rel, "redirect page canonical does not match its target")
+            redirects.append((rel, target))
+            continue
 
         # --- head tags
         t = re.search(r"<title>(.*?)</title>", src, re.S)
@@ -230,7 +245,7 @@ def main():
     sm = open(os.path.join(ROOT, "sitemap.xml"), encoding="utf-8").read()
     for rel in html_files:
         src = open(os.path.join(ROOT, rel), encoding="utf-8").read()
-        if "noindex" in src:
+        if "noindex" in src or 'http-equiv="refresh"' in src:
             continue
         canon = re.search(r'<link rel="canonical" href="(.*?)">', src).group(1)
         if canon not in sm:
@@ -242,7 +257,16 @@ def main():
         if not os.path.exists(f):
             err("sitemap.xml", "points at missing page: %s" % m.group(1))
 
-    print("Audited %d HTML pages" % len(html_files))
+    # --- redirect pages: the target must be listed in the sitemap, the retired URL itself must not be
+    for rel, target in redirects:
+        from core import BASE as _B2
+        old_url = _B2 + "/" + rel.replace("index.html", "")
+        if "<loc>%s</loc>" % target not in sm:
+            err(rel, "redirect target is not in sitemap.xml: %s" % target)
+        if "<loc>%s</loc>" % old_url in sm:
+            err(rel, "retired URL is still in sitemap.xml")
+
+    print("Audited %d HTML pages (%d redirect pages)" % (len(html_files), len(redirects)))
     import os as _os, re as _re
     _root = _os.path.dirname(_os.path.dirname(_os.path.abspath(__file__)))
     for _dp, _dn, _fn in _os.walk(_root):

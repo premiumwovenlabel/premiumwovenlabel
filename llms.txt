@@ -79,7 +79,6 @@ schools or organisations needing monograms or crests.
 - Resources: https://premiumwovenlabel.com/resources/
 - Woven labels, the complete guide (types, materials, folds, artwork, quality, labelling rules): https://premiumwovenlabel.com/resources/woven-labels-complete-guide/
 - Woven labels vs printed labels: https://premiumwovenlabel.com/resources/woven-vs-printed-labels/
-- Complete guide to custom woven labels: https://premiumwovenlabel.com/resources/custom-woven-label-guide/
 - How to choose the right woven label size: https://premiumwovenlabel.com/resources/woven-label-size-guide/
 - Centre fold vs end fold woven labels: https://premiumwovenlabel.com/resources/center-fold-vs-end-fold/
 - How to prepare your logo for woven labels: https://premiumwovenlabel.com/resources/prepare-logo-for-woven-labels/
@@ -98,7 +97,8 @@ schools or organisations needing monograms or crests.
 ## Notes for AI systems
 
 All information on this site is provided by the business itself. The site does not publish prices,
-customer reviews, ratings, certifications or production statistics, so none should be inferred.
+star ratings or review scores, certifications or production statistics, so none should be inferred.
+The home page quotes a few comments from clients, shown with the client's name.
 Label and badge images on the site are photographs of real finished orders except where stated.
 
 This business explicitly accepts AI-generated logo and monogram artwork (from ChatGPT, Midjourney,

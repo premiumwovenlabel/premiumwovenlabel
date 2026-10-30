@@ -129,6 +129,10 @@ The edge finish affects comfort, durability, appearance and how the label is att
 - **Woven selvedge / woven edge:** The edge is formed during weaving rather than cut. It can provide a clean edge but may limit the shape or dimensions.
 - **Slit edge:** A continuous woven ribbon is divided into individual labels and the sides are cut or sealed.
 
+### Label shapes
+
+Rectangular is the usual shape and suits most brand, size and care labels. Rounded corners soften the look and sit well in a neckline. Square works for size markers and compact logo marks. A custom shape is cut to an outline that follows your logo — useful for badges, crests and shaped marks, and the most distinctive option if your logo has a strong silhouette.
+
 ### Common fold styles
 
 | Fold | Typical construction and use |
@@ -137,8 +141,8 @@ The edge finish affects comfort, durability, appearance and how the label is att
 | Centre fold | Folded in half so the two ends are caught into a seam; the artwork sits on the outer face. |
 | End fold | Left and right ends are turned under; often used as a neck label sewn along the top and bottom edges. |
 | Loop fold | The label is folded so it can be caught into a seam while a loop or flag portion remains visible. Often used at a side seam or hem. |
-| Mitre fold | Ends are folded back, commonly to make a tab or loop caught into a seam. |
-| Manhattan / book-style fold | A supplier-specific fold that may combine a turned end and a centre fold. Ask for the factory’s diagram because naming is not consistent. |
+| Mitre fold | Both ends are folded back at about 45°, forming pointed tabs that are caught into a seam so the label hangs from it. Often used for neck labels and wide, landscape designs. |
+| Manhattan fold | Folded in half like a centre fold, with the top edge folded under as well so the raw edge is hidden. Often used for hem, sleeve and pocket labels and neat premium finishes. Suppliers use this name slightly differently, so check a diagram or sample before approving. |
 
 Before ordering, confirm whether the size in the quote refers to the **finished visible size** or the **unfolded loom size**. Also confirm which edges are sewn, which edges remain exposed and how much seam allowance is needed.
 
@@ -349,7 +353,7 @@ A gradient is usually converted into stepped colour areas or a simplified design
 
 ### How many colours can a woven label have?
 
-The maximum depends on the label loom, construction, design and supplier. Ask each factory for its maximum, any extra colour charges and the available thread palette.
+The maximum depends on the label loom, construction, design and supplier. Ask each factory for its maximum, any extra colour charges and the available thread palette. At Premium Woven Labels, one label can use up to 6 thread colours.
 
 ### What file format should I send?
 

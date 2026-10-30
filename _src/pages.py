@@ -4,12 +4,13 @@
 from core import (page, url, wa, canonical, label_svg, cta_band, faq_block, faq_schema,
                   breadcrumbs, crumb_html, ICON_WA, ICON_MAIL, ICON_IG, check, dot_icon, asset,
                   NAME, BASE, WA_DISPLAY, EMAIL, CITY, COUNTRY, INSTAGRAM, WA_RAW,
-                  MOQ_APPAREL, MOQ_SCHOOL, TURNAROUND)
+                  MOQ_APPAREL, MOQ_SCHOOL, TURNAROUND, AUTHOR_NAME)
 from blocks import (PRODUCTS, FOLDS, STEPS, WHY, FAQS, FAQ_SHORT, GALLERY, MONOGRAM_BACKING, MONOGRAM_SHAPES,
                     PLACEMENT_GUIDE, WOVEN_AUDIENCE, WOVEN_FAQ, PLACEMENT_FAQ_GROUPS, PLACEMENT_FAQ_FLAT, INTL_FAQ,
                     CLIENT_SPOTLIGHT, brand_marquee,
                     MONOGRAM_BACKING, MONOGRAM_SHAPES,
-                    products_grid, benefits_strip, steps_block, gallery_block, quote_form)
+                    products_grid, benefits_strip, steps_block, gallery_block, quote_form,
+                    page_photo, gallery_photo_row)
 
 
 def page_head(title, lead, crumbs=None, depth=0):
@@ -218,6 +219,9 @@ def about():
         '<p>Most of our customers are clothing and fashion brands, boutiques, garment makers, handmade businesses and '
         'schools. Some are ordering labels for the first time and aren\u2019t sure what they need. That\u2019s a normal '
         'conversation for us, not an inconvenience.</p>'
+        '<h2 id="faizan" style="margin-top:34px">Who runs Premium Woven Labels</h2>'
+        '<p>Premium Woven Labels is owned by %(owner)s and based in %(city)s, %(country)s. %(owner)s is the author '
+        'named on the <a href="%(resources)s">guides in our Resources section</a>.</p>'
         '<a class="btn btn-primary" href="%(contact)s">Get a free quote</a>'
         '</div>'
         '<div class="split-media reveal d1">'
@@ -256,6 +260,7 @@ def about():
         '<li><b>Schools and organisations</b><span>Woven monograms and crests for uniforms, blazers and sportswear.</span></li>'
         '</ul></div></div></div></section>'
         % {"city": CITY, "country": COUNTRY, "contact": url("contact/", d),
+           "owner": AUTHOR_NAME, "resources": url("resources/", d),
            "ph_aimen": asset("assets/img/real/gallery-aimen.jpg", d),
            "ph_muna": asset("assets/img/real/gallery-munamatar.jpg", d)}
         + cta_band(d, "Tell us what you're making",
@@ -268,7 +273,9 @@ def about():
         body, depth=d,
         schema=[breadcrumbs([("", "Home"), ("about/", "About")], d),
                 {"@type": "AboutPage", "@id": canonical("about/") + "#webpage", "url": canonical("about/"),
-                 "name": "About Premium Woven Labels", "isPartOf": {"@id": BASE + "/#website"}}]
+                 "name": "About Premium Woven Labels", "isPartOf": {"@id": BASE + "/#website"}},
+                {"@type": "Person", "@id": canonical("about/") + "#faizan", "name": AUTHOR_NAME, "jobTitle": "Owner",
+                 "url": canonical("about/") + "#faizan", "worksFor": {"@id": BASE + "/#organization"}}]
     )
 
 
@@ -332,8 +339,8 @@ def woven_labels():
         + ('<section class="section"><div class="wrap">'
            '<div class="sec-head"><div class="thread-rule"></div><h2>Thread colours</h2>'
            '<p>You choose the background and thread colours, and we match your brand colours as closely as the weaving '
-           'process allows. A focused palette \u2014 generally around 10 to 12 thread colours \u2014 covers most logos and '
-           'text cleanly. Send your artwork and we\u2019ll tell you exactly how it translates into thread.</p></div>'
+           'process allows. One label can use up to 6 thread colours, and a simpler palette usually weaves more '
+           'cleanly. Send your artwork and we\u2019ll tell you exactly how it translates into thread.</p></div>'
            '<div class="colour-note"><p>Colours are matched by thread reference. If you have Pantone, RAL or plain '
            'colour-name references, share them when you send your artwork. We\u2019ll confirm the closest match before '
            'production begins.</p></div>'
@@ -962,14 +969,17 @@ def label_type_page(anchor, slug, fold_names, placement_labels, faq_questions):
            "monograms": ("Custom woven school monograms & badges", "Custom Woven School Monograms & Badges"),
            "hang-tags": ("Custom hang tags", "Custom Hang Tags")}
     h1_name, title_name = seo.get(anchor, (name, name))
+    photo_html = page_photo(anchor, d)
+    facts_grid = '<div class="trust-grid" style="margin-bottom:0">' + facts_html + '</div>'
+    if photo_html:
+        intro_html = '<div class="label-intro"><div>' + facts_grid + extra_note + '</div>' + photo_html + '</div>'
+    else:
+        intro_html = facts_grid + extra_note
 
     body = (
         page_head(h1_name, blurb, crumbs=[("", "Home"), ("woven-labels/", "Woven Labels"), (slug + "/", name)], depth=d)
 
-        + ('<section class="section"><div class="wrap">'
-           '<div class="trust-grid" style="margin-bottom:0">'
-           + facts_html +
-           '</div>' + extra_note + '</div></section>')
+        + ('<section class="section"><div class="wrap">' + intro_html + '</div></section>')
 
         + (('<section class="section section--bone"><div class="wrap">'
             '<div class="sec-head"><div class="thread-rule"></div><h2>Placement and size</h2>'
@@ -1023,6 +1033,11 @@ def clothing_brand_page():
     ]
     faqs = [_ALL_FAQ_BY_Q[q] for q in faq_questions if q in _ALL_FAQ_BY_Q]
     fold_names = ", ".join(f[0] for f in FOLDS)
+    examples = ('<h3 class="cb-photos-title">Labels we\u2019ve woven for clothing brands</h3>'
+                + gallery_photo_row(["gallery-ozan-boutiq.jpg", "gallery-angel-wing-labels.jpg",
+                                   "gallery-munamatar.jpg", "gallery-blooming-face-labels.jpg"], d)
+                + '<p class="cb-photos-more"><a class="textlink" href="' + url("gallery/", d) +
+                '">See more real labels in the gallery</a></p>')
     start_small = (
         '<p><strong>Minimum order: ' + MOQ_APPAREL + '</strong> for apparel labels, so a new brand can start with 100, '
         '300 or 500 pieces.</p>'
@@ -1065,7 +1080,7 @@ def clothing_brand_page():
           '<div class="sec-head"><div class="thread-rule"></div><h2>The labels a clothing brand needs</h2>'
           '<p>Start with the neck label, since it carries the most brand weight. Size and care labels can follow once '
           'you have seen how the first one turns out.</p></div>'
-          '<div class="cb-grid">' + cards + '</div>'
+          '<div class="cb-grid">' + cards + '</div>' + examples +
           '<p style="margin-top:20px">Looking for hang tags? Ours are hard tags, not woven. '
           '<a class="textlink" href="' + url("hang-tags/", d) + '">See hang tags</a></p></div></section>'
 

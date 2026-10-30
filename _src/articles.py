@@ -1,14 +1,13 @@
 # -*- coding: utf-8 -*-
 """Resource centre: index + long-form articles."""
 
-from core import (page, url, wa, canonical, label_svg, cta_band, breadcrumbs, crumb_html, faq_schema,
+from core import (page, url, wa, canonical, label_svg, cta_band, breadcrumbs, crumb_html, faq_schema, redirect_page,
                   ICON_WA, BASE, NAME, WA_DISPLAY, EMAIL, MOQ_APPAREL, MOQ_SCHOOL, TURNAROUND, AUTHOR_NAME)
 
 PUB_DATE = "2026-09-19"
 
 SEO_TITLES = {
     "woven-vs-printed-labels": "Woven vs Printed Labels: Which to Choose",
-    "custom-woven-label-guide": "The Complete Guide to Custom Woven Labels",
     "woven-label-size-guide": "How to Choose a Woven Label Size",
     "center-fold-vs-end-fold": "Centre Fold vs End Fold Woven Labels",
     "prepare-logo-for-woven-labels": "How to Prepare a Logo for Woven Labels",
@@ -20,6 +19,11 @@ SEO_TITLES = {
 
 GUIDE_SLUG = "woven-labels-complete-guide"
 GUIDE_DATE = "2026-09-29"
+
+# Retired articles: old slug -> the page that replaced it. The old URL is still built, but only as a small
+# redirect page (see core.redirect_page), and it is left out of the resources index, "Keep reading" cards,
+# footer, sitemap and llms.txt. The tuple stays in ARTICLES because the art_* functions read it by position.
+RETIRED = {"custom-woven-label-guide": "woven-labels-complete-guide"}
 import os as _os
 import guide as _guide
 _G = _guide.render(_os.path.join(_os.path.dirname(_os.path.abspath(__file__)), "content", GUIDE_SLUG + ".md"))
@@ -69,10 +73,13 @@ ARTICLES = [
 def _article_shell(slug, title, desc, read, lead, toc, body_html, extra_schema=None, pub_date=None):
     d = 2
     crumbs = [("", "Home"), ("resources/", "Resources"), ("resources/%s/" % slug, title)]
+    # The byline links to the About page, which says who Faizan is (Google: bylines should lead to author info).
+    byline = ('By <a href="' + url("about/", d) + '#faizan" style="color:inherit;text-decoration:underline">'
+              + AUTHOR_NAME + '</a>, ' + NAME)
     head = (
         ('<section class="page-head"><div class="wrap">%s'
-         '<p style="font-size:.84rem;color:#8d97c2;margin-bottom:12px">%s &middot; By ' + AUTHOR_NAME + ', Premium Woven Labels</p>')
-        % (crumb_html([("", "Home"), ("resources/", "Resources"), ("resources/%s/" % slug, "Article")], d), read)
+         '<p style="font-size:.84rem;color:#8d97c2;margin-bottom:12px">%s &middot; %s</p>')
+        % (crumb_html([("", "Home"), ("resources/", "Resources"), ("resources/%s/" % slug, "Article")], d), read, byline)
         + ('<h1 style="max-width:26ch">%s</h1><p>%s</p></div></section>' % (title, desc))
     )
     toc_html = ""
@@ -99,7 +106,7 @@ def _article_shell(slug, title, desc, read, lead, toc, body_html, extra_schema=N
               {"@type": "Article", "@id": canonical("resources/%s/" % slug) + "#article",
                "headline": title, "description": desc,
                "mainEntityOfPage": {"@id": canonical("resources/%s/" % slug)},
-               "author": {"@type": "Person", "name": AUTHOR_NAME},
+               "author": {"@type": "Person", "name": AUTHOR_NAME, "url": canonical("about/") + "#faizan"},
                "publisher": {"@id": BASE + "/#organization"},
                "datePublished": pub_date or PUB_DATE, "dateModified": pub_date or PUB_DATE,
                "image": BASE + "/assets/img/og-cover.png", "inLanguage": "en"}]
@@ -111,7 +118,8 @@ def _article_shell(slug, title, desc, read, lead, toc, body_html, extra_schema=N
 
 def _related(current, depth):
     idx = [a[0] for a in ARTICLES].index(current)
-    others = [ARTICLES[(idx + n) % len(ARTICLES)] for n in (1, 2, 3)]
+    ordered = [ARTICLES[(idx + n) % len(ARTICLES)] for n in range(1, len(ARTICLES))]
+    others = [a for a in ordered if a[0] not in RETIRED][:3]
     cards = "".join(
         '<a class="post-card reveal d%d" href="%s"><span class="post-thumb"></span>'
         '<span class="post-body"><span class="post-meta">%s</span><h3>%s</h3><p>%s</p></span></a>'
@@ -129,7 +137,7 @@ def resources_index():
         '<a class="post-card reveal d%d" href="%s"><span class="post-thumb"></span>'
         '<span class="post-body"><span class="post-meta">%s</span><h3>%s</h3><p>%s</p></span></a>'
         % (i + 1, url("resources/%s/" % s, d), r, t, desc)
-        for i, (s, t, desc, r) in enumerate([ARTICLES[-1]] + ARTICLES[:-1]))
+        for i, (s, t, desc, r) in enumerate([a for a in [ARTICLES[-1]] + ARTICLES[:-1] if a[0] not in RETIRED]))
 
     body = (
         '<section class="page-head"><div class="wrap">%s'
@@ -193,8 +201,8 @@ def art_woven_vs_printed():
         'stays crisp \u2014 edges are defined by where one thread ends and another begins.</p>'
         '<p>Printing can reproduce gradients, photographic imagery and extremely fine lines that thread cannot. If your '
         'logo depends on a photographic element or a soft gradient blend, printing handles it more faithfully.</p>'
-        '<p>Most brand marks \u2014 a wordmark, a monogram, a simple icon \u2014 weave well. A focused palette, generally '
-        'around 10 to 12 thread colours, covers most logos and text cleanly. Send us your artwork and we\u2019ll tell you '
+        '<p>Most brand marks \u2014 a wordmark, a monogram, a simple icon \u2014 weave well. We can weave up to 6 thread '
+        'colours in one label, and a simpler palette usually weaves more cleanly. Send us your artwork and we\u2019ll tell you '
         'exactly how it translates before you commit to anything.</p>'
 
         '<h2 id="wear">How they wear</h2>'
@@ -231,93 +239,8 @@ def art_woven_vs_printed():
 
 # ============================================================ article 2
 def art_guide():
-    s, t, desc, read = ARTICLES[1]
-    lead = ("A custom woven label order comes down to six decisions: type, size, shape, fold, thread colours and "
-            "quantity. This guide walks through each one so you know what you're choosing and what to send us.")
-    toc = [("what", "What a woven label actually is"),
-           ("types", "1. Label type"),
-           ("size", "2. Size"),
-           ("shape", "3. Shape"),
-           ("fold", "4. Fold style"),
-           ("colour", "5. Thread colours"),
-           ("qty", "6. Quantity"),
-           ("artwork", "Preparing your artwork"),
-           ("order", "Placing the order")]
-    body = (
-        '<h2 id="what">What a woven label actually is</h2>'
-        '<p>A woven label is a small piece of fabric made on a loom, where coloured threads are woven together to form '
-        'your logo, brand name or text. Nothing is printed on \u2014 the design is part of the material.</p>'
-        '<p>That construction is why woven labels are the standard on retail clothing: the branding is as durable as '
-        'the fabric it\u2019s made from.</p>'
-
-        '<h2 id="types">1. Label type</h2>'
-        '<p>Most brands order two or three types together so the set matches.</p>'
-        '<ul>'
-        '<li><strong>Brand label</strong> \u2014 your name or logo, usually at the neck or in the side seam. The one '
-        'people mean when they say "clothing label".</li>'
-        '<li><strong>Logo woven label</strong> \u2014 the same idea, built around a logo mark rather than a wordmark.</li>'
-        '<li><strong>Size label</strong> \u2014 XS to XXL, numeric sizing, or your own system.</li>'
-        '<li><strong>Care label</strong> \u2014 washing instructions, fabric composition, country of manufacture, care symbols.</li>'
-        '<li><strong>Hang tag</strong> \u2014 hangs on the outside, read on the rail before the garment is handled.</li>'
-        '<li><strong>Monogram or crest</strong> \u2014 for school uniforms, blazers and sportswear.</li>'
-        '</ul>'
-
-        '<h2 id="size">2. Size</h2>'
-        '<p>Labels are made to your measurements rather than fixed sizes. The size is driven by two things: where the '
-        'label sits, and how much text has to stay readable.</p>'
-        '<p>A neck label has to fit the neckline without curling at the edges or crowding the seam. A care label is '
-        'usually smaller and often sits stacked with the size label. A hang tag is larger because it\u2019s read from '
-        'further away.</p>'
-        '<p>If you\u2019re not sure, tell us the garment and where the label goes \u2014 we\u2019ll suggest a size. '
-        'There\u2019s a fuller walkthrough in our <a href="../woven-label-size-guide/">label size guide</a>.</p>'
-
-        '<h2 id="shape">3. Shape</h2>'
-        '<p>Rectangular is the default and suits most brand, size and care labels. Rounded corners soften the look and '
-        'sit well in a neckline. Square works for size markers and compact logo marks. A custom shape is cut to an '
-        'outline that follows your logo \u2014 useful for badges, crests and shaped marks, and the most distinctive '
-        'option if your logo has a strong silhouette.</p>'
-
-        '<h2 id="fold">4. Fold style</h2>'
-        '<p>The fold decides how the label is sewn in and how much of it shows.</p>'
-        '<div class="table-scroll"><table class="key-table">'
-        '<caption class="sr-only">Woven label fold styles</caption>'
-        '<thead><tr><th scope="col">Fold</th><th scope="col">What happens</th><th scope="col">Typically used for</th></tr></thead>'
-        '<tbody>'
-        '<tr><th scope="row">Flat woven</th><td>No fold; sewn down on all sides or top and bottom.</td><td>Patches, visible labels</td></tr>'
-        '<tr><th scope="row">Centre fold</th><td>Folded in half; the back is hidden inside the seam.</td><td>Neck labels, side-seam brand labels</td></tr>'
-        '<tr><th scope="row">End fold</th><td>Short ends folded under; no raw edges on the sides.</td><td>Neck, care and size labels</td></tr>'
-        '<tr><th scope="row">Mitre Fold</th><td>All four corners mitred and folded under for a neat tailored finish on every edge.</td><td>Premium labels</td></tr><tr><th scope="row">Manhattan Fold</th><td>One end folded over, the other sewn open into the seam.</td><td>Waistband and hem labels</td></tr>'
-        '</tbody></table></div>'
-        '<p>Centre fold and end fold cover most orders. There\u2019s a direct comparison in '
-        '<a href="../center-fold-vs-end-fold/">centre fold vs end fold</a>.</p>'
-
-        '<h2 id="colour">5. Thread colours</h2>'
-        '<p>You choose the background and the thread colours. We match your brand colours as closely as the weaving '
-        'process allows \u2014 thread is dyed, so it doesn\u2019t behave exactly like ink or a screen colour, and we\u2019ll '
-        'tell you honestly where a shade will shift slightly.</p>'
-        '<p>Keep the palette focused. Generally, around 10 to 12 thread colours captures most logos and text cleanly. '
-        'Fewer colours often looks sharper at label size than more.</p>'
-
-        '<h2 id="qty">6. Quantity</h2>'
-        '<p>Minimum order quantities apply and depend on the label type. Tell us roughly how many you need and we\u2019ll '
-        'confirm what works before you commit \u2014 there\u2019s no obligation in asking.</p>'
-
-        '<h2 id="artwork">Preparing your artwork</h2>'
-        '<ul>'
-        '<li><strong>Vector is best.</strong> AI, EPS, SVG or PDF files stay sharp at any size.</li>'
-        '<li><strong>High-resolution raster works to start.</strong> A clear PNG or JPG is enough for us to assess it.</li>'
-        '<li><strong>Simplify fine detail.</strong> Hairline strokes and very small type may need thickening to read in thread.</li>'
-        '<li><strong>Send your colour codes.</strong> Pantone, HEX or RGB \u2014 whatever you have.</li>'
-        '<li><strong>Include the text exactly as you want it woven.</strong> Spelling, capitalisation, spacing.</li>'
-        '</ul>'
-
-        '<h2 id="order">Placing the order</h2>'
-        '<p>Message us on WhatsApp at %s or email %s with your artwork, label type and rough quantity. We go through '
-        'the options with you, you approve a digital sample, and only then does the full order go into production.</p>'
-        % (WA_DISPLAY, EMAIL)
-    )
-    return _article_shell(s, t, desc, read, lead, toc, body)
-
+    """Retired: folded into the complete guide (the Shape section moved across). Redirect page only."""
+    return redirect_page("resources/%s/" % RETIRED["custom-woven-label-guide"], _G["title"])
 
 # ============================================================ article 3
 def art_size():
@@ -582,7 +505,7 @@ def art_clothing_brands():
         '<p>Start with the neck label. It carries the most brand weight and it\u2019s the one customers actually '
         'associate with your name. Size and care labels can follow once you\u2019ve seen how the first one turns out.</p>'
         '<p>Minimum order quantities apply and depend on the label type, so tell us roughly what you\u2019re producing '
-        'and we\u2019ll tell you what\u2019s workable. Our <a href="../custom-woven-label-guide/">complete guide</a> '
+        'and we\u2019ll tell you what\u2019s workable. Our <a href="../woven-labels-complete-guide/">complete guide</a> '
         'walks through the full set of decisions, and the '
         '<a href="../../woven-labels/">woven labels page</a> covers every label type we make.</p>'
         '<p>Building a new clothing brand? See <a href="../../custom-woven-labels-for-clothing-brands/">custom woven '
