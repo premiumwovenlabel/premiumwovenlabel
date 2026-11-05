@@ -217,11 +217,38 @@ def main():
             except Exception as e:
                 err(rel, "invalid JSON-LD: %s" % e)
                 continue
+            from core import INSTAGRAM as _I2, PINTEREST as _P2, FACEBOOK as _F2, LINKEDIN as _L2, GOOGLE_REVIEW as _R2
+            if _R2 in j:
+                err(rel, "Google review link found in JSON-LD; reviews are shown as a plain link only, never as markup")
+            for node in (data.get("@graph", [data]) if isinstance(data, dict) else data):
+                if isinstance(node, dict) and "sameAs" in node and sorted(node["sameAs"]) != sorted([_I2, _P2, _F2, _L2]):
+                    err(rel, "sameAs does not list exactly the four official profiles: %s" % node["sameAs"])
             bad = sorted(schema_types(data) & NO_PRICE_SCHEMA)
             if bad:
                 err(rel, "JSON-LD uses %s but no prices or reviews are published; Search Console would report "
                          "'Product snippets' errors. Remove it, or add it only with real price/review data on the page"
                          % ", ".join(bad))
+
+        # --- byline dates: what Article structured data says must also be visible on the page
+        for j in p.jsonld:
+            try:
+                data = json.loads(j)
+            except Exception:
+                continue
+            for node in (data.get("@graph", [data]) if isinstance(data, dict) else data):
+                if isinstance(node, dict) and node.get("@type") == "Article":
+                    for key in ("datePublished", "dateModified"):
+                        val = node.get(key)
+                        if val and 'datetime="%s"' % val not in src:
+                            err(rel, "Article %s %s is not shown on the page as a visible <time> date" % (key, val))
+
+        # --- responsive image copies named in srcset must exist
+        for m in re.finditer(r'srcset="([^"]+)"', src):
+            for part in m.group(1).split(","):
+                u = part.strip().split(" ")[0]
+                tgt = rel_target(rel, u)
+                if tgt and not os.path.exists(os.path.join(ROOT, tgt)):
+                    err(rel, "missing srcset asset -> %s" % u)
 
         # --- assets referenced
         for m in re.finditer(r'(?:href|src)="((?:\.\./)*assets/[^"]+)"', src):
@@ -233,6 +260,15 @@ def main():
         for m in re.finditer(r"wa\.me/(\d+)", src):
             if m.group(1) != "923048095202":
                 err(rel, "unexpected WhatsApp number %s" % m.group(1))
+
+        # --- official profiles: every page with the full footer links all four, plus the Google review link.
+        #     (The ad landing page has its own minimal footer on purpose and is skipped.)
+        if 'class="site-foot"' in src:
+            from core import INSTAGRAM as _IG, PINTEREST as _PIN, FACEBOOK as _FB, LINKEDIN as _LI, GOOGLE_REVIEW as _REV
+            for label, link in (("Instagram", _IG), ("Pinterest", _PIN), ("Facebook", _FB), ("LinkedIn", _LI),
+                                ("Google review", _REV)):
+                if 'href="%s"' % link not in src:
+                    err(rel, "footer is missing the %s link" % label)
 
     for k, v in titles.items():
         if len(v) > 1: err(", ".join(v), "duplicate title: %s" % k[:50])

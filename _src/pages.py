@@ -3,7 +3,7 @@
 
 from core import (page, url, wa, canonical, label_svg, cta_band, faq_block, faq_schema,
                   breadcrumbs, crumb_html, ICON_WA, ICON_MAIL, ICON_IG, check, dot_icon, asset,
-                  NAME, BASE, WA_DISPLAY, EMAIL, CITY, COUNTRY, INSTAGRAM, WA_RAW,
+                  NAME, BASE, WA_DISPLAY, EMAIL, CITY, COUNTRY, INSTAGRAM, WA_RAW, FACEBOOK, GOOGLE_REVIEW,
                   MOQ_APPAREL, MOQ_SCHOOL, TURNAROUND, AUTHOR_NAME)
 from blocks import (PRODUCTS, FOLDS, STEPS, WHY, FAQS, FAQ_SHORT, GALLERY, MONOGRAM_BACKING, MONOGRAM_SHAPES,
                     PLACEMENT_GUIDE, WOVEN_AUDIENCE, WOVEN_FAQ, PLACEMENT_FAQ_GROUPS, PLACEMENT_FAQ_FLAT, INTL_FAQ,
@@ -177,7 +177,7 @@ def home():
         '%(cta)s'
         % {
             "contact": url("contact/", d), "wa": wa(), "iwa": ICON_WA, "chk": check("#a70c12"),
-            "city": CITY, "benefits": benefits_strip(), "trust": brand_marquee(d) + trust_strip() + client_spotlight(d) + testimonials_block(),
+            "city": CITY, "benefits": benefits_strip(), "trust": brand_marquee(d) + trust_strip() + client_spotlight(d) + testimonials_block(review=True),
             "gimg": asset("assets/img/real/gallery-ozan-boutiq.jpg", d),
              "gimg800": asset("assets/img/real/gallery-ozan-boutiq-800.jpg", d),
             "lbl1": asset("assets/img/real/gallery-munamatar.jpg", d),
@@ -694,25 +694,29 @@ def client_spotlight(depth=0):
     c = CLIENT_SPOTLIGHT
     if not c:
         return ""
+    note = c["note"].replace("Facebook page", '<a href="' + FACEBOOK + '" target="_blank" rel="noopener">Facebook page</a>')
     return (
         '<section class="section section--tight"><div class="wrap">'
         '<div class="sec-head" style="margin-bottom:24px"><div class="thread-rule"></div><h2>A recent order</h2></div>'
         '<figure class="spot-card reveal">'
         '<blockquote>\u201c' + c["quote"] + '\u201d</blockquote>'
-        '<figcaption><b>' + c["client"] + ', ' + c["brand"] + '</b><span>' + c["note"] + '</span></figcaption>'
+        '<figcaption><b>' + c["client"] + ', ' + c["brand"] + '</b><span>' + note + '</span></figcaption>'
         '<p class="spot-process">Like every order, this one followed our standard process: a digital proof approved '
         'before weaving, then production in ' + TURNAROUND + '.</p>'
         '</figure></div></section>'
     )
 
 
-def testimonials_block():
+def testimonials_block(review=False):
     if not TESTIMONIALS:
         return ""
     cards = "".join('<figure class="quote-card"><blockquote>%s</blockquote><figcaption>%s</figcaption></figure>' % t
                     for t in TESTIMONIALS)
+    # The Google review prompt is for the home page only; the ad landing page keeps visitors on the quote form.
+    prompt = ('<p class="quote-cta">Happy with your labels? <a class="textlink" href="' + GOOGLE_REVIEW +
+              '" target="_blank" rel="noopener">Leave us a Google review</a></p>') if review else ""
     return ('<section class="section section--tight"><div class="wrap"><div class="sec-head"><div class="thread-rule"></div>'
-            '<h2>What our clients say</h2></div><div class="grid g-3">' + cards + '</div></div></section>')
+            '<h2>What our clients say</h2></div><div class="grid g-3">' + cards + '</div>' + prompt + '</div></section>')
 
 
 PRICE_FACTORS = [
@@ -866,10 +870,17 @@ def international():
             ("Shipped via Skynet", "Typically 6\u20137 days in total to GCC countries, with shipping included in your quote."),
         ]))
 
+    # Plain link under the FAQ (FAQ answers stay plain text so the structured data matches the page exactly).
+    rules_note = ('<p style="margin-top:24px">Selling in the UK or the USA? Our guide lists the official labelling '
+                  'sources for both markets in its <a class="textlink" href="'
+                  + url("resources/woven-labels-complete-guide/", d)
+                  + '#official-market-references">Official market references</a> section.</p>')
+
     body = (
-        page_head("Custom woven labels for UAE & international orders",
-                  "Pakistan-manufactured woven labels, shipped to the UAE and internationally. Same quality, "
-                  "digital-sample-first process and minimums as our local orders.",
+        page_head("Custom woven labels for UAE, UK, USA & worldwide orders",
+                  "Pakistan-manufactured woven labels, shipped to the UAE and the other GCC countries, and quoted for "
+                  "the UK, the USA and worldwide. Same quality, digital-sample-first process and minimums as our "
+                  "local orders.",
                   crumbs=[("", "Home"), ("international/", "International Orders")], depth=d)
 
         + ('<section class="trust" aria-label="International order essentials"><div class="wrap">'
@@ -898,16 +909,15 @@ def international():
 
         + ('<section class="section"><div class="wrap">'
            '<div class="sec-head"><div class="thread-rule"></div><h2>Questions about international orders</h2></div>'
-           + faq_block(INTL_FAQ, open_first=True) +
+           + faq_block(INTL_FAQ, open_first=True) + rules_note +
            '</div></section>')
 
         + cta_band(d, "Ordering from outside Pakistan?",
                    "Send your country, label type and quantity on WhatsApp and we'll quote it directly.")
     )
     return page(
-        "international/", "Custom Woven Labels for UAE & Export Orders",
-        "Pakistan-made woven labels shipped to the UAE and GCC countries, typically 6-7 days in total. "
-        "Payoneer, money exchange and bank transfer accepted.",
+        "international/", "Custom Woven Labels for UAE, UK, USA & Worldwide Orders",
+        "Pakistan-made woven labels shipped to the UAE and GCC (typically 6-7 days) and quoted for the UK, USA and worldwide. Payoneer, money exchange or bank transfer.",
         body, depth=d,
         schema=[breadcrumbs([("", "Home"), ("international/", "International Orders")], d),
                 faq_schema(INTL_FAQ, "international/")]

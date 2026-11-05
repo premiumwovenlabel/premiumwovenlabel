@@ -1,10 +1,22 @@
 # -*- coding: utf-8 -*-
 """Resource centre: index + long-form articles."""
 
+import calendar
+
 from core import (page, url, wa, canonical, label_svg, cta_band, breadcrumbs, crumb_html, faq_schema, redirect_page,
                   ICON_WA, BASE, NAME, WA_DISPLAY, EMAIL, MOQ_APPAREL, MOQ_SCHOOL, TURNAROUND, AUTHOR_NAME)
 
 PUB_DATE = "2026-09-19"
+
+# Last significant update, where an article changed after it was first published. The byline shows the real dates
+# and the Article structured data carries the same ones (Google's byline-date guidance). Do not bump a date for
+# a typo or a link: only for new sections or corrected facts.
+ARTICLE_MODIFIED = {"woven-labels-complete-guide": "2026-10-30"}
+
+
+def _fmt_date(iso):
+    y, m, d = (int(x) for x in iso.split("-"))
+    return "%d %s %d" % (d, calendar.month_name[m], y)
 
 SEO_TITLES = {
     "woven-vs-printed-labels": "Woven vs Printed Labels: Which to Choose",
@@ -73,9 +85,14 @@ ARTICLES = [
 def _article_shell(slug, title, desc, read, lead, toc, body_html, extra_schema=None, pub_date=None):
     d = 2
     crumbs = [("", "Home"), ("resources/", "Resources"), ("resources/%s/" % slug, title)]
+    published = pub_date or PUB_DATE
+    modified = ARTICLE_MODIFIED.get(slug, published)
+    dates = 'Published <time datetime="' + published + '">' + _fmt_date(published) + '</time>'
+    if modified != published:
+        dates += ' &middot; Updated <time datetime="' + modified + '">' + _fmt_date(modified) + '</time>'
     # The byline links to the About page, which says who Faizan is (Google: bylines should lead to author info).
     byline = ('By <a href="' + url("about/", d) + '#faizan" style="color:inherit;text-decoration:underline">'
-              + AUTHOR_NAME + '</a>, ' + NAME)
+              + AUTHOR_NAME + '</a>, ' + NAME + ' &middot; ' + dates)
     head = (
         ('<section class="page-head"><div class="wrap">%s'
          '<p style="font-size:.84rem;color:#8d97c2;margin-bottom:12px">%s &middot; %s</p>')
@@ -108,7 +125,7 @@ def _article_shell(slug, title, desc, read, lead, toc, body_html, extra_schema=N
                "mainEntityOfPage": {"@id": canonical("resources/%s/" % slug)},
                "author": {"@type": "Person", "name": AUTHOR_NAME, "url": canonical("about/") + "#faizan"},
                "publisher": {"@id": BASE + "/#organization"},
-               "datePublished": pub_date or PUB_DATE, "dateModified": pub_date or PUB_DATE,
+               "datePublished": published, "dateModified": modified,
                "image": BASE + "/assets/img/og-cover.png", "inLanguage": "en"}]
     if extra_schema:
         schema.extend(extra_schema)

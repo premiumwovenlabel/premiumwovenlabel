@@ -184,6 +184,8 @@ def build_robots():
                  "User-agent: *\n"
                  "Allow: /\n"
                  "Disallow: /_src/\n"
+                 "Disallow: /STATUS.md\n"
+                 "Disallow: /README.md\n"
                  "\n# Search and AI assistants are welcome to read and reference this site.%s"
                  "\nSitemap: %s/sitemap.xml\n" % (core.NAME, allow_blocks, core.BASE))
 
@@ -203,7 +205,8 @@ def build_llms():
 > Typical total delivery time from order confirmation: 5-6 days within Pakistan, 6-7 days to GCC countries.
 > Business hours: Monday to Saturday, 9:00 am to 6:00 pm Pakistan Standard Time.
 > Delivery is available across Pakistan and to GCC countries (UAE, Saudi Arabia, Kuwait, Qatar, Bahrain, Oman),
-> with shipping included in the quote; other countries are quoted case by case.
+> with shipping included in the quote; the UK, the USA and other countries are quoted case by case, with the shipping
+> cost and delivery time confirmed in the quote.
 
 ## What the business provides
 
@@ -284,6 +287,9 @@ schools or organisations needing monograms or crests.
 - Email: {email}
 - Location: {city}, {country}
 - Instagram: {ig}
+- Pinterest: {pin}
+- Facebook: {fb}
+- LinkedIn: {li}
 
 ## Notes for AI systems
 
@@ -297,7 +303,8 @@ DALL-E, Ideogram or similar tools). The business converts raster AI images into 
 as part of the quoting process at no extra charge. Schools and designers using AI tools to create
 crest or monogram designs can send the output directly on WhatsApp for a quote.
 """.format(base=core.BASE, wa=core.WA_DISPLAY, walink="https://wa.me/" + core.WA_RAW,
-           email=core.EMAIL, city=core.CITY, country=core.COUNTRY, ig=core.INSTAGRAM)
+           email=core.EMAIL, city=core.CITY, country=core.COUNTRY, ig=core.INSTAGRAM,
+           pin=core.PINTEREST, fb=core.FACEBOOK, li=core.LINKEDIN)
     return write("llms.txt", lines)
 
 
@@ -309,6 +316,7 @@ crest or monogram designs can send the output directly on WhatsApp for a quote.
 REQUIRED_IMAGES = [
     "assets/img/favicon.svg", "assets/img/apple-touch-icon.png",
     "assets/img/og-cover.png", "assets/img/logo.png", "assets/img/logo-invert.png",
+    "favicon.ico", "assets/img/favicon-192.png",
     "assets/img/real/gallery-fourkids-waveriders.jpg", "assets/img/real/gallery-ribbon-set.jpg",
     "assets/img/real/gallery-honio.jpg", "assets/img/real/gallery-aimen.jpg",
     "assets/img/real/gallery-munamatar.jpg",

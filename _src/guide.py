@@ -79,7 +79,8 @@ def render(path):
                 faqs = [(_plain(q), " ".join(_plain(a) for a in ans)) for q, ans in items]
                 out.append(faq_block([(_inline(q), [_inline(a) for a in ans]) for q, ans in items]))
         elif s.startswith("### "):
-            out.append("<h3>%s</h3>" % _inline(s[4:].strip()))
+            # id lets other pages link straight to a sub-section (e.g. #official-market-references)
+            out.append('<h3 id="%s">%s</h3>' % (_slug(s[4:].strip()), _inline(s[4:].strip())))
             i += 1
         elif s.startswith("|"):
             rows = []

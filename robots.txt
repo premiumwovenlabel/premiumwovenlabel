@@ -2,6 +2,8 @@
 User-agent: *
 Allow: /
 Disallow: /_src/
+Disallow: /STATUS.md
+Disallow: /README.md
 
 # Search and AI assistants are welcome to read and reference this site.
 User-agent: GPTBot

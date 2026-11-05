@@ -1,130 +1,130 @@
 {
  "/": {
-  "date": "2026-10-25",
-  "hash": "72b2fb55e083d0a4"
+  "date": "2026-11-05",
+  "hash": "3dd6e324adfc26bf"
  },
  "about/": {
-  "date": "2026-10-26",
-  "hash": "69c0921deab6e78b"
+  "date": "2026-11-05",
+  "hash": "7c93d6ac751225e4"
  },
  "brand-labels/": {
-  "date": "2026-10-30",
-  "hash": "b820138dd3f98709"
+  "date": "2026-11-05",
+  "hash": "b798a3fe4e102668"
  },
  "care-labels/": {
-  "date": "2026-10-25",
-  "hash": "9b65a8cd0275badb"
+  "date": "2026-11-05",
+  "hash": "be8b62077e724527"
  },
  "contact/": {
-  "date": "2026-10-25",
-  "hash": "2f4f6530d7395a76"
+  "date": "2026-11-05",
+  "hash": "25a78d766a88adde"
  },
  "custom-woven-labels-for-clothing-brands/": {
-  "date": "2026-10-25",
-  "hash": "0bc3ae64aed71147"
+  "date": "2026-11-05",
+  "hash": "7ea338c4083d6980"
  },
  "faq/": {
-  "date": "2026-10-30",
-  "hash": "b07b83c5b385987c"
+  "date": "2026-11-05",
+  "hash": "b03bec8230153494"
  },
  "gallery/": {
-  "date": "2026-10-25",
-  "hash": "f1d32644fbe48b80"
+  "date": "2026-11-05",
+  "hash": "d86145f80b16d458"
  },
  "hang-tags/": {
-  "date": "2026-10-25",
-  "hash": "d3cc0b1b72e8b3fc"
+  "date": "2026-11-05",
+  "hash": "629973c881f859d7"
  },
  "how-it-works/": {
-  "date": "2026-10-25",
-  "hash": "ef91d993cf89ac6d"
+  "date": "2026-11-05",
+  "hash": "9491c1a10f2a0733"
  },
  "international/": {
-  "date": "2026-10-25",
-  "hash": "e52d5c103842fae1"
+  "date": "2026-11-05",
+  "hash": "1806dfb9cfc95f12"
  },
  "label-placement-guide/": {
-  "date": "2026-10-25",
-  "hash": "ee6c3bc3d7aa1d17"
+  "date": "2026-11-05",
+  "hash": "fd581022c4f97c57"
  },
  "logo-labels/": {
-  "date": "2026-10-30",
-  "hash": "4e8ee5aed546f15a"
+  "date": "2026-11-05",
+  "hash": "269a30b06fc9c032"
  },
  "pricing/": {
-  "date": "2026-10-25",
-  "hash": "c54ae10960d2b8c0"
+  "date": "2026-11-05",
+  "hash": "3348bf3869852fdd"
  },
  "privacy-policy/": {
-  "date": "2026-10-25",
-  "hash": "e55cf7b6fc64ca45"
+  "date": "2026-11-05",
+  "hash": "c49f18b837f5b6d9"
  },
  "refund-policy/": {
-  "date": "2026-10-25",
-  "hash": "5156e2aea67b0b45"
+  "date": "2026-11-05",
+  "hash": "63d191e3849b9ea5"
  },
  "resources/": {
-  "date": "2026-10-25",
-  "hash": "7cd7e9b261f08f9e"
+  "date": "2026-11-05",
+  "hash": "27879628e2b0ac02"
  },
  "resources/ai-generated-logo-to-woven-label/": {
-  "date": "2026-10-26",
-  "hash": "05262094db3504c7"
+  "date": "2026-11-05",
+  "hash": "398daed0d7bb6238"
  },
  "resources/center-fold-vs-end-fold/": {
-  "date": "2026-10-26",
-  "hash": "a29dbe695094c0ff"
+  "date": "2026-11-05",
+  "hash": "fbace4fbb95636b3"
  },
  "resources/custom-brand-labels-small-business/": {
-  "date": "2026-10-26",
-  "hash": "0671aa26daa30d14"
+  "date": "2026-11-05",
+  "hash": "42cd571cb6b8df3a"
  },
  "resources/prepare-logo-for-woven-labels/": {
-  "date": "2026-10-26",
-  "hash": "023c67b70d9a03b9"
+  "date": "2026-11-05",
+  "hash": "4566ac4a02ac9c5b"
  },
  "resources/woven-label-size-guide/": {
-  "date": "2026-10-26",
-  "hash": "2af60e289ce28ce0"
+  "date": "2026-11-05",
+  "hash": "ecdb685e756089f4"
  },
  "resources/woven-labels-brand-presentation/": {
-  "date": "2026-10-26",
-  "hash": "ffaa139f60f40bf1"
+  "date": "2026-11-05",
+  "hash": "bc427c5eab47fb42"
  },
  "resources/woven-labels-complete-guide/": {
-  "date": "2026-10-30",
-  "hash": "f5fb98293c764296"
+  "date": "2026-11-05",
+  "hash": "02bbe65be2dce5bb"
  },
  "resources/woven-labels-for-clothing-brands/": {
-  "date": "2026-10-26",
-  "hash": "b5547c4220d17d1e"
+  "date": "2026-11-05",
+  "hash": "b4c144231d8d170b"
  },
  "resources/woven-vs-printed-labels/": {
-  "date": "2026-10-30",
-  "hash": "6fcf72aaa910f8f1"
+  "date": "2026-11-05",
+  "hash": "508656903fbb0666"
  },
  "school-monograms/": {
-  "date": "2026-10-30",
-  "hash": "6746b578b4ba2df4"
+  "date": "2026-11-05",
+  "hash": "4c38c52f3a73ece6"
  },
  "services/": {
-  "date": "2026-10-25",
-  "hash": "a881f09a70c2f4c4"
+  "date": "2026-11-05",
+  "hash": "65261e6880ead5e3"
  },
  "shipping-policy/": {
-  "date": "2026-10-25",
-  "hash": "e156e9025b7f2ed8"
+  "date": "2026-11-05",
+  "hash": "549641130b58ccc2"
  },
  "size-labels/": {
-  "date": "2026-10-25",
-  "hash": "0deecf059ea9a74e"
+  "date": "2026-11-05",
+  "hash": "2258889606c6b218"
  },
  "terms/": {
-  "date": "2026-10-25",
-  "hash": "ca7c4ba25ad0913a"
+  "date": "2026-11-05",
+  "hash": "e0081678ef051c2e"
  },
  "woven-labels/": {
-  "date": "2026-10-30",
-  "hash": "ed5e769ec22b092b"
+  "date": "2026-11-05",
+  "hash": "5100ae5d06ebbacc"
  }
 }

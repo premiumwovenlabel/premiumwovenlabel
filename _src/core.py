@@ -11,6 +11,8 @@ import json
 # ---------------------------------------------------------------- business data
 NAME = "Premium Woven Labels"
 AUTHOR_NAME = "Faizan"
+# Other names the site is known by (Google site-names guidance: the lowercase domain is a good backup name).
+ALT_NAMES = ["Premium Woven Label", "premiumwovenlabel.com"]
 BASE = "https://premiumwovenlabel.com"   # live domain
 WA_RAW = "923048095202"
 WA_DISPLAY = "+92 304 8095202"
@@ -19,6 +21,10 @@ CITY = "Karachi"
 COUNTRY = "Pakistan"
 INSTAGRAM = "https://www.instagram.com/premium_woven_labels/"
 PINTEREST = "https://www.pinterest.com/premiumwovenlabel/"
+FACEBOOK = "https://www.facebook.com/PremiumWovenLabels"
+LINKEDIN = "https://www.linkedin.com/company/premium-woven-label/"
+# Opens the Google review box for the business profile. Shown as a plain link only; never used in structured data.
+GOOGLE_REVIEW = "https://g.page/r/CRQH3dsEzHXXEBM/review"
 YEAR = 2026
 GA_ID = "G-NKS0Z56VJE"
 ANALYTICS = ('<script async src="https://www.googletagmanager.com/gtag/js?id=' + GA_ID + '"></script>\n'
@@ -68,7 +74,7 @@ FOOT_SERVICES = [
 FOOT_RESOURCES = [
     ("pricing/", "Pricing guide"),
     ("label-placement-guide/", "Label size & placement guide"),
-    ("international/", "UAE & international orders"),
+    ("international/", "UAE, UK, USA & worldwide orders"),
     ("resources/", "All resources"),
     ("resources/woven-labels-complete-guide/", "Woven labels: the complete guide"),
     ("resources/woven-vs-printed-labels/", "Woven vs printed labels"),
@@ -122,6 +128,9 @@ ICON_PIN = ('<svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path
             '1.87.78 2.4.09.1.1.2.07.3l-.29 1.17c-.04.19-.15.23-.35.14-1.3-.6-2.11-2.49-2.11-4.01 0-3.27 2.37-6.27 6.84-6.27 3.59 0 6.38 '
             '2.56 6.38 5.98 0 3.57-2.25 6.44-5.37 6.44-1.05 0-2.03-.55-2.37-1.19l-.65 2.46c-.23.9-.86 2.02-1.28 2.71A10 10 0 1 0 12 2z"/>'
             '</svg>')
+# Facebook and LinkedIn glyphs are drawn at 20 of 24 units (same optical size as the Pinterest circle).
+ICON_FB = ('<svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path transform="translate(2 2) scale(.8333)" d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>')
+ICON_LI = ('<svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path transform="translate(2 2) scale(.8333)" d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>')
 ICON_IG = ('<svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M12 2.16c3.2 0 3.58.01 4.85.07 1.17.05 1.8.25 2.23.41.56.22.96.48 1.38.9.42.42.68.82.9 1.38.16.42.36 1.06.41 2.23.06 1.27.07 1.65.07 4.85s-.01 3.58-.07 4.85c-.05 1.17-.25 1.8-.41 2.23-.22.56-.48.96-.9 1.38-.42.42-.82.68-1.38.9-.42.16-1.06.36-2.23.41-1.27.06-1.65.07-4.85.07s-3.58-.01-4.85-.07c-1.17-.05-1.8-.25-2.23-.41-.56-.22-.96-.48-1.38-.9a3.7 3.7 0 0 1-.9-1.38c-.16-.42-.36-1.06-.41-2.23C2.17 15.58 2.16 15.2 2.16 12s.01-3.58.07-4.85c.05-1.17.25-1.8.41-2.23.22-.56.48-.96.9-1.38.42-.42.82-.68 1.38-.9.42-.16 1.06-.36 2.23-.41C8.42 2.17 8.8 2.16 12 2.16zm0 2.16c-3.14 0-3.51.01-4.75.07-1.15.05-1.77.24-2.18.4-.55.22-.94.47-1.35.88-.41.41-.66.8-.88 1.35-.16.41-.35 1.03-.4 2.18-.06 1.24-.07 1.61-.07 4.75s.01 3.51.07 4.75c.05 1.15.24 1.77.4 2.18.22.55.47.94.88 1.35.41.41.8.66 1.35.88.41.16 1.03.35 2.18.4 1.24.06 1.61.07 4.75.07s3.51-.01 4.75-.07c1.15-.05 1.77-.24 2.18-.4.55-.22.94-.47 1.35-.88.41-.41.66-.8.88-1.35.16-.41.35-1.03.4-2.18.06-1.24.07-1.61.07-4.75s-.01-3.51-.07-4.75c-.05-1.15-.24-1.77-.4-2.18a3.6 3.6 0 0 0-.88-1.35 3.6 3.6 0 0 0-1.35-.88c-.41-.16-1.03-.35-2.18-.4-1.24-.06-1.61-.07-4.75-.07zm0 3.67a5.01 5.01 0 1 1 0 10.02 5.01 5.01 0 0 1 0-10.02zm0 8.26a3.25 3.25 0 1 0 0-6.5 3.25 3.25 0 0 0 0 6.5zm6.38-8.46a1.17 1.17 0 1 1-2.34 0 1.17 1.17 0 0 1 2.34 0z"/></svg>')
 
 ICON_MAIL = ('<svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M3 5h18a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V6a1 1 0 0 1 1-1zm9 7.1L4.2 7H4v.6l8 5.2 8-5.2V7h-.2L12 12.1z"/></svg>')
@@ -246,6 +255,7 @@ def org_schema():
         "@type": ["Organization", "LocalBusiness"],
         "@id": BASE + "/#organization",
         "name": NAME,
+        "alternateName": ALT_NAMES,
         "url": BASE + "/",
         "email": EMAIL,
         "telephone": "+" + WA_RAW,
@@ -266,11 +276,6 @@ def org_schema():
             "addressRegion": "Sindh",
             "addressCountry": "PK",
         },
-        "geo": {
-            "@type": "GeoCoordinates",
-            "latitude": "24.8607",
-            "longitude": "67.0011",
-        },
         "areaServed": [
             {"@type": "Country", "name": "Pakistan"},
             {"@type": "Country", "name": "United Arab Emirates"},
@@ -279,10 +284,12 @@ def org_schema():
             {"@type": "Country", "name": "Qatar"},
             {"@type": "Country", "name": "Bahrain"},
             {"@type": "Country", "name": "Oman"},
+            {"@type": "Country", "name": "United Kingdom"},
+            {"@type": "Country", "name": "United States"},
         ],
         # No Offer / OfferCatalog / Product here on purpose: with no public prices or reviews, Google Search
         # Console reads each Offer as a price-less product and reports "Product snippets" errors.
-        "sameAs": [INSTAGRAM, PINTEREST],
+        "sameAs": [INSTAGRAM, PINTEREST, FACEBOOK, LINKEDIN],
         "contactPoint": [{
             "@type": "ContactPoint",
             "contactType": "sales",
@@ -290,9 +297,6 @@ def org_schema():
             "email": EMAIL,
             "availableLanguage": ["English", "Urdu"],
         }],
-        "priceRange": "Contact for quote",
-        "currenciesAccepted": "PKR",
-        "paymentAccepted": "Contact for payment details",
         "openingHoursSpecification": [{
             "@type": "OpeningHoursSpecification",
             "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"],
@@ -309,6 +313,7 @@ def website_schema():
         "@id": BASE + "/#website",
         "url": BASE + "/",
         "name": NAME,
+        "alternateName": ALT_NAMES,
         "publisher": {"@id": BASE + "/#organization"},
         "inLanguage": "en",
     }
@@ -386,6 +391,8 @@ def footer(depth):
         '<a href="%(wa)s" target="_blank" rel="noopener" aria-label="WhatsApp">%(iwa)s</a>'
         '<a href="%(ig)s" target="_blank" rel="noopener" aria-label="Instagram">%(iig)s</a>'
         '<a href="%(pin)s" target="_blank" rel="noopener" aria-label="Pinterest">%(ipin)s</a>'
+        '<a href="%(fb)s" target="_blank" rel="noopener" aria-label="Facebook">%(ifb)s</a>'
+        '<a href="%(li)s" target="_blank" rel="noopener" aria-label="LinkedIn">%(ili)s</a>'
         '<a href="mailto:%(email)s" aria-label="Email">%(imail)s</a>'
         '</div></div>'
         '<div class="foot-col"><h2>Site</h2><ul>%(nav)s</ul></div>'
@@ -396,6 +403,7 @@ def footer(depth):
         '<li><a href="mailto:%(email)s">%(email)s</a></li>'
         '<li>%(city)s, %(country)s</li>'
         '<li>Mon&ndash;Sat, 9 am&ndash;6 pm PKT</li>'
+        '<li><a href="%(rev)s" target="_blank" rel="noopener">Review us on Google</a></li>'
         '</ul></div>'
         '</div>'
         '<div class="foot-bottom">'
@@ -407,7 +415,8 @@ def footer(depth):
         % {
             "home": url("", depth), "name": NAME, "mark": brand_logo(depth, "dark", "brand-mark--foot"),
             "city": CITY, "country": COUNTRY,
-            "wa": wa(), "ig": INSTAGRAM, "pin": PINTEREST, "iwa": ICON_WA, "iig": ICON_IG, "ipin": ICON_PIN, "imail": ICON_MAIL,
+            "wa": wa(), "ig": INSTAGRAM, "pin": PINTEREST, "fb": FACEBOOK, "li": LINKEDIN, "rev": GOOGLE_REVIEW,
+            "iwa": ICON_WA, "iig": ICON_IG, "ipin": ICON_PIN, "ifb": ICON_FB, "ili": ICON_LI, "imail": ICON_MAIL,
             "email": EMAIL, "wad": WA_DISPLAY, "year": YEAR,
             "nav": links(NAV[1:]),
             "svc": links(FOOT_SERVICES),
@@ -450,7 +459,9 @@ def page(path, title, desc, body, active=None, depth=None, schema=None, og_type=
         '<meta name="twitter:title" content="%(title)s">\n'
         '<meta name="twitter:description" content="%(desc)s">\n'
         '<meta name="twitter:image" content="%(base)s/assets/img/og-cover.png">\n'
+        '<link rel="icon" href="%(pre)sfavicon.ico" sizes="48x48">\n'
         '<link rel="icon" href="%(pre)sassets/img/favicon.svg" type="image/svg+xml">\n'
+        '<link rel="icon" href="%(pre)sassets/img/favicon-192.png" type="image/png" sizes="192x192">\n'
         '<link rel="apple-touch-icon" href="%(pre)sassets/img/apple-touch-icon.png">\n'
         '<link rel="stylesheet" href="%(pre)sassets/css/style.css">\n'
         '%(fonts)s\n'

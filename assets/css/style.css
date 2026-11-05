@@ -592,7 +592,7 @@ details.faq-item[open] summary.faq-q::after { content: "−"; }
 .foot-col ul { list-style: none; padding: 0; margin: 0; display: grid; gap: 10px; }
 .foot-col a { text-decoration: none; font-size: .92rem; transition: color .16s ease; }
 .foot-col a:hover { color: var(--cream); }
-.foot-social { display: flex; gap: 10px; margin-top: 20px; }
+.foot-social { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 20px; }
 .foot-social a {
   width: 42px; height: 42px; border-radius: 12px;
   display: grid; place-items: center;
@@ -672,7 +672,7 @@ details.faq-item[open] summary.faq-q::after { content: "−"; }
   .g-3 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .gal-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .compare { grid-template-columns: 1fr; }
-  .contact-cards { grid-template-columns: 1fr; }
+  .contact-cards { grid-template-columns: minmax(0, 1fr); }
   .lb-prev { left: -12px; }
   .lb-next { right: -12px; }
   .steps { grid-template-columns: repeat(2, minmax(0, 1fr)); }
@@ -684,7 +684,7 @@ details.faq-item[open] summary.faq-q::after { content: "−"; }
   .benefits { grid-template-columns: 1fr; }
   .benefit { padding: 18px var(--gutter); flex-direction: row; align-items: flex-start; }
   .benefit svg { margin-bottom: 0; margin-top: 2px; }
-  .g-2, .g-3, .g-4, .steps, .gal-grid, .form-grid { grid-template-columns: 1fr; }
+  .g-2, .g-3, .g-4, .steps, .gal-grid, .form-grid { grid-template-columns: minmax(0, 1fr); }
   .foot-grid { grid-template-columns: 1fr; }
   .fab { padding: 14px 16px; right: 14px; }
   .fab span { display: none; }
@@ -747,6 +747,7 @@ details.faq-item[open] summary.faq-q::after { content: "−"; }
 .quote-card { margin: 0; padding: 26px; background: var(--paper); border: 1px solid var(--line); border-radius: 14px; }
 .quote-card blockquote { margin: 0 0 14px; font-size: 1rem; line-height: 1.6; color: var(--ink-soft); }
 .quote-card figcaption { font-weight: 700; font-size: .88rem; color: var(--ink); }
+.quote-cta { margin: 24px 0 0; text-align: center; font-size: .95rem; color: var(--slate); }
 .table-wrap { overflow-x: auto; margin-bottom: 36px; }
 .price-table { width: 100%; border-collapse: collapse; background: var(--paper); }
 .price-table th, .price-table td { padding: 14px 18px; text-align: left; border-bottom: 1px solid var(--line); }
@@ -803,6 +804,8 @@ details.faq-item[open] summary.faq-q::after { content: "−"; }
 .spot-card figcaption { display: grid; gap: 4px; margin-bottom: 18px; }
 .spot-card figcaption b { font-size: 1.05rem; color: #fff; }
 .spot-card figcaption span { font-size: .95rem; color: rgba(255, 255, 255, .9); }
+.spot-card figcaption span a { color: #fff; text-decoration: underline; text-underline-offset: 3px; }
+.spot-card figcaption span a:hover { text-decoration-thickness: 2px; }
 .spot-card .spot-process { margin: 0; padding-top: 16px; border-top: 1px solid rgba(255, 255, 255, .3); font-size: .95rem; color: rgba(255, 255, 255, .92); }
 .gal-item img[src*="llgc-monogram"] { object-position: center 80%; }
 
@@ -849,3 +852,8 @@ a.brand-card:hover img, a.brand-card:focus-visible img { border-color: var(--red
   .label-intro .page-photo { max-width: 460px; }
 }
 @media (max-width: 520px) { .label-intro .trust-grid { grid-template-columns: 1fr; } }
+
+/* ---------- Long button text may wrap on phones instead of overflowing the page (31 Oct 2026) ---------- */
+@media (max-width: 480px) { .btn { white-space: normal; text-align: center; max-width: 100%; } }
+/* Long email addresses and phone numbers wrap inside the contact cards on narrow phones */
+.contact-cards > * { min-width: 0; overflow-wrap: anywhere; }

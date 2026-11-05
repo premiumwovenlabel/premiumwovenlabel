@@ -503,9 +503,19 @@ LABEL_PAGE_PHOTO = {
 }
 
 
-def _img_tag(fname, alt, depth):
+def _img_tag(fname, alt, depth, sizes=None):
+    """<img> for a real photo. src stays the full-size file (one URL per image across the site); when smaller
+    copies (name-w600.jpg, name-w800.jpg) exist, srcset lets phones download those instead."""
     w, h = _jpeg_size(fname)
-    return ('<img src="' + asset("assets/img/real/" + fname, depth) + '" alt="' + alt + '" loading="lazy" '
+    stem = fname.rsplit(".", 1)[0]
+    small = [(vw, "%s-w%d.jpg" % (stem, vw)) for vw in (600, 800)
+             if os.path.exists(os.path.join(_REAL, "%s-w%d.jpg" % (stem, vw)))]
+    srcset = ""
+    if small and sizes:
+        parts = ["%s %dw" % (asset("assets/img/real/" + f, depth), vw) for vw, f in small]
+        parts.append("%s %dw" % (asset("assets/img/real/" + fname, depth), w))
+        srcset = ' srcset="' + ", ".join(parts) + '" sizes="' + sizes + '"'
+    return ('<img src="' + asset("assets/img/real/" + fname, depth) + '"' + srcset + ' alt="' + alt + '" loading="lazy" '
             'width="' + str(w) + '" height="' + str(h) + '">')
 
 
@@ -514,7 +524,7 @@ def page_photo(anchor, depth):
     if anchor not in LABEL_PAGE_PHOTO:
         return ""
     fname, alt, caption = LABEL_PAGE_PHOTO[anchor]
-    return ('<figure class="page-photo">' + _img_tag(fname, alt, depth) +
+    return ('<figure class="page-photo">' + _img_tag(fname, alt, depth, "(max-width: 860px) 92vw, 480px") +
             '<figcaption>' + caption + '. <a class="textlink" href="' + url("gallery/", depth) +
             '">See more real labels in the gallery</a></figcaption></figure>')
 
@@ -525,7 +535,8 @@ def gallery_photo_row(fnames, depth):
     figs = ""
     for f in fnames:
         alt, cap = by_file[f]
-        figs += '<figure class="cb-photo">' + _img_tag(f, alt, depth) + '<figcaption>' + cap + '</figcaption></figure>'
+        figs += ('<figure class="cb-photo">' + _img_tag(f, alt, depth, "(max-width: 860px) 46vw, 25vw")
+                 + '<figcaption>' + cap + '</figcaption></figure>')
     return '<div class="cb-photos">' + figs + '</div>'
 
 
@@ -794,6 +805,11 @@ INTL_FAQ = [
      "Kuwait, Qatar, Bahrain and Oman), with shipping included in your quote. UAE parcels go via Skynet Worldwide "
      "Express. For other countries, we quote the shipping and confirm the timeline with you."),
 
+    ("Do you ship custom woven labels to the UK and the USA?",
+     "Yes. We quote UK and USA orders through the same process and payment terms as our UAE orders. The shipping "
+     "cost and the delivery time are confirmed with you when we quote. Import duties, taxes or customs charges in "
+     "the destination country may apply."),
+
     ("How long does a UAE order take from approval to delivery?",
      "Typically 6\u20137 days in total for the UAE and the other GCC countries: 3 days of production, then 3\u20134 days "
      "for dispatch and courier delivery. The clock starts once your final design and size "
@@ -819,6 +835,12 @@ INTL_FAQ = [
      "Pricing is set per market rather than one global number, since shipping, currency and local competition "
      "differ by country. Artwork cleanup and packaging are included in every quote, and shipping is included for GCC "
      "countries. Send us your country, label type and quantity on WhatsApp and we'll quote it directly."),
+
+    ("Where can I check labelling rules for the UK and the USA?",
+     "Fibre content, care labelling and origin rules depend on the garment and the market. The Official market "
+     "references section of our woven labels guide links to the official US and Great Britain sources. It is "
+     "informational, not legal advice, so confirm the current rules with the regulator before you order production "
+     "labels."),
 
     ("Do you work with garment exporters and buyers who need labels matched to buyer specifications?",
      "Yes. We supply brand, size and care labels matched to buyer specifications for garment exporters and "

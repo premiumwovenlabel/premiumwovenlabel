@@ -3,7 +3,8 @@
 Static, dependency-free website for Premium Woven Labels (Karachi, Pakistan). Built as plain
 HTML + CSS + vanilla JS so it runs on GitHub Pages with no build step on the server.
 
-- 22 pages, clean URLs (`/about/`, `/woven-labels/`, `/resources/...`)
+- About 35 pages, clean URLs (`/about/`, `/woven-labels/`, `/resources/...`)
+- Current business facts, decisions and pending work are in `STATUS.md`. Read it first in a new chat.
 - No frameworks, no jQuery, no external JS. Only Google Fonts is loaded remotely, non-blocking.
 - All label artwork is inline SVG generated at build time — the site makes **zero image requests**
   on page load (the only image files are the favicon, apple-touch-icon and the social share card).
